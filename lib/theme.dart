@@ -3,7 +3,7 @@ import 'package:poc_example_integration/utils/colors.dart';
 
 final theme = ThemeData(
   primaryColor: primaryColor,
-  backgroundColor: backgroundButtonColor,
+  accentColor: backgroundButtonColor,
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: MaterialStateProperty.resolveWith<Color>(
