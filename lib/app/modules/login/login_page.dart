@@ -5,7 +5,7 @@ import 'package:poc_example_integration/app/modules/login/login_store.dart';
 
 class LoginPage extends StatefulWidget {
   final String title;
-  const LoginPage({Key key, this.title = "Login"}) : super(key: key);
+  const LoginPage({Key? key, this.title = "Login"}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();

@@ -34,9 +34,10 @@ class _ProductsPageState extends ModularState<ProductsPage, ProductsStore> {
         title: Text('Lista de produtos'),
       ),
       body: Observer(
-        builder: (context) {
-          return Container(child: Text('Aqui fica a lista'));
-        },
+        builder: (context) => ListView.builder(
+          itemCount: this.store.products!.length,
+          itemBuilder: (_, index) => Text('${this.store.products![index]}'),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Adicionar produto',
@@ -44,7 +45,7 @@ class _ProductsPageState extends ModularState<ProductsPage, ProductsStore> {
           if (screenWidth > 700) {
             _showDialog();
           } else {
-            Modular.to.navigate('/adicionar-produto');
+            Modular.to.navigate('./adicionar-produto');
           }
         },
         child: Icon(Icons.add),

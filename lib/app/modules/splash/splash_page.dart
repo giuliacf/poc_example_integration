@@ -7,7 +7,7 @@ import 'package:poc_example_integration/utils/colors.dart';
 class SplashPage extends StatefulWidget {
   final String title;
 
-  const SplashPage({Key key, this.title = "Splash"}) : super(key: key);
+  const SplashPage({Key? key, this.title = "Splash"}) : super(key: key);
 
   @override
   _SplashPageState createState() => _SplashPageState();

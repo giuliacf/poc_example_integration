@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 
 class TextFieldCustom extends StatelessWidget {
   final String text;
   final bool obscure;
-  final Widget suffixIcon;
-  final Function(String) onChanged;
+  final Widget? suffixIcon;
+  final Function(String)? onChanged;
+  final String? Function(String?)? validator;
+  final TextEditingController? controller;
   final String fontFamily;
+  final List<TextInputFormatter>? inputFormatters;
 
   TextFieldCustom({
-    @required this.text,
+    required this.text,
     this.obscure = false,
     this.suffixIcon,
     this.onChanged,
-    this.fontFamily = 'ItauDisplay'
+    this.fontFamily = 'ItauDisplay',
+    this.validator,
+    this.controller,
+    this.inputFormatters,
   });
 
   OutlineInputBorder customBorder(Color borderColor) {
@@ -44,10 +51,10 @@ class TextFieldCustom extends StatelessWidget {
         hintText: text,
         suffixIcon: suffixIcon,
       ),
+      inputFormatters: inputFormatters,
       onChanged: onChanged,
+      validator: validator,
+      controller: controller,
     );
   }
 }
-
-
-

@@ -12,13 +12,13 @@ part 'products_store.g.dart';
 class ProductsStore = ProductsStoreBase with _$ProductsStore;
 
 abstract class ProductsStoreBase with Store {
-  GraphQLConfiguration configuration = Modular.get<GraphQLConfiguration>();
-
-  @observable
-  Product product;
+  GraphQLConfiguration _configuration = Modular.get<GraphQLConfiguration>();
 
   @observable
   bool loading = false;
+
+  @observable
+  ObservableList<Product>? products;
 
   @observable
   TextEditingController nameController = TextEditingController();
@@ -33,7 +33,7 @@ abstract class ProductsStoreBase with Store {
   setLoading(bool isLoading) => loading = isLoading;
 
   @action
-  Future<Graphql.QueryResult> saveProdut() async {
+  Future<void> saveProdut() async {
     setLoading(true);
 
     try {
@@ -48,16 +48,20 @@ abstract class ProductsStoreBase with Store {
         },
       );
 
-      final response = await configuration.graphClient().mutate(_options);
+      Graphql.QueryResult response = await _configuration.graphClient().mutate(_options);
+      addProduct(response as Product);
       _clearControllers();
-      return response;
+      // return response;
     } catch (e) {
       print(e);
     } finally {
       setLoading(false);
     }
+  }
 
-    return null;
+  @action
+  addProduct(Product product) {
+    products!.add(product);
   }
 
   @computed

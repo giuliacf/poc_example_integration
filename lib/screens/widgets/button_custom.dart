@@ -4,10 +4,10 @@ import 'package:poc_example_integration/utils/colors.dart';
 
 class ButtonCustom extends StatelessWidget {
   ButtonCustom({
-    @required this.text,
-    @required this.onPressed,
-    @required this.isDisabled,
-    @required this.isLoading,
+    required this.text,
+    required this.onPressed,
+    required this.isDisabled,
+    required this.isLoading,
   });
 
   final String text;
@@ -18,7 +18,7 @@ class ButtonCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: onPressed,
+      onPressed: onPressed as void Function()?,
       child: isLoading
           ? SizedBox(
               width: 10,
@@ -32,7 +32,7 @@ class ButtonCustom extends StatelessWidget {
             )
           : TextCustom(
               text: text,
-              fontSize: 12,
+              fontSize: 18,
               textColor: !isDisabled ? black : grey,
               fontWeight: FontWeight.bold,
             ),

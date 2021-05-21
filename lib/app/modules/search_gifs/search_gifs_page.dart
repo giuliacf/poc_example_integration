@@ -5,7 +5,7 @@ import 'package:poc_example_integration/app/modules/search_gifs/search_gifs_stor
 
 class SearchGifsPage extends StatefulWidget {
   final String title;
-  const SearchGifsPage({Key key, this.title = "SearchGifs"}) : super(key: key);
+  const SearchGifsPage({Key? key, this.title = "SearchGifs"}) : super(key: key);
 
   @override
   _SearchGifsPageState createState() => _SearchGifsPageState();

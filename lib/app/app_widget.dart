@@ -9,7 +9,7 @@ class AppWidget extends StatelessWidget {
       title: 'POC Example Integrationp',
       debugShowCheckedModeBanner: false,
       builder: (context, widget) => ResponsiveWrapper.builder(
-        ClampingScrollWrapper.builder(context, widget),
+        ClampingScrollWrapper.builder(context, widget!),
         defaultScale: true,
         minWidth: 450,
         defaultName: MOBILE,

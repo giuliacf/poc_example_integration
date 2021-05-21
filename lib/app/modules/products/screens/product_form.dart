@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
+import 'package:poc_example_integration/screens/widgets/button_custom.dart';
+import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
 
 class ProductForm extends StatefulWidget {
   @override
@@ -9,6 +12,13 @@ class ProductForm extends StatefulWidget {
 }
 
 class _ProductFormState extends ModularState<ProductForm, ProductsStore> {
+  String? _validator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Este campo é obrigatório';
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,28 +27,34 @@ class _ProductFormState extends ModularState<ProductForm, ProductsStore> {
             ? CircularProgressIndicator()
             : Column(
                 children: [
-                  TextField(
+                  TextFieldCustom(
                     controller: this.store.nameController,
-                    decoration: InputDecoration(hintText: 'Insira o nome'),
+                    text: 'Insira o nome do produto',
+                    validator: _validator,
                   ),
-                  TextField(
+                  SizedBox(height: 8),
+                  TextFieldCustom(
                     controller: this.store.descriptionController,
-                    decoration: InputDecoration(hintText: 'Insira a descrição'),
+                    text: 'Insira a descrição do produto',
+                    validator: _validator,
                   ),
-                  TextField(
+                  SizedBox(height: 8),
+                  TextFieldCustom(
                     controller: this.store.priceController,
-                    decoration: InputDecoration(hintText: 'Insira o preço'),
+                    text: 'Insira o preço do produto',
+                    validator: _validator,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   ),
                   SizedBox(height: 24),
                   Observer(
                     builder: (context) {
-                      return ElevatedButton(
-                        child: Text('Adicionar produto'),
-                        onPressed: this.store.isDisabled
-                            ? null
-                            : () {
-                                this.store.saveProdut();
-                              },
+                      return ButtonCustom(
+                        text: 'Adicionar',
+                        isDisabled: false,
+                        isLoading: this.store.loading,
+                        onPressed: () {
+                          this.store.saveProdut();
+                        },
                       );
                     },
                   )
