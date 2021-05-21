@@ -29,6 +29,7 @@ dependencies:
   flutter_mobx: ^2.0.0
   responsive_framework: ^0.1.0
   http: ^0.13.3
+  graphql_flutter: ^4.0.1
   
 dev_dependencies:
   flutter_test:
