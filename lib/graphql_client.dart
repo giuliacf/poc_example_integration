@@ -1,7 +1,8 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:poc_example_integration/utils/urls.dart';
 
 class GraphQLConfiguration {
-  static HttpLink httpLink = HttpLink('http://iuppsample.dev.iupp.io/graphql');
+
 
   GraphQLClient graphClient() {
     return GraphQLClient(
