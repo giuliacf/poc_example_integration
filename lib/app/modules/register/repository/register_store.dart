@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
+import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
 
 part 'register_store.g.dart';
 
@@ -26,12 +27,18 @@ abstract class RegisterStoreBase with Store {
       await authDatasource.registerWithEmail(
         email: emailController.text,
         password: passwordController.text,
+        context: context,
       );
 
       Modular.to.pushReplacementNamed('/home');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
-        print('Já existe uma conta com este email.');
+        ScaffoldMessenger.of(context).showSnackBar(
+          CustomErrorSnackBar(
+            context,
+            message: 'Já existe uma conta com este email.',
+          ),
+        );
       }
     } catch (e) {
       print(e);
