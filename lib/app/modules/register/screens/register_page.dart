@@ -20,41 +20,6 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
   bool _showPassword = false;
   bool _showConfirmPassword = false;
 
-  String? _validator(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Este campo é obrigatório';
-    }
-  }
-
-  String? _emailValidator(String? value) {
-    _validator(value);
-    if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value!)) {
-      return 'Email inválido';
-    }
-    return null;
-  }
-
-  String? _passwordValidator(String? value) {
-    _validator(value);
-
-    if (this.store.passwordController.text.length < 6) {
-      return 'A senha deve ter no mínimo 6 caracteres';
-    }
-
-    if (this.store.passwordController != this.store.confirmPasswordController) {
-      return ' ';
-    }
-    return null;
-  }
-
-  String? _confirmPasswordValidator(String? value) {
-    _validator(value);
-    if (this.store.passwordController.text != this.store.confirmPasswordController.text) {
-      return 'As senhas devem ser iguais';
-    }
-    return null;
-  }
-
   Widget getIcon({
     required bool show,
     void Function()? onPressed,
@@ -89,9 +54,8 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextFieldCustom(
-                        text: 'email',
+                        text: 'Email',
                         controller: this.store.emailController,
-                        validator: _emailValidator,
                         suffixIcon: Icon(
                           Icons.email,
                           color: lightGrey,
@@ -99,10 +63,9 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
                       ),
                       SizedBox(height: 8),
                       TextFieldCustom(
-                        text: 'senha',
+                        text: 'Senha',
                         controller: this.store.passwordController,
                         obscure: !_showPassword,
-                        validator: _passwordValidator,
                         suffixIcon: getIcon(
                           show: _showPassword,
                           onPressed: () {
@@ -114,10 +77,9 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
                       ),
                       SizedBox(height: 8),
                       TextFieldCustom(
-                        text: 'confirmar senha',
+                        text: 'Confirmar senha',
                         controller: this.store.confirmPasswordController,
                         obscure: !_showConfirmPassword,
-                        validator: _confirmPasswordValidator,
                         suffixIcon: getIcon(
                           show: _showConfirmPassword,
                           onPressed: () {
@@ -132,12 +94,13 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
                         height: 48,
                         width: 400,
                         child: ButtonCustom(
-                          text: 'salvar',
+                          text: 'Salvar',
                           isDisabled: false,
                           isLoading: false,
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               // TODO: save in firebase
+                              await this.store.loginWithUserAndEmail(context);
                             }
                           },
                         ),

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "796389994121",
+    "project_id": "poc-integration-fdd3b",
+    "storage_bucket": "poc-integration-fdd3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796389994121:android:4c3c67a350457edca1e058",
+        "android_client_info": {
+          "package_name": "br.poc.integration"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796389994121-trjar7qb81s8kd4sqfhgup5n3alsngdr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxJjmAsortrBEai7YYx3sCv4xCmPn_2Sg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796389994121-trjar7qb81s8kd4sqfhgup5n3alsngdr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

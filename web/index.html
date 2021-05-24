@@ -22,9 +22,31 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="poc_example_integration">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <!-- Firebase Configuration-->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBkPw_CXOlbK3BkYmOSEOFGfI7XnpN6Hd4",
+      authDomain: "poc-integration-fdd3b.firebaseapp.com",
+      projectId: "poc-integration-fdd3b",
+      storageBucket: "poc-integration-fdd3b.appspot.com",
+      messagingSenderId: "796389994121",
+      appId: "1:796389994121:web:cf5321654437269ba1e058"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <!-- End of Firebase Configuration-->
 
   <title>poc_example_integration</title>
   <link rel="manifest" href="manifest.json">
@@ -40,6 +62,7 @@
       });
     }
   </script>
+
   <script src="main.dart.js" type="application/javascript"></script>
 </body>
 </html>
