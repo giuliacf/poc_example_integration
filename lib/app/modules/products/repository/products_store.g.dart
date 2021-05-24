@@ -12,7 +12,10 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
   Computed<bool>? _$isDisabledComputed;
 
   @override
-  bool get isDisabled => (_$isDisabledComputed ??= Computed<bool>(() => super.isDisabled, name: 'ProductsStoreBase.isDisabled')).value;
+  bool get isDisabled =>
+      (_$isDisabledComputed ??= Computed<bool>(() => super.isDisabled,
+              name: 'ProductsStoreBase.isDisabled'))
+          .value;
 
   final _$loadingAtom = Atom(name: 'ProductsStoreBase.loading');
 
@@ -32,13 +35,13 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
   final _$productsAtom = Atom(name: 'ProductsStoreBase.products');
 
   @override
-  ObservableList<Product>? get products {
+  ObservableList<Product> get products {
     _$productsAtom.reportRead();
     return super.products;
   }
 
   @override
-  set products(ObservableList<Product>? value) {
+  set products(ObservableList<Product> value) {
     _$productsAtom.reportWrite(value, super.products, () {
       super.products = value;
     });
@@ -59,7 +62,8 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
     });
   }
 
-  final _$descriptionControllerAtom = Atom(name: 'ProductsStoreBase.descriptionController');
+  final _$descriptionControllerAtom =
+      Atom(name: 'ProductsStoreBase.descriptionController');
 
   @override
   TextEditingController get descriptionController {
@@ -69,7 +73,8 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
 
   @override
   set descriptionController(TextEditingController value) {
-    _$descriptionControllerAtom.reportWrite(value, super.descriptionController, () {
+    _$descriptionControllerAtom.reportWrite(value, super.descriptionController,
+        () {
       super.descriptionController = value;
     });
   }
@@ -96,11 +101,13 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
     return _$saveProdutAsyncAction.run(() => super.saveProdut());
   }
 
-  final _$ProductsStoreBaseActionController = ActionController(name: 'ProductsStoreBase');
+  final _$ProductsStoreBaseActionController =
+      ActionController(name: 'ProductsStoreBase');
 
   @override
   dynamic setLoading(bool isLoading) {
-    final _$actionInfo = _$ProductsStoreBaseActionController.startAction(name: 'ProductsStoreBase.setLoading');
+    final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
+        name: 'ProductsStoreBase.setLoading');
     try {
       return super.setLoading(isLoading);
     } finally {
@@ -109,10 +116,11 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
   }
 
   @override
-  dynamic addProduct(Product product) {
-    final _$actionInfo = _$ProductsStoreBaseActionController.startAction(name: 'ProductsStoreBase.addProduct');
+  dynamic _addProduct(Product product) {
+    final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
+        name: 'ProductsStoreBase._addProduct');
     try {
-      return super.addProduct(product);
+      return super._addProduct(product);
     } finally {
       _$ProductsStoreBaseActionController.endAction(_$actionInfo);
     }

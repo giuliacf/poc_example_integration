@@ -47,6 +47,7 @@ class TextFieldCustom extends StatelessWidget {
         enabledBorder: customBorder(grey),
         focusedBorder: customBorder(blue),
         errorBorder: customBorder(red),
+        focusedErrorBorder: customBorder(red),
         hintStyle: TextStyle(color: greyTwo),
         hintText: text,
         suffixIcon: suffixIcon,

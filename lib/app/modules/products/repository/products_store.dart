@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:graphql_flutter/graphql_flutter.dart' as Graphql;
+import 'package:graphql_flutter/graphql_flutter.dart' as GraphQL;
 import 'package:mobx/mobx.dart';
 import 'package:poc_example_integration/app/modules/products/repository/mutations/save_products_mutation.dart';
 import 'package:poc_example_integration/graphql_client.dart';
@@ -18,7 +18,7 @@ abstract class ProductsStoreBase with Store {
   bool loading = false;
 
   @observable
-  ObservableList<Product>? products;
+  ObservableList<Product> products = ObservableList<Product>.of([]);
 
   @observable
   TextEditingController nameController = TextEditingController();
@@ -39,7 +39,7 @@ abstract class ProductsStoreBase with Store {
     try {
       final document = saveProductsMutation;
 
-      final Graphql.MutationOptions _options = Graphql.MutationOptions(
+      final GraphQL.MutationOptions _options = GraphQL.MutationOptions(
         document: parseString(document),
         variables: <String, String>{
           'name': nameController.text,
@@ -48,8 +48,8 @@ abstract class ProductsStoreBase with Store {
         },
       );
 
-      Graphql.QueryResult response = await _configuration.graphClient().mutate(_options);
-      addProduct(response as Product);
+      GraphQL.QueryResult response = await _configuration.graphClient().mutate(_options);
+      _addProduct(response as Product);
       _clearControllers();
       // return response;
     } catch (e) {
@@ -60,12 +60,12 @@ abstract class ProductsStoreBase with Store {
   }
 
   @action
-  addProduct(Product product) {
-    products!.add(product);
+  _addProduct(Product product) {
+    products.add(product);
   }
 
   @computed
-  bool get isDisabled => nameController.text.isEmpty || descriptionController.text.isEmpty || priceController.text.isEmpty;
+  bool get isDisabled => nameController.text.isEmpty || descriptionController.text.isEmpty;
 
   _clearControllers() {
     nameController.clear();

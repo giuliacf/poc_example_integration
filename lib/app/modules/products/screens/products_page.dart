@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
 import 'package:poc_example_integration/app/modules/products/screens/product_form.dart';
+import 'package:poc_example_integration/utils/colors.dart';
 
 class ProductsPage extends StatefulWidget {
   @override
@@ -30,14 +31,19 @@ class _ProductsPageState extends ModularState<ProductsPage, ProductsStore> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: lead,
       appBar: AppBar(
         title: Text('Lista de produtos'),
       ),
       body: Observer(
-        builder: (context) => ListView.builder(
-          itemCount: this.store.products!.length,
-          itemBuilder: (_, index) => Text('${this.store.products![index]}'),
-        ),
+        builder: (context) {
+          return ListView.builder(
+            itemCount: this.store.products.length,
+            itemBuilder: (context, index) {
+              return Text('list');
+            },
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Adicionar produto',
