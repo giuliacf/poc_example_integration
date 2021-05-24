@@ -23,7 +23,7 @@ abstract class RegisterStoreBase with Store {
   @action
   Future<void> loginWithUserAndEmail(BuildContext context) async {
     try {
-      await authDatasource.registerWithUserAndEmail(
+      await authDatasource.registerWithEmail(
         email: emailController.text,
         password: passwordController.text,
       );
