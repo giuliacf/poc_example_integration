@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthDatasource {
-  Future<void> registerWithUserAndEmail({
+  Future<void> registerWithEmail({
     required String email,
     required String password,
   }) async {
@@ -11,7 +11,7 @@ class AuthDatasource {
     );
   }
 
-  Future<void> loginWithUserAndEmail({
+  Future<void> loginWithEmail({
     required String email,
     required String password,
   }) async {
