@@ -17,10 +17,10 @@ class _ProductsPageState extends ModularState<ProductsPage, ProductsStore> {
       builder: (context) {
         return AlertDialog(
           title: Text('Adicionar produto'),
+          content: ProductForm(),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
-          content: ProductForm(),
         );
       },
     );

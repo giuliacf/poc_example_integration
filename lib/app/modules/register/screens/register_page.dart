@@ -29,44 +29,58 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
   String? _emailValidator(String? value) {
     _validator(value);
     if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value!)) {
-      return 'email inválido';
+      return 'Email inválido';
     }
     return null;
   }
 
   String? _passwordValidator(String? value) {
     _validator(value);
+
+    if (this.store.passwordController.text.length < 6) {
+      return 'A senha deve ter no mínimo 6 caracteres';
+    }
+
     if (this.store.passwordController != this.store.confirmPasswordController) {
+      return ' ';
+    }
+    return null;
+  }
+
+  String? _confirmPasswordValidator(String? value) {
+    _validator(value);
+    if (this.store.passwordController.text != this.store.confirmPasswordController.text) {
       return 'As senhas devem ser iguais';
     }
     return null;
   }
 
-  Widget getIcon(bool show) {
+  Widget getIcon({
+    required bool show,
+    void Function()? onPressed,
+  }) {
     return IconButton(
       tooltip: show ? 'Ocultar senha' : 'Exibir senha',
       icon: Icon(
         show ? Icons.visibility_off_outlined : Icons.visibility_outlined,
         color: lightGrey,
       ),
-      onPressed: () {
-        setState(() {
-          show = !show;
-        });
-      },
+      onPressed: onPressed,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: lead,
       body: Center(
         child: Observer(
           builder: (context) {
             return Container(
               width: 400,
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: const EdgeInsets.all(16.0),
               child: SingleChildScrollView(
                 child: Form(
                   key: _formKey,
@@ -88,16 +102,30 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
                         text: 'senha',
                         controller: this.store.passwordController,
                         obscure: !_showPassword,
-                        validator: _validator,
-                        suffixIcon: getIcon(_showPassword),
+                        validator: _passwordValidator,
+                        suffixIcon: getIcon(
+                          show: _showPassword,
+                          onPressed: () {
+                            setState(() {
+                              _showPassword = !_showPassword;
+                            });
+                          },
+                        ),
                       ),
                       SizedBox(height: 8),
                       TextFieldCustom(
                         text: 'confirmar senha',
                         controller: this.store.confirmPasswordController,
                         obscure: !_showConfirmPassword,
-                        validator: _passwordValidator,
-                        suffixIcon: getIcon(_showConfirmPassword),
+                        validator: _confirmPasswordValidator,
+                        suffixIcon: getIcon(
+                          show: _showConfirmPassword,
+                          onPressed: () {
+                            setState(() {
+                              _showConfirmPassword = !_showConfirmPassword;
+                            });
+                          },
+                        ),
                       ),
                       SizedBox(height: 24),
                       SizedBox(

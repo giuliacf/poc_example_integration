@@ -29,42 +29,49 @@ class _ProductFormState extends ModularState<ProductForm, ProductsStore> {
             ? CircularProgressIndicator()
             : Form(
                 key: _formKey,
-                child: Column(
-                  children: [
-                    TextFieldCustom(
-                      controller: this.store.nameController,
-                      text: 'Insira o nome do produto',
-                      validator: _validator,
-                    ),
-                    SizedBox(height: 8),
-                    TextFieldCustom(
-                      controller: this.store.descriptionController,
-                      text: 'Insira a descrição do produto',
-                      validator: _validator,
-                    ),
-                    SizedBox(height: 8),
-                    TextFieldCustom(
-                      controller: this.store.priceController,
-                      text: 'Insira o preço do produto',
-                      validator: _validator,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    ),
-                    SizedBox(height: 24),
-                    Observer(
-                      builder: (context) {
-                        return ButtonCustom(
-                          text: 'Adicionar',
-                          isDisabled: false,
-                          isLoading: this.store.loading,
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              this.store.saveProdut();
-                            }
-                          },
-                        );
-                      },
-                    )
-                  ],
+                child: Container(
+                  width: 400,
+                  child: Column(
+                    children: [
+                      TextFieldCustom(
+                        controller: this.store.nameController,
+                        text: 'Insira o nome do produto',
+                        validator: _validator,
+                      ),
+                      SizedBox(height: 8),
+                      TextFieldCustom(
+                        controller: this.store.descriptionController,
+                        text: 'Insira a descrição do produto',
+                        validator: _validator,
+                      ),
+                      SizedBox(height: 8),
+                      TextFieldCustom(
+                        controller: this.store.priceController,
+                        text: 'Insira o preço do produto',
+                        validator: _validator,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      ),
+                      SizedBox(height: 24),
+                      Observer(
+                        builder: (context) {
+                          return SizedBox(
+                            height: 48,
+                            width: MediaQuery.of(context).size.width,
+                            child: ButtonCustom(
+                              text: 'Adicionar',
+                              isDisabled: false,
+                              isLoading: this.store.loading,
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  this.store.saveProdut();
+                                }
+                              },
+                            ),
+                          );
+                        },
+                      )
+                    ],
+                  ),
                 ),
               ),
       ),

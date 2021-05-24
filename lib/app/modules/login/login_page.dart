@@ -19,7 +19,18 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
         title: Text('Counter'),
       ),
       body: Observer(
-        builder: (context) => Text('${store.counter}'),
+        builder: (context) => Column(
+          children: [
+            OutlinedButton(
+              child: Text('Cadastre-se'),
+              onPressed: () {
+                //TODO: testar mobile
+                Modular.to.navigate('/register');
+              },
+            ),
+            Text('${store.counter}'),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
