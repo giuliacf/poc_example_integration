@@ -57,12 +57,51 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
     });
   }
 
+  final _$isLoadingAtom = Atom(name: 'RegisterStoreBase.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
+  final _$loginWithUserAndEmailAsyncAction =
+      AsyncAction('RegisterStoreBase.loginWithUserAndEmail');
+
+  @override
+  Future<void> loginWithUserAndEmail(BuildContext context) {
+    return _$loginWithUserAndEmailAsyncAction
+        .run(() => super.loginWithUserAndEmail(context));
+  }
+
+  final _$RegisterStoreBaseActionController =
+      ActionController(name: 'RegisterStoreBase');
+
+  @override
+  void setLoading(bool loading) {
+    final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
+        name: 'RegisterStoreBase.setLoading');
+    try {
+      return super.setLoading(loading);
+    } finally {
+      _$RegisterStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 emailController: ${emailController},
 passwordController: ${passwordController},
-confirmPasswordController: ${confirmPasswordController}
+confirmPasswordController: ${confirmPasswordController},
+isLoading: ${isLoading}
     ''';
   }
 }

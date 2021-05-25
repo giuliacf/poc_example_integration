@@ -21,8 +21,18 @@ abstract class RegisterStoreBase with Store {
   @observable
   TextEditingController confirmPasswordController = TextEditingController();
 
+  @observable
+  bool isLoading = false;
+
+  @action
+  void setLoading(bool loading) {
+    isLoading = loading;
+  }
+
   @action
   Future<void> loginWithUserAndEmail(BuildContext context) async {
+    setLoading(true);
+
     try {
       await authDatasource.registerWithEmail(
         email: emailController.text,
@@ -42,6 +52,8 @@ abstract class RegisterStoreBase with Store {
       }
     } catch (e) {
       print(e);
+    } finally {
+      setLoading(false);
     }
   }
 }

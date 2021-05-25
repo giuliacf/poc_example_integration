@@ -11,23 +11,23 @@ class ButtonCustom extends StatelessWidget {
   });
 
   final String text;
-  final Function onPressed;
+  final void Function()? onPressed;
   final bool isDisabled;
   final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: onPressed as void Function()?,
+      onPressed: isDisabled ? null : onPressed,
       child: isLoading
           ? SizedBox(
-              width: 10,
-              height: 10,
+              width: 24,
+              height: 24,
               child: CircularProgressIndicator.adaptive(
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  white,
+                  bluepool,
                 ),
-                strokeWidth: 2,
+                strokeWidth: 4,
               ),
             )
           : TextCustom(
