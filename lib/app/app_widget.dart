@@ -7,9 +7,9 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'POC Example Integrationp',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: lead),
+      title: 'POC Example Integration',
       builder: (context, widget) => ResponsiveWrapper.builder(
         ClampingScrollWrapper.builder(context, widget!),
         defaultScale: true,

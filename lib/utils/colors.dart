@@ -9,5 +9,6 @@ final greyThree = Color(0xFF525252);
 final black = Colors.black;
 final blackTwo = Color(0xFF181820);
 final white = Colors.white;
+final green = Color(0xFF1E8449);
 final blue = Color(0xFF0070D4);
 final red = Color(0xFFDE1E12);

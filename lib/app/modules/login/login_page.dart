@@ -16,9 +16,8 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: CardFieldsAndButtons(),
-      )
-    );
+        body: Center(
+      child: CardFieldsAndButtons(),
+    ));
   }
 }
