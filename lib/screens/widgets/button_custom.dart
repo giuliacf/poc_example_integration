@@ -38,7 +38,12 @@ class ButtonCustom extends StatelessWidget {
             ),
       style: OutlinedButton.styleFrom(
         backgroundColor: !isDisabled ? aqua : Colors.transparent,
+        side: BorderSide(
+          width: 1,
+          color: !isDisabled ? Colors.transparent : grey,
+        ),
         shape: RoundedRectangleBorder(
+          side: BorderSide(color: aqua, width: 1),
           borderRadius: BorderRadius.all(
             Radius.circular(14),
           ),
