@@ -133,7 +133,7 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
                       width: 400,
                       child: ButtonCustom(
                         text: 'Salvar',
-                        isDisabled: false,
+                        isDisabled: this.store.isDisabled,
                         isLoading: this.store.isLoading,
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {

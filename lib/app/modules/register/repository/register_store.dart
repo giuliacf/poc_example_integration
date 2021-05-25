@@ -29,6 +29,9 @@ abstract class RegisterStoreBase with Store {
     isLoading = loading;
   }
 
+  @computed
+  bool get isDisabled => emailController.text.isEmpty || passwordController.text.isEmpty || confirmPasswordController.text.isEmpty;
+
   @action
   Future<void> loginWithUserAndEmail(BuildContext context) async {
     setLoading(true);
