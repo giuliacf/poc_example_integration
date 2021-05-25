@@ -24,7 +24,6 @@ class _SplashPageState extends ModularState<SplashPage, SplashStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: lead,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

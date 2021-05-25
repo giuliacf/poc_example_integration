@@ -6,13 +6,15 @@ class TextCustom extends StatelessWidget {
   final double? fontSize;
   final FontWeight? fontWeight;
   final String fontFamily;
+  final TextDecoration textDecoration;
 
   TextCustom({
     required this.text,
     this.textColor,
     this.fontSize,
     this.fontWeight,
-    this.fontFamily = 'ItauDisplay'
+    this.fontFamily = 'ItauDisplay',
+    this.textDecoration = TextDecoration.none
   });
 
   @override
@@ -23,7 +25,8 @@ class TextCustom extends StatelessWidget {
         color: textColor,
         fontSize: fontSize,
         fontWeight: fontWeight,
-        fontFamily: fontFamily
+        fontFamily: fontFamily,
+        decoration: textDecoration,
       ),
     );
   }

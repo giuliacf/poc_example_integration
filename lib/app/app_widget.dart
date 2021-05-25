@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:poc_example_integration/utils/colors.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class AppWidget extends StatelessWidget {
@@ -8,6 +9,7 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       title: 'POC Example Integrationp',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(scaffoldBackgroundColor: lead),
       builder: (context, widget) => ResponsiveWrapper.builder(
         ClampingScrollWrapper.builder(context, widget!),
         defaultScale: true,
@@ -19,7 +21,7 @@ class AppWidget extends StatelessWidget {
           ResponsiveBreakpoint.resize(1200, name: DESKTOP),
         ],
       ),
-      initialRoute: '/products',
+      initialRoute: '/splash',
     ).modular();
   }
 }
