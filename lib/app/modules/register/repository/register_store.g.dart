@@ -17,51 +17,48 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
               name: 'RegisterStoreBase.isDisabled'))
           .value;
 
-  final _$emailControllerAtom = Atom(name: 'RegisterStoreBase.emailController');
+  final _$emailAtom = Atom(name: 'RegisterStoreBase.email');
 
   @override
-  TextEditingController get emailController {
-    _$emailControllerAtom.reportRead();
-    return super.emailController;
+  String get email {
+    _$emailAtom.reportRead();
+    return super.email;
   }
 
   @override
-  set emailController(TextEditingController value) {
-    _$emailControllerAtom.reportWrite(value, super.emailController, () {
-      super.emailController = value;
+  set email(String value) {
+    _$emailAtom.reportWrite(value, super.email, () {
+      super.email = value;
     });
   }
 
-  final _$passwordControllerAtom =
-      Atom(name: 'RegisterStoreBase.passwordController');
+  final _$passwordAtom = Atom(name: 'RegisterStoreBase.password');
 
   @override
-  TextEditingController get passwordController {
-    _$passwordControllerAtom.reportRead();
-    return super.passwordController;
+  String get password {
+    _$passwordAtom.reportRead();
+    return super.password;
   }
 
   @override
-  set passwordController(TextEditingController value) {
-    _$passwordControllerAtom.reportWrite(value, super.passwordController, () {
-      super.passwordController = value;
+  set password(String value) {
+    _$passwordAtom.reportWrite(value, super.password, () {
+      super.password = value;
     });
   }
 
-  final _$confirmPasswordControllerAtom =
-      Atom(name: 'RegisterStoreBase.confirmPasswordController');
+  final _$confirmPasswordAtom = Atom(name: 'RegisterStoreBase.confirmPassword');
 
   @override
-  TextEditingController get confirmPasswordController {
-    _$confirmPasswordControllerAtom.reportRead();
-    return super.confirmPasswordController;
+  String get confirmPassword {
+    _$confirmPasswordAtom.reportRead();
+    return super.confirmPassword;
   }
 
   @override
-  set confirmPasswordController(TextEditingController value) {
-    _$confirmPasswordControllerAtom
-        .reportWrite(value, super.confirmPasswordController, () {
-      super.confirmPasswordController = value;
+  set confirmPassword(String value) {
+    _$confirmPasswordAtom.reportWrite(value, super.confirmPassword, () {
+      super.confirmPassword = value;
     });
   }
 
@@ -93,6 +90,39 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
       ActionController(name: 'RegisterStoreBase');
 
   @override
+  void setEmail(String value) {
+    final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
+        name: 'RegisterStoreBase.setEmail');
+    try {
+      return super.setEmail(value);
+    } finally {
+      _$RegisterStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setPassword(String value) {
+    final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
+        name: 'RegisterStoreBase.setPassword');
+    try {
+      return super.setPassword(value);
+    } finally {
+      _$RegisterStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setConfirmPassword(String value) {
+    final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
+        name: 'RegisterStoreBase.setConfirmPassword');
+    try {
+      return super.setConfirmPassword(value);
+    } finally {
+      _$RegisterStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setLoading(bool loading) {
     final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
         name: 'RegisterStoreBase.setLoading');
@@ -106,9 +136,9 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
   @override
   String toString() {
     return '''
-emailController: ${emailController},
-passwordController: ${passwordController},
-confirmPasswordController: ${confirmPasswordController},
+email: ${email},
+password: ${password},
+confirmPassword: ${confirmPassword},
 isLoading: ${isLoading},
 isDisabled: ${isDisabled}
     ''';

@@ -57,7 +57,7 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
   }
 
   String? _confirmPasswordValitador(String? value) {
-    if (this.store.passwordController.text != this.store.confirmPasswordController.text) {
+    if (this.store.password != this.store.confirmPassword) {
       return 'As senhas devem ser iguais';
     }
   }
@@ -88,8 +88,8 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
                   SizedBox(height: 32),
                   TextFieldCustom(
                     text: 'Email',
-                    controller: this.store.emailController,
                     validator: _mailValidator,
+                    onChanged: this.store.setEmail,
                     suffixIcon: Icon(
                       IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
                       color: white,
@@ -99,9 +99,9 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
                   SizedBox(height: 16),
                   TextFieldCustom(
                     text: 'Senha',
-                    controller: this.store.passwordController,
                     obscure: !_showPassword,
                     validator: _passwordValidator,
+                    onChanged: this.store.setPassword,
                     suffixIcon: getIcon(
                       show: _showPassword,
                       onPressed: () {
@@ -114,9 +114,9 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
                   SizedBox(height: 16),
                   TextFieldCustom(
                     text: 'Confirmação de senha',
-                    controller: this.store.confirmPasswordController,
                     obscure: !_showConfirmPassword,
                     validator: _confirmPasswordValitador,
+                    onChanged: this.store.setConfirmPassword,
                     suffixIcon: getIcon(
                       show: _showConfirmPassword,
                       onPressed: () {

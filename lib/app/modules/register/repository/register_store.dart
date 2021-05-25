@@ -13,24 +13,31 @@ abstract class RegisterStoreBase with Store {
   final authDatasource = Modular.get<AuthDatasource>();
 
   @observable
-  TextEditingController emailController = TextEditingController();
+  String email = '';
 
   @observable
-  TextEditingController passwordController = TextEditingController();
+  String password = '';
 
   @observable
-  TextEditingController confirmPasswordController = TextEditingController();
+  String confirmPassword = '';
 
   @observable
   bool isLoading = false;
 
   @action
-  void setLoading(bool loading) {
-    isLoading = loading;
-  }
+  void setEmail(String value) => email = value;
+
+  @action
+  void setPassword(String value) => password = value;
+
+  @action
+  void setConfirmPassword(String value) => confirmPassword = value;
+
+  @action
+  void setLoading(bool loading) => isLoading = loading;
 
   @computed
-  bool get isDisabled => emailController.text.isEmpty || passwordController.text.isEmpty || confirmPasswordController.text.isEmpty;
+  bool get isDisabled => email.isEmpty || password.isEmpty || confirmPassword.isEmpty;
 
   @action
   Future<void> loginWithUserAndEmail(BuildContext context) async {
@@ -38,8 +45,8 @@ abstract class RegisterStoreBase with Store {
 
     try {
       await authDatasource.registerWithEmail(
-        email: emailController.text,
-        password: passwordController.text,
+        email: email,
+        password: password,
         context: context,
       );
 
