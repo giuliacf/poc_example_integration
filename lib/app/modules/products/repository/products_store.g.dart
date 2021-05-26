@@ -81,13 +81,13 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
   final _$productPriceAtom = Atom(name: 'ProductsStoreBase.productPrice');
 
   @override
-  double get productPrice {
+  double? get productPrice {
     _$productPriceAtom.reportRead();
     return super.productPrice;
   }
 
   @override
-  set productPrice(double value) {
+  set productPrice(double? value) {
     _$productPriceAtom.reportWrite(value, super.productPrice, () {
       super.productPrice = value;
     });
@@ -126,7 +126,7 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
   }
 
   @override
-  dynamic setProductPrice(double value) {
+  dynamic setProductPrice(double? value) {
     final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
         name: 'ProductsStoreBase.setProductPrice');
     try {

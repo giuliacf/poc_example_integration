@@ -3,5 +3,9 @@ class Product {
   final String description;
   final double price;
 
-  Product(this.name, this.description, this.price);
+  Product({
+    required this.name,
+    required this.description,
+    required this.price,
+  });
 }

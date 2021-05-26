@@ -26,7 +26,10 @@ abstract class ProductsStoreBase with Store {
   String productDescription = '';
 
   @observable
-  double productPrice = 0;
+  double? productPrice;
+
+  @computed
+  bool get isDisabled => productName.isEmpty || productDescription.isEmpty || productPrice == null;
 
   @action
   setProductName(String value) => productName = value;
@@ -35,7 +38,7 @@ abstract class ProductsStoreBase with Store {
   setProductDescription(String value) => productDescription = value;
 
   @action
-  setProductPrice(double value) => productPrice = value;
+  setProductPrice(double? value) => productPrice = value;
 
   @action
   setLoading(bool isLoading) => loading = isLoading;
@@ -52,7 +55,7 @@ abstract class ProductsStoreBase with Store {
         variables: <String, String>{
           'name': productName,
           'description': productDescription,
-          'price': productPrice.toStringAsFixed(2),
+          'price': productPrice!.toStringAsFixed(2),
         },
       );
 
@@ -60,7 +63,7 @@ abstract class ProductsStoreBase with Store {
       _addProduct(response as Product);
       // return response;
     } catch (e) {
-      print(e);
+      throw e;
     } finally {
       setLoading(false);
     }
@@ -70,7 +73,4 @@ abstract class ProductsStoreBase with Store {
   _addProduct(Product product) {
     products.add(product);
   }
-
-  @computed
-  bool get isDisabled => productName.isEmpty || productDescription.isEmpty;
 }

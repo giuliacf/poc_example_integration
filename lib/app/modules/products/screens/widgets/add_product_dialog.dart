@@ -4,6 +4,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
 import 'package:poc_example_integration/screens/widgets/button_custom.dart';
+import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
+import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_success.dart';
 import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 
@@ -17,6 +19,7 @@ class AddProductDialog extends StatelessWidget {
         'Novo produto',
         style: TextStyle(color: white),
       ),
+      backgroundColor: lead,
       content: Form(
         child: Container(
           width: 400,
@@ -36,10 +39,10 @@ class AddProductDialog extends StatelessWidget {
                   SizedBox(height: 8),
                   TextFieldCustom(
                     text: 'Preço do produto',
-                    onChanged: (value) {
-                      _store.setProductPrice(double.parse(value));
-                    },
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    onChanged: (value) {
+                      _store.setProductPrice(value.isEmpty ? null : double.parse(value));
+                    },
                   ),
                   SizedBox(height: 24),
                   SizedBox(
@@ -47,10 +50,28 @@ class AddProductDialog extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     child: ButtonCustom(
                       text: 'Adicionar',
-                      isDisabled: false,
+                      isDisabled: _store.isDisabled,
                       isLoading: _store.loading,
                       onPressed: () {
-                        _store.saveProdut();
+                        try {
+                          _store.saveProdut();
+
+                          Modular.to.pop();
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            CustomSuccessSnackBar(
+                              context,
+                              message: 'Produto adicionado com sucesso',
+                            ),
+                          );
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            CustomErrorSnackBar(
+                              context,
+                              message: 'Ocorreu um problema ao adicionar o produto',
+                            ),
+                          );
+                        }
                       },
                     ),
                   )
