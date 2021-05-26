@@ -47,50 +47,49 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
     });
   }
 
-  final _$nameControllerAtom = Atom(name: 'ProductsStoreBase.nameController');
+  final _$productNameAtom = Atom(name: 'ProductsStoreBase.productName');
 
   @override
-  TextEditingController get nameController {
-    _$nameControllerAtom.reportRead();
-    return super.nameController;
+  String get productName {
+    _$productNameAtom.reportRead();
+    return super.productName;
   }
 
   @override
-  set nameController(TextEditingController value) {
-    _$nameControllerAtom.reportWrite(value, super.nameController, () {
-      super.nameController = value;
+  set productName(String value) {
+    _$productNameAtom.reportWrite(value, super.productName, () {
+      super.productName = value;
     });
   }
 
-  final _$descriptionControllerAtom =
-      Atom(name: 'ProductsStoreBase.descriptionController');
+  final _$productDescriptionAtom =
+      Atom(name: 'ProductsStoreBase.productDescription');
 
   @override
-  TextEditingController get descriptionController {
-    _$descriptionControllerAtom.reportRead();
-    return super.descriptionController;
+  String get productDescription {
+    _$productDescriptionAtom.reportRead();
+    return super.productDescription;
   }
 
   @override
-  set descriptionController(TextEditingController value) {
-    _$descriptionControllerAtom.reportWrite(value, super.descriptionController,
-        () {
-      super.descriptionController = value;
+  set productDescription(String value) {
+    _$productDescriptionAtom.reportWrite(value, super.productDescription, () {
+      super.productDescription = value;
     });
   }
 
-  final _$priceControllerAtom = Atom(name: 'ProductsStoreBase.priceController');
+  final _$productPriceAtom = Atom(name: 'ProductsStoreBase.productPrice');
 
   @override
-  TextEditingController get priceController {
-    _$priceControllerAtom.reportRead();
-    return super.priceController;
+  double get productPrice {
+    _$productPriceAtom.reportRead();
+    return super.productPrice;
   }
 
   @override
-  set priceController(TextEditingController value) {
-    _$priceControllerAtom.reportWrite(value, super.priceController, () {
-      super.priceController = value;
+  set productPrice(double value) {
+    _$productPriceAtom.reportWrite(value, super.productPrice, () {
+      super.productPrice = value;
     });
   }
 
@@ -103,6 +102,39 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
 
   final _$ProductsStoreBaseActionController =
       ActionController(name: 'ProductsStoreBase');
+
+  @override
+  dynamic setProductName(String value) {
+    final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
+        name: 'ProductsStoreBase.setProductName');
+    try {
+      return super.setProductName(value);
+    } finally {
+      _$ProductsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setProductDescription(String value) {
+    final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
+        name: 'ProductsStoreBase.setProductDescription');
+    try {
+      return super.setProductDescription(value);
+    } finally {
+      _$ProductsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setProductPrice(double value) {
+    final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
+        name: 'ProductsStoreBase.setProductPrice');
+    try {
+      return super.setProductPrice(value);
+    } finally {
+      _$ProductsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setLoading(bool isLoading) {
@@ -131,9 +163,9 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
     return '''
 loading: ${loading},
 products: ${products},
-nameController: ${nameController},
-descriptionController: ${descriptionController},
-priceController: ${priceController},
+productName: ${productName},
+productDescription: ${productDescription},
+productPrice: ${productPrice},
 isDisabled: ${isDisabled}
     ''';
   }

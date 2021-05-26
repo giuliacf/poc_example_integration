@@ -5,7 +5,6 @@ import 'package:poc_example_integration/app/modules/products/repository/mutation
 import 'package:poc_example_integration/graphql_client.dart';
 import 'package:poc_example_integration/app/modules/products/models/product_model.dart';
 import 'package:gql/language.dart';
-import 'package:flutter/material.dart';
 
 part 'products_store.g.dart';
 
@@ -21,13 +20,22 @@ abstract class ProductsStoreBase with Store {
   ObservableList<Product> products = ObservableList<Product>.of([]);
 
   @observable
-  TextEditingController nameController = TextEditingController();
+  String productName = '';
 
   @observable
-  TextEditingController descriptionController = TextEditingController();
+  String productDescription = '';
 
   @observable
-  TextEditingController priceController = TextEditingController();
+  double productPrice = 0;
+
+  @action
+  setProductName(String value) => productName = value;
+
+  @action
+  setProductDescription(String value) => productDescription = value;
+
+  @action
+  setProductPrice(double value) => productPrice = value;
 
   @action
   setLoading(bool isLoading) => loading = isLoading;
@@ -42,15 +50,14 @@ abstract class ProductsStoreBase with Store {
       final GraphQL.MutationOptions _options = GraphQL.MutationOptions(
         document: parseString(document),
         variables: <String, String>{
-          'name': nameController.text,
-          'description': descriptionController.text,
-          'price': double.parse(priceController.text).toStringAsFixed(2),
+          'name': productName,
+          'description': productDescription,
+          'price': productPrice.toStringAsFixed(2),
         },
       );
 
       GraphQL.QueryResult response = await _configuration.graphClient().mutate(_options);
       _addProduct(response as Product);
-      _clearControllers();
       // return response;
     } catch (e) {
       print(e);
@@ -65,11 +72,5 @@ abstract class ProductsStoreBase with Store {
   }
 
   @computed
-  bool get isDisabled => nameController.text.isEmpty || descriptionController.text.isEmpty;
-
-  _clearControllers() {
-    nameController.clear();
-    descriptionController.clear();
-    priceController.clear();
-  }
+  bool get isDisabled => productName.isEmpty || productDescription.isEmpty;
 }

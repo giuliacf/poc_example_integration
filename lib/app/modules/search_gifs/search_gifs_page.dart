@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:http/http.dart' as http;
 import 'package:poc_example_integration/app/modules/search_gifs/search_gifs_store.dart';
@@ -15,9 +14,7 @@ class SearchGifsPage extends StatefulWidget {
   _SearchGifsPageState createState() => _SearchGifsPageState();
 }
 
-class _SearchGifsPageState
-    extends ModularState<SearchGifsPage, SearchGifsStore> {
-
+class _SearchGifsPageState extends ModularState<SearchGifsPage, SearchGifsStore> {
   List<String> gifs = [];
 
   @override
@@ -30,10 +27,8 @@ class _SearchGifsPageState
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           try {
-
             final response = await http.get(
-              Uri.parse(
-                  'https://g.tenor.com/v1/search?q=gretchen&key=ERHJ71YVS71E&limit=30&locale=en_US'),
+              Uri.parse('https://g.tenor.com/v1/search?q=gretchen&key=ERHJ71YVS71E&limit=30&locale=en_US'),
             );
             if (response.statusCode == 200) {
               print('caiu aqui pelo menos');
