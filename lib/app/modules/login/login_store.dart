@@ -6,9 +6,26 @@ class LoginStore = LoginStoreBase with _$LoginStore;
 
 abstract class LoginStoreBase with Store {
   @observable
-  int counter = 0;
+  String email = '';
 
-  Future<void> increment() async {
-    counter = counter + 1;
-  }
+  @observable
+  String password = '';
+
+  @observable
+  bool isLoading = false;
+
+  @observable
+  bool showPassword = false;
+
+  @action
+  void changeShowPassword() => showPassword = !showPassword;
+
+  @action
+  void setEmail(String value) => email = value;
+
+  @action
+  void setPassword(String value) => password = value;
+
+  @computed
+  bool get canLogin => email.isNotEmpty && password.isNotEmpty;
 }
