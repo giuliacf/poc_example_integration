@@ -5,13 +5,11 @@ import 'package:poc_example_integration/utils/colors.dart';
 class TextFieldCustom extends StatelessWidget {
   final String text;
   final bool obscure;
+  final String fontFamily;
   final Widget? suffixIcon;
   final Function(String)? onChanged;
-  final String? Function(String?)? validator;
-  final TextEditingController? controller;
-  final String fontFamily;
   final List<TextInputFormatter>? inputFormatters;
-
+  final String? errorText;
 
   TextFieldCustom({
     required this.text,
@@ -19,9 +17,8 @@ class TextFieldCustom extends StatelessWidget {
     this.suffixIcon,
     this.onChanged,
     this.fontFamily = 'ItauDisplay',
-    this.validator,
-    this.controller,
     this.inputFormatters,
+    this.errorText,
   });
 
   OutlineInputBorder customBorder(Color borderColor) {
@@ -52,11 +49,10 @@ class TextFieldCustom extends StatelessWidget {
         hintStyle: TextStyle(color: white),
         hintText: text,
         suffixIcon: suffixIcon,
+        errorText: errorText,
       ),
       inputFormatters: inputFormatters,
       onChanged: onChanged,
-      validator: validator,
-      controller: controller,
     );
   }
 }

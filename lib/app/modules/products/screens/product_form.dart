@@ -14,13 +14,6 @@ class ProductForm extends StatefulWidget {
 class _ProductFormState extends ModularState<ProductForm, ProductsStore> {
   final _formKey = GlobalKey<FormState>();
 
-  String? _validator(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Este campo é obrigatório';
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,21 +27,15 @@ class _ProductFormState extends ModularState<ProductForm, ProductsStore> {
                   child: Column(
                     children: [
                       TextFieldCustom(
-                        controller: this.store.nameController,
                         text: 'Insira o nome do produto',
-                        validator: _validator,
                       ),
                       SizedBox(height: 8),
                       TextFieldCustom(
-                        controller: this.store.descriptionController,
                         text: 'Insira a descrição do produto',
-                        validator: _validator,
                       ),
                       SizedBox(height: 8),
                       TextFieldCustom(
-                        controller: this.store.priceController,
                         text: 'Insira o preço do produto',
-                        validator: _validator,
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       ),
                       SizedBox(height: 24),

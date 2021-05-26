@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
+import 'package:poc_example_integration/utils/regex.dart';
 
 part 'register_store.g.dart';
 
@@ -37,7 +38,16 @@ abstract class RegisterStoreBase with Store {
   void setLoading(bool loading) => isLoading = loading;
 
   @computed
-  bool get isDisabled => email.isEmpty || password.isEmpty || confirmPassword.isEmpty;
+  bool get isEmailValid => RegExp(emailRegex).hasMatch(email);
+
+  @computed
+  bool get isPasswordValid => password.length >= 6;
+
+  @computed
+  bool get passwordsMatch => password == confirmPassword;
+
+  @computed
+  bool get isDisabled => !(isEmailValid && isPasswordValid && passwordsMatch);
 
   @action
   Future<void> loginWithUserAndEmail(BuildContext context) async {

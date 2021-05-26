@@ -21,7 +21,7 @@ class AppWidget extends StatelessWidget {
           ResponsiveBreakpoint.resize(1200, name: DESKTOP),
         ],
       ),
-      initialRoute: '/splash',
+      initialRoute: '/register',
     ).modular();
   }
 }

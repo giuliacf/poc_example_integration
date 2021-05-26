@@ -9,6 +9,27 @@ part of 'register_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RegisterStore on RegisterStoreBase, Store {
+  Computed<bool>? _$isEmailValidComputed;
+
+  @override
+  bool get isEmailValid =>
+      (_$isEmailValidComputed ??= Computed<bool>(() => super.isEmailValid,
+              name: 'RegisterStoreBase.isEmailValid'))
+          .value;
+  Computed<bool>? _$isPasswordValidComputed;
+
+  @override
+  bool get isPasswordValid =>
+      (_$isPasswordValidComputed ??= Computed<bool>(() => super.isPasswordValid,
+              name: 'RegisterStoreBase.isPasswordValid'))
+          .value;
+  Computed<bool>? _$passwordsMatchComputed;
+
+  @override
+  bool get passwordsMatch =>
+      (_$passwordsMatchComputed ??= Computed<bool>(() => super.passwordsMatch,
+              name: 'RegisterStoreBase.passwordsMatch'))
+          .value;
   Computed<bool>? _$isDisabledComputed;
 
   @override
@@ -140,6 +161,9 @@ email: ${email},
 password: ${password},
 confirmPassword: ${confirmPassword},
 isLoading: ${isLoading},
+isEmailValid: ${isEmailValid},
+isPasswordValid: ${isPasswordValid},
+passwordsMatch: ${passwordsMatch},
 isDisabled: ${isDisabled}
     ''';
   }
