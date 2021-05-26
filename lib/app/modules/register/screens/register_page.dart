@@ -11,6 +11,7 @@ import 'package:poc_example_integration/utils/regex.dart';
 
 class RegisterPage extends StatefulWidget {
   final String title;
+
   const RegisterPage({Key? key, this.title = "Register"}) : super(key: key);
 
   @override
@@ -30,7 +31,9 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
     return IconButton(
       tooltip: show ? 'Ocultar senha' : 'Exibir senha',
       icon: Icon(
-        show ? IuppIcons.icone_contorno_O_olho_inativo_outline : IuppIcons.icone_contorno_O_olho_ativo_outline,
+        show
+            ? IuppIcons.icone_contorno_O_olho_inativo_outline
+            : IuppIcons.icone_contorno_O_olho_ativo_outline,
         color: white,
         size: 24,
       ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final aqua = Color(0xFF00EEE6); //primaryColor
 final lead = Color(0xFF23232E); //backgroundButtonColor
-final bluepool = Color(0xFF494C57);
+final bluePool = Color(0xFF494C57);
 final lightGrey = Color(0xFFE1E4EC); //disabledButtonColor
 final grey = Color(0xFFB1B5BF); //disabledButtonTextColor
 final greyTwo = Color(0xFF7C7B8B);

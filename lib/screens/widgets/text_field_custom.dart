@@ -12,6 +12,7 @@ class TextFieldCustom extends StatelessWidget {
   final String fontFamily;
   final List<TextInputFormatter>? inputFormatters;
 
+
   TextFieldCustom({
     required this.text,
     this.obscure = false,
