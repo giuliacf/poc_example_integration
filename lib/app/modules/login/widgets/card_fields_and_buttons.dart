@@ -28,7 +28,7 @@ class CardFieldsAndButtons extends StatelessWidget {
                   textColor: white,
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 25,
                 ),
                 TextFieldCustom(
                   text: 'Email',
@@ -77,7 +77,7 @@ class CardFieldsAndButtons extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -114,7 +114,7 @@ class CardFieldsAndButtons extends StatelessWidget {
                   height: 15,
                 ),
                 Container(
-                  width: 220,
+                  width: 200,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     border: Border.all(color: white),
