@@ -83,7 +83,7 @@ abstract class ProductsStoreBase with Store {
   }
 
   @action
-  Future<void> saveProdut() async {
+  Future<void> saveProduct() async {
     setSaveLoading(true);
 
     try {

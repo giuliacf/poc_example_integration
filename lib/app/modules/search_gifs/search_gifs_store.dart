@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:mobx/mobx.dart';
 import 'package:http/http.dart' as http;
+import 'package:poc_example_integration/utils/urls.dart';
 
 part 'search_gifs_store.g.dart';
 
 class SearchGifsStore = SearchGifsStoreBase with _$SearchGifsStore;
 
 abstract class SearchGifsStoreBase with Store {
-
   @observable
   List<String> gifs = [];
 
@@ -19,8 +19,7 @@ abstract class SearchGifsStoreBase with Store {
   Future searchGifs() async {
     try {
       final response = await http.get(
-        Uri.parse(
-            'https://g.tenor.com/v1/search?q=gretchen&key=ERHJ71YVS71E&limit=30&locale=en_US'),
+        Uri.parse(tenorApiUrl),
       );
 
       print('status ${response.statusCode}');

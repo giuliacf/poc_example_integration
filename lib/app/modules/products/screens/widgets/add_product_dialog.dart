@@ -6,6 +6,7 @@ import 'package:poc_example_integration/app/modules/products/repository/products
 import 'package:poc_example_integration/screens/widgets/button_custom.dart';
 import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
+import 'package:poc_example_integration/utils/strings.dart';
 
 class AddProductDialog extends StatelessWidget {
   final ProductsStore _store = Modular.get<ProductsStore>();
@@ -14,7 +15,7 @@ class AddProductDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        'Novo produto',
+        Strings.newProduct,
         style: TextStyle(color: white),
       ),
       backgroundColor: lead,
@@ -26,17 +27,17 @@ class AddProductDialog extends StatelessWidget {
               return Column(
                 children: [
                   TextFieldCustom(
-                    text: 'Nome do produto',
+                    text: Strings.productName,
                     onChanged: _store.setProductName,
                   ),
                   SizedBox(height: 8),
                   TextFieldCustom(
-                    text: 'Descrição do produto',
+                    text: Strings.productDescription,
                     onChanged: _store.setProductDescription,
                   ),
                   SizedBox(height: 8),
                   TextFieldCustom(
-                    text: 'Preço do produto',
+                    text: Strings.productPrice,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     onChanged: (value) {
                       _store.setProductPrice(value.isEmpty ? null : double.parse(value));
@@ -47,11 +48,11 @@ class AddProductDialog extends StatelessWidget {
                     height: 48,
                     width: MediaQuery.of(context).size.width,
                     child: ButtonCustom(
-                      text: 'Adicionar',
+                      text: Strings.add,
                       isDisabled: _store.isDisabled,
                       isLoading: _store.saveLoading,
                       onPressed: () {
-                        _store.saveProdut();
+                        _store.saveProduct();
                         Modular.to.pop();
                       },
                     ),

@@ -8,6 +8,7 @@ import 'package:poc_example_integration/app/modules/products/screens/widgets/pro
 import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/widgets/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
+import 'package:poc_example_integration/utils/strings.dart';
 
 class ProductsPage extends StatefulWidget {
   @override
@@ -29,7 +30,7 @@ class _ProductsPageState extends State<ProductsPage> {
       backgroundColor: white,
       appBar: AppBar(
         title: Text(
-          'Produtos',
+          Strings.products,
           style: TextStyle(color: bluePool),
         ),
         backgroundColor: aqua,
@@ -67,7 +68,7 @@ class _ProductsPageState extends State<ProductsPage> {
                   color: red,
                 ),
                 TextCustom(
-                  text: 'opps! \nnão conseguimos \nencontrar nenhum \nproduto',
+                  text: Strings.productNotFound,
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
                 )
@@ -77,7 +78,7 @@ class _ProductsPageState extends State<ProductsPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        tooltip: 'Adicionar produto',
+        tooltip: Strings.addProduct,
         backgroundColor: aqua,
         onPressed: () {
           showDialog(

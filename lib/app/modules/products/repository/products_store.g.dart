@@ -116,11 +116,11 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
     return _$listProductsAsyncAction.run(() => super.listProducts());
   }
 
-  final _$saveProdutAsyncAction = AsyncAction('ProductsStoreBase.saveProdut');
+  final _$saveProductAsyncAction = AsyncAction('ProductsStoreBase.saveProduct');
 
   @override
-  Future<void> saveProdut() {
-    return _$saveProdutAsyncAction.run(() => super.saveProdut());
+  Future<void> saveProduct() {
+    return _$saveProductAsyncAction.run(() => super.saveProduct());
   }
 
   final _$ProductsStoreBaseActionController =
