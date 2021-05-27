@@ -48,25 +48,19 @@ abstract class ProductsStoreBase with Store {
     setLoading(true);
 
     try {
-      // final document = saveProductsMutation;
+      final document = saveProductsMutation;
 
-      // final GraphQL.MutationOptions _options = GraphQL.MutationOptions(
-      //   document: parseString(document),
-      //   variables: <String, String>{
-      //     'name': productName,
-      //     'description': productDescription,
-      //     'price': productPrice!.toStringAsFixed(2),
-      //   },
-      // );
+      final GraphQL.MutationOptions _options = GraphQL.MutationOptions(
+        document: parseString(document),
+        variables: <String, String>{
+          'name': productName,
+          'description': productDescription,
+          'price': productPrice!.toStringAsFixed(2),
+        },
+      );
 
-      // GraphQL.QueryResult response = await _configuration.graphClient().mutate(_options);
-      // _addProduct(response as Product);
-
-      _addProduct(Product(
-        name: productName,
-        description: productDescription,
-        price: productPrice!,
-      ));
+      GraphQL.QueryResult response = await _configuration.graphClient().mutate(_options);
+      _addProduct(response as Product);
     } catch (e) {
       throw e;
     } finally {
