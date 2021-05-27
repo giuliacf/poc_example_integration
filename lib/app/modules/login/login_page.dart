@@ -6,6 +6,7 @@ import 'package:poc_example_integration/screens/widgets/button_custom.dart';
 import 'package:poc_example_integration/screens/widgets/text_custom.dart';
 import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
+import 'package:poc_example_integration/utils/strings.dart';
 
 import '../../../iupp_icons.dart';
 
@@ -46,7 +47,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                   child: Column(
                     children: [
                       TextCustom(
-                        text: 'Faça seu login!',
+                        text: Strings.titleLoginPage,
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                         textColor: white,
@@ -56,7 +57,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                       ),
                       Observer(
                         builder: (_) => TextFieldCustom(
-                          text: 'Email',
+                          text: Strings.email,
                           suffixIcon: Icon(
                             IuppIcons
                                 .icone_contorno_E_email_resposta_rapida_outline,
@@ -70,7 +71,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                       ),
                       Observer(
                         builder: (_) => TextFieldCustom(
-                          text: 'Senha',
+                          text: Strings.password,
                           obscure: !this.store.showPassword,
                           suffixIcon: InkWell(
                             onTap: this.store.changeShowPassword,
@@ -93,7 +94,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                         cursor: SystemMouseCursors.click,
                         child: GestureDetector(
                           child: TextCustom(
-                            text: 'Esqueceu a senha?',
+                            text: Strings.forgotPassword,
                             textDecoration: TextDecoration.underline,
                             fontSize: 11,
                             textColor: white,
@@ -109,7 +110,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                           height: 48,
                           child: Observer(
                             builder: (_) => ButtonCustom(
-                              text: 'Entrar',
+                              text: Strings.buttonLogin,
                               onPressed: () => null,
                               isDisabled: !this.store.canLogin,
                               isLoading: false,
@@ -122,7 +123,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextCustom(
-                            text: 'Ainda não possui conta? ',
+                            text: Strings.labelDontHaveAccount,
                             fontSize: 12,
                             textColor: white,
                           ),
@@ -131,7 +132,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                             child: GestureDetector(
                               onTap: () => Modular.to.navigate('/register'),
                               child: TextCustom(
-                                text: ' Cadastre-se agora!',
+                                text: Strings.labelRegisterNow,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 13,
                                 textColor: white,
@@ -142,15 +143,6 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                       ),
                       SizedBox(
                         height: 30,
-                      ),
-                      TextCustom(
-                        text: 'OU',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                        textColor: white,
-                      ),
-                      SizedBox(
-                        height: 15,
                       ),
                       Container(
                         width: 200,
@@ -169,14 +161,14 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
-                                  "assets/images/google.png",
+                                  'assets/images/google.png',
                                   width: 15,
                                 ),
                                 SizedBox(
                                   width: 10,
                                 ),
                                 TextCustom(
-                                  text: ' Login com Google',
+                                  text: Strings.loginWithGoogle,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 13,
                                   textColor: white,

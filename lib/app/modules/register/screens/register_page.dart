@@ -7,6 +7,7 @@ import 'package:poc_example_integration/screens/widgets/button_custom.dart';
 import 'package:poc_example_integration/screens/widgets/text_custom.dart';
 import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
+import 'package:poc_example_integration/utils/strings.dart';
 
 class RegisterPage extends StatefulWidget {
   final String title;
@@ -29,9 +30,11 @@ class _RegisterPageState extends State<RegisterPage> {
     void Function()? onPressed,
   }) {
     return IconButton(
-      tooltip: show ? 'Ocultar senha' : 'Exibir senha',
+      tooltip: show ? Strings.hidePassword : Strings.showPassword,
       icon: Icon(
-        show ? IuppIcons.icone_contorno_O_olho_inativo_outline : IuppIcons.icone_contorno_O_olho_ativo_outline,
+        show
+            ? IuppIcons.icone_contorno_O_olho_inativo_outline
+            : IuppIcons.icone_contorno_O_olho_ativo_outline,
         color: white,
         size: 24,
       ),
@@ -58,28 +61,34 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextCustom(
-                      text: 'Registre-se',
+                      text: Strings.register,
                       fontSize: 24,
                       fontWeight: FontWeight.w600,
                       textColor: white,
                     ),
                     SizedBox(height: 32),
                     TextFieldCustom(
-                      text: 'Email',
+                      text: Strings.email,
                       onChanged: _store.setEmail,
-                      errorText: _store.email.isEmpty || _store.isEmailValid ? null : 'Email inválido',
+                      errorText: _store.email.isEmpty || _store.isEmailValid
+                          ? null
+                          : Strings.invalidEmail,
                       suffixIcon: Icon(
-                        IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
+                        IuppIcons
+                            .icone_contorno_E_email_resposta_rapida_outline,
                         color: white,
                         size: 24,
                       ),
                     ),
                     SizedBox(height: 16),
                     TextFieldCustom(
-                      text: 'Senha',
+                      text: Strings.password,
                       obscure: !_showPassword,
                       onChanged: _store.setPassword,
-                      errorText: _store.password.isEmpty || _store.isPasswordValid ? null : 'A senha precisa ter mais que 6 caracteres',
+                      errorText:
+                          _store.password.isEmpty || _store.isPasswordValid
+                              ? null
+                              : Strings.validatePassword,
                       suffixIcon: getIcon(
                         show: _showPassword,
                         onPressed: () {
@@ -91,10 +100,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     SizedBox(height: 16),
                     TextFieldCustom(
-                      text: 'Confirmação de senha',
+                      text: Strings.confirmPassword,
                       obscure: !_showConfirmPassword,
                       onChanged: _store.setConfirmPassword,
-                      errorText: _store.confirmPassword.isEmpty || _store.passwordsMatch ? null : 'As senhas devem ser iguais',
+                      errorText: _store.confirmPassword.isEmpty ||
+                              _store.passwordsMatch
+                          ? null
+                          : Strings.equalPasswords,
                       suffixIcon: getIcon(
                         show: _showConfirmPassword,
                         onPressed: () {
@@ -109,7 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       height: 48,
                       width: 400,
                       child: ButtonCustom(
-                        text: 'Salvar',
+                        text: Strings.saveButton,
                         isDisabled: _store.isDisabled,
                         isLoading: _store.isLoading,
                         onPressed: () async {

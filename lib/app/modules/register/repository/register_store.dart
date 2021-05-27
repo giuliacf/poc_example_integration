@@ -5,6 +5,7 @@ import 'package:mobx/mobx.dart';
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
 import 'package:poc_example_integration/utils/regex.dart';
+import 'package:poc_example_integration/utils/strings.dart';
 
 part 'register_store.g.dart';
 
@@ -66,7 +67,7 @@ abstract class RegisterStoreBase with Store {
         ScaffoldMessenger.of(context).showSnackBar(
           CustomErrorSnackBar(
             context,
-            message: 'Já existe uma conta com este email.',
+            message: Strings.accountAlreadyExists,
           ),
         );
       }

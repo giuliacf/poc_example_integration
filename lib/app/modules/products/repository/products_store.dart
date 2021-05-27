@@ -44,7 +44,7 @@ abstract class ProductsStoreBase with Store {
   setLoading(bool isLoading) => loading = isLoading;
 
   @action
-  Future<void> saveProdut() async {
+  Future<void> saveProduct() async {
     setLoading(true);
 
     try {
