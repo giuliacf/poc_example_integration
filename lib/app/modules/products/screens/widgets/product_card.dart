@@ -3,10 +3,10 @@ import 'package:poc_example_integration/app/modules/products/models/product_mode
 import 'package:poc_example_integration/screens/widgets/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 
-class ProductDetail extends StatelessWidget {
+class ProductCard extends StatelessWidget {
   final Product product;
 
-  const ProductDetail({required this.product});
+  const ProductCard({required this.product});
 
   @override
   Widget build(BuildContext context) {

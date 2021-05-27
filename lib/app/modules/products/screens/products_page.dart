@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/modules/products/models/product_model.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
 import 'package:poc_example_integration/app/modules/products/screens/widgets/add_product_dialog.dart';
-import 'package:poc_example_integration/app/modules/products/screens/widgets/product_detail.dart';
+import 'package:poc_example_integration/app/modules/products/screens/widgets/product_card.dart';
 import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/widgets/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
@@ -39,7 +39,7 @@ class _ProductsPageState extends State<ProductsPage> {
               itemCount: _store.products.length,
               itemBuilder: (context, index) {
                 final Product _product = _store.products[index];
-                return ProductDetail(product: _product);
+                return ProductCard(product: _product);
               },
             );
           }

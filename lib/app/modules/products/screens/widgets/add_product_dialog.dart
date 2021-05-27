@@ -4,8 +4,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
 import 'package:poc_example_integration/screens/widgets/button_custom.dart';
-import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
-import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_success.dart';
 import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 
@@ -53,25 +51,8 @@ class AddProductDialog extends StatelessWidget {
                       isDisabled: _store.isDisabled,
                       isLoading: _store.loading,
                       onPressed: () {
-                        try {
-                          _store.saveProdut();
-
-                          Modular.to.pop();
-
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            CustomSuccessSnackBar(
-                              context,
-                              message: 'Produto adicionado com sucesso',
-                            ),
-                          );
-                        } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            CustomErrorSnackBar(
-                              context,
-                              message: 'Ocorreu um problema ao adicionar o produto',
-                            ),
-                          );
-                        }
+                        _store.saveProdut();
+                        Modular.to.pop();
                       },
                     ),
                   )

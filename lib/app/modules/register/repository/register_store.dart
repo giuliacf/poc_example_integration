@@ -60,7 +60,7 @@ abstract class RegisterStoreBase with Store {
         context: context,
       );
 
-      Modular.to.pushReplacementNamed('/home');
+      Modular.to.pushNamedAndRemoveUntil('/home', (_) => false);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         ScaffoldMessenger.of(context).showSnackBar(
