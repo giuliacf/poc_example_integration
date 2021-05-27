@@ -36,4 +36,9 @@ class Strings {
   static const String confirmPassword = 'Confirmação de senha';
   static const String equalPasswords = 'As senhas devem ser iguais';
 // #endregion
+
+// #region search gifs
+  static const String searchGifs = 'Gifs';
+// #endregion
+
 }

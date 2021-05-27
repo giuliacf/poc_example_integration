@@ -17,6 +17,7 @@ class SearchGifsPage extends StatefulWidget {
 
 class _SearchGifsPageState
     extends ModularState<SearchGifsPage, SearchGifsStore> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

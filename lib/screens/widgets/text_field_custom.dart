@@ -39,14 +39,14 @@ class TextFieldCustom extends StatelessWidget {
       obscureText: obscure,
       style: TextStyle(
         fontFamily: fontFamily,
-        color: white,
+        color: greyTwo,
       ),
       decoration: InputDecoration(
         enabledBorder: customBorder(grey),
         focusedBorder: customBorder(aqua),
         errorBorder: customBorder(red),
         focusedErrorBorder: customBorder(red),
-        hintStyle: TextStyle(color: white),
+        hintStyle: TextStyle(color: greyTwo),
         hintText: text,
         suffixIcon: suffixIcon,
         errorText: errorText,

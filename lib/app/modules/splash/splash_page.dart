@@ -32,7 +32,7 @@ class _SplashPageState extends ModularState<SplashPage, SplashStore> {
               SizedBox(height: 30),
               CircularProgressIndicator.adaptive(
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  aqua,
+                  lead,
                 ),
                 strokeWidth: 2,
               ),

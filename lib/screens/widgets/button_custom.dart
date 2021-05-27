@@ -25,7 +25,7 @@ class ButtonCustom extends StatelessWidget {
               height: 24,
               child: CircularProgressIndicator.adaptive(
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  bluePool,
+                  blackTwo,
                 ),
                 strokeWidth: 4,
               ),
