@@ -41,4 +41,8 @@ class Strings {
   static const String searchGifs = 'Gifs';
 // #endregion
 
+// #region home
+  static const String out = 'Sair';
+// #endregion
+
 }

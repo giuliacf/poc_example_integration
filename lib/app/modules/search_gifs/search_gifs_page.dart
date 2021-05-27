@@ -17,20 +17,20 @@ class SearchGifsPage extends StatefulWidget {
 
 class _SearchGifsPageState
     extends ModularState<SearchGifsPage, SearchGifsStore> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Observer(
         builder: (_) => ListView.builder(
-          itemCount: this.store.gifs.length,
-          itemBuilder: (_, index) => Image.network(
-            this.store.gifs[index],
-          ),
-        ),
+            itemCount: this.store.gifs.length,
+            itemBuilder: (_, index) => Observer(
+                  builder: (_) => Image.network(
+                    this.store.gifs[index],
+                  ),
+                )),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => this.store.searchGifs(),
+        onPressed: () async => await this.store.searchGifs(),
         child: Icon(Icons.add),
       ),
     );

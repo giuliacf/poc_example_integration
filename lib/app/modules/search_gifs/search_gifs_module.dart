@@ -7,6 +7,7 @@ class SearchGifsModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SearchGifsStore()),
+
   ];
 
   @override

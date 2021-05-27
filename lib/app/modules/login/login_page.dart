@@ -111,7 +111,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                           child: Observer(
                             builder: (_) => ButtonCustom(
                               text: Strings.buttonLogin,
-                              onPressed: () => Modular.to.navigate('/products'),
+                              onPressed: () => Modular.to.navigate('/home'),
                               isDisabled: !this.store.canLogin,
                               isLoading: false,
                             ),

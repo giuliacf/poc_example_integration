@@ -17,10 +17,17 @@ abstract class HomeStoreBase with Store {
 
   @observable
   List<Widget> screens = [
- //   ProductsPage(),
+    ProductsPage(),
     SearchGifsPage(),
   ];
 
   @action
-  void changePage(int index) => currentIndex = index;
+  void changePage(int index) {
+    currentIndex = index;
+    if(currentPage == Strings.products)
+      currentPage = Strings.searchGifs;
+    else
+      currentPage = Strings.products;
+
+  }
 }
