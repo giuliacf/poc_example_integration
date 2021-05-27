@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:graphql_flutter/graphql_flutter.dart' as GraphQL;
 import 'package:mobx/mobx.dart';
 import 'package:poc_example_integration/app/modules/products/repository/mutations/save_products_mutation.dart';
+import 'package:poc_example_integration/app/modules/products/repository/queries/list_products_query.dart';
 import 'package:poc_example_integration/graphql_client.dart';
 import 'package:poc_example_integration/app/modules/products/models/product_model.dart';
 import 'package:gql/language.dart';
@@ -14,7 +15,10 @@ abstract class ProductsStoreBase with Store {
   GraphQLConfiguration _configuration = Modular.get<GraphQLConfiguration>();
 
   @observable
-  bool loading = false;
+  bool saveLoading = false;
+
+  @observable
+  bool queryLoading = false;
 
   @observable
   ObservableList<Product> products = ObservableList<Product>.of([]);
@@ -41,17 +45,52 @@ abstract class ProductsStoreBase with Store {
   setProductPrice(double? value) => productPrice = value;
 
   @action
-  setLoading(bool isLoading) => loading = isLoading;
+  setSaveLoading(bool loading) => saveLoading = loading;
+
+  @action
+  setQueryLoading(bool loading) => queryLoading = loading;
+
+  @action
+  Future<void> listProducts() async {
+    setQueryLoading(true);
+
+    try {
+      final document = GraphQL.gql(listProductsQuery);
+      final GraphQL.QueryOptions _options = GraphQL.QueryOptions(
+        document: document,
+        pollInterval: Duration(minutes: 5),
+        fetchPolicy: GraphQL.FetchPolicy.networkOnly,
+      );
+      final GraphQL.QueryResult response = await _configuration.graphClientQuery().query(_options);
+
+      final json = response.data;
+      if (json!['findAllProducts'] != null) {
+        List<Product> prods = [];
+        json['findAllProducts'].forEach((p) {
+          prods.add(Product(
+            name: p['name'],
+            price: p['price'],
+          ));
+        });
+
+        products.addAll(prods);
+      }
+    } catch (e) {
+      throw e;
+    } finally {
+      setQueryLoading(false);
+    }
+  }
 
   @action
   Future<void> saveProduct() async {
-    setLoading(true);
+    setSaveLoading(true);
 
     try {
-      final document = saveProductsMutation;
+      final document = parseString(saveProductsMutation);
 
       final GraphQL.MutationOptions _options = GraphQL.MutationOptions(
-        document: parseString(document),
+        document: document,
         variables: <String, String>{
           'name': productName,
           'description': productDescription,
@@ -59,12 +98,12 @@ abstract class ProductsStoreBase with Store {
         },
       );
 
-      GraphQL.QueryResult response = await _configuration.graphClient().mutate(_options);
+      GraphQL.QueryResult response = await _configuration.graphClientMutation().mutate(_options);
       _addProduct(response as Product);
     } catch (e) {
       throw e;
     } finally {
-      setLoading(false);
+      setSaveLoading(false);
     }
   }
 

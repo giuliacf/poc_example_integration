@@ -11,9 +11,14 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 2,
       margin: const EdgeInsets.all(16),
       child: Padding(
-        padding: EdgeInsets.only(bottom: 16, left: 16, right: 16),
+        padding: EdgeInsets.only(
+          bottom: 16,
+          left: 16,
+          right: 16,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,7 +42,7 @@ class ProductCard extends StatelessWidget {
             ),
             SizedBox(height: 8),
             TextCustom(
-              text: product.description,
+              text: product.description ?? '',
               maxLines: 2,
               textColor: greyTwo,
               textOverflow: TextOverflow.ellipsis,
