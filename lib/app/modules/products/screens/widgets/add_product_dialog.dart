@@ -49,7 +49,7 @@ class AddProductDialog extends StatelessWidget {
                     child: ButtonCustom(
                       text: 'Adicionar',
                       isDisabled: _store.isDisabled,
-                      isLoading: _store.loading,
+                      isLoading: _store.saveLoading,
                       onPressed: () {
                         _store.saveProdut();
                         Modular.to.pop();

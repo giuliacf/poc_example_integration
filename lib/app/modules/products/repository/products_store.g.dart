@@ -17,18 +17,33 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
               name: 'ProductsStoreBase.isDisabled'))
           .value;
 
-  final _$loadingAtom = Atom(name: 'ProductsStoreBase.loading');
+  final _$saveLoadingAtom = Atom(name: 'ProductsStoreBase.saveLoading');
 
   @override
-  bool get loading {
-    _$loadingAtom.reportRead();
-    return super.loading;
+  bool get saveLoading {
+    _$saveLoadingAtom.reportRead();
+    return super.saveLoading;
   }
 
   @override
-  set loading(bool value) {
-    _$loadingAtom.reportWrite(value, super.loading, () {
-      super.loading = value;
+  set saveLoading(bool value) {
+    _$saveLoadingAtom.reportWrite(value, super.saveLoading, () {
+      super.saveLoading = value;
+    });
+  }
+
+  final _$queryLoadingAtom = Atom(name: 'ProductsStoreBase.queryLoading');
+
+  @override
+  bool get queryLoading {
+    _$queryLoadingAtom.reportRead();
+    return super.queryLoading;
+  }
+
+  @override
+  set queryLoading(bool value) {
+    _$queryLoadingAtom.reportWrite(value, super.queryLoading, () {
+      super.queryLoading = value;
     });
   }
 
@@ -93,6 +108,14 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
     });
   }
 
+  final _$listProductsAsyncAction =
+      AsyncAction('ProductsStoreBase.listProducts');
+
+  @override
+  Future<void> listProducts() {
+    return _$listProductsAsyncAction.run(() => super.listProducts());
+  }
+
   final _$saveProdutAsyncAction = AsyncAction('ProductsStoreBase.saveProdut');
 
   @override
@@ -137,11 +160,22 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
   }
 
   @override
-  dynamic setLoading(bool isLoading) {
+  dynamic setSaveLoading(bool loading) {
     final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
-        name: 'ProductsStoreBase.setLoading');
+        name: 'ProductsStoreBase.setSaveLoading');
     try {
-      return super.setLoading(isLoading);
+      return super.setSaveLoading(loading);
+    } finally {
+      _$ProductsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setQueryLoading(bool loading) {
+    final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
+        name: 'ProductsStoreBase.setQueryLoading');
+    try {
+      return super.setQueryLoading(loading);
     } finally {
       _$ProductsStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -161,7 +195,8 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
   @override
   String toString() {
     return '''
-loading: ${loading},
+saveLoading: ${saveLoading},
+queryLoading: ${queryLoading},
 products: ${products},
 productName: ${productName},
 productDescription: ${productDescription},

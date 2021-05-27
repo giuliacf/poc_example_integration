@@ -58,8 +58,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                         builder: (_) => TextFieldCustom(
                           text: 'Email',
                           suffixIcon: Icon(
-                            IuppIcons
-                                .icone_contorno_E_email_resposta_rapida_outline,
+                            IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
                             color: white,
                           ),
                           onChanged: this.store.setEmail,
@@ -75,11 +74,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                           suffixIcon: InkWell(
                             onTap: this.store.changeShowPassword,
                             child: Icon(
-                              this.store.showPassword
-                                  ? IuppIcons
-                                      .icone_contorno_O_olho_ativo_outline
-                                  : IuppIcons
-                                      .icone_contorno_O_olho_inativo_outline,
+                              this.store.showPassword ? IuppIcons.icone_contorno_O_olho_ativo_outline : IuppIcons.icone_contorno_O_olho_inativo_outline,
                               color: white,
                             ),
                           ),

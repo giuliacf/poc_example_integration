@@ -18,6 +18,12 @@ class _ProductsPageState extends State<ProductsPage> {
   final ProductsStore _store = Modular.get<ProductsStore>();
 
   @override
+  void initState() {
+    super.initState();
+    _store.listProducts();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
@@ -30,11 +36,17 @@ class _ProductsPageState extends State<ProductsPage> {
       ),
       body: Observer(
         builder: (context) {
+          if (_store.queryLoading) {
+            return Center(
+              child: CircularProgressIndicator(color: aqua),
+            );
+          }
+
           if (_store.products.length > 0) {
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 250,
-                mainAxisExtent: 250,
+                maxCrossAxisExtent: 240,
+                mainAxisExtent: 200,
               ),
               itemCount: _store.products.length,
               itemBuilder: (context, index) {
