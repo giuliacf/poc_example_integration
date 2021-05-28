@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/modules/register/repository/register_store.dart';
 import 'package:poc_example_integration/iupp_icons.dart';
-import 'package:poc_example_integration/screens/widgets/button_custom.dart';
+import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
 import 'package:poc_example_integration/screens/widgets/text_custom.dart';
 import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
@@ -109,7 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     SizedBox(
                       height: 48,
                       width: 400,
-                      child: ButtonCustom(
+                      child: StandardButton(
                         text: Strings.saveButton,
                         isDisabled: _store.isDisabled,
                         isLoading: _store.isLoading,

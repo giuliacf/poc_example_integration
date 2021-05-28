@@ -74,7 +74,7 @@ abstract class ProductsStoreBase with Store {
           ));
         });
 
-        products.addAll(prods);
+        products = ObservableList<Product>.of(prods);
       }
     } catch (e) {
       throw e;

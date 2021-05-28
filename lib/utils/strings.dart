@@ -1,5 +1,4 @@
 class Strings {
-
   // #region generic strings
   static const String email = 'Email';
   static const String password = 'Senha';
@@ -26,6 +25,7 @@ class Strings {
   static const String productName = 'Nome do produto';
   static const String productDescription = 'Descrição do produto';
   static const String productPrice = 'Preço do produto';
+  static const String warning = 'Atenção';
 // #endregion
 
 // #region register
@@ -41,8 +41,9 @@ class Strings {
   static const String searchGifs = 'Gifs';
 // #endregion
 
-// #region home
+// #region general
   static const String out = 'Sair';
+  static const String cancel = 'Cancelar';
 // #endregion
 
 }

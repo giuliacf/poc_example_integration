@@ -8,12 +8,14 @@ class ButtonCustom extends StatelessWidget {
     required this.onPressed,
     required this.isDisabled,
     required this.isLoading,
+    required this.backgroundColor,
   });
 
   final String text;
   final void Function()? onPressed;
   final bool isDisabled;
   final bool isLoading;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class ButtonCustom extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
       style: OutlinedButton.styleFrom(
-        backgroundColor: !isDisabled ? aqua : Colors.transparent,
+        backgroundColor: !isDisabled ? backgroundColor : Colors.transparent,
         side: BorderSide(
           width: 1,
           color: !isDisabled ? Colors.transparent : grey,

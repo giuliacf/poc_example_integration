@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -15,8 +13,7 @@ class SearchGifsPage extends StatefulWidget {
   _SearchGifsPageState createState() => _SearchGifsPageState();
 }
 
-class _SearchGifsPageState
-    extends ModularState<SearchGifsPage, SearchGifsStore> {
+class _SearchGifsPageState extends ModularState<SearchGifsPage, SearchGifsStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/modules/login/login_store.dart';
-import 'package:poc_example_integration/screens/widgets/button_custom.dart';
+import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
 import 'package:poc_example_integration/screens/widgets/text_custom.dart';
 import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
@@ -59,8 +59,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                         builder: (_) => TextFieldCustom(
                           text: Strings.email,
                           suffixIcon: Icon(
-                            IuppIcons
-                                .icone_contorno_E_email_resposta_rapida_outline,
+                            IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
                             color: greyTwo,
                           ),
                           onChanged: this.store.setEmail,
@@ -76,11 +75,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                           suffixIcon: InkWell(
                             onTap: this.store.changeShowPassword,
                             child: Icon(
-                              this.store.showPassword
-                                  ? IuppIcons
-                                      .icone_contorno_O_olho_ativo_outline
-                                  : IuppIcons
-                                      .icone_contorno_O_olho_inativo_outline,
+                              this.store.showPassword ? IuppIcons.icone_contorno_O_olho_ativo_outline : IuppIcons.icone_contorno_O_olho_inativo_outline,
                               color: greyTwo,
                             ),
                           ),
@@ -106,16 +101,17 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                         height: 30,
                       ),
                       SizedBox(
-                          width: 500,
-                          height: 48,
-                          child: Observer(
-                            builder: (_) => ButtonCustom(
-                              text: Strings.buttonLogin,
-                              onPressed: () => Modular.to.navigate('/home'),
-                              isDisabled: !this.store.canLogin,
-                              isLoading: false,
-                            ),
-                          )),
+                        width: 500,
+                        height: 48,
+                        child: Observer(
+                          builder: (_) => StandardButton(
+                            text: Strings.buttonLogin,
+                            onPressed: () => Modular.to.navigate('/home'),
+                            isDisabled: !this.store.canLogin,
+                            isLoading: false,
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         height: 15,
                       ),
