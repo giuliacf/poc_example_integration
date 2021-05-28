@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poc_example_integration/screens/widgets/buttons/button_custom.dart';
+import 'package:poc_example_integration/utils/colors.dart';
 
 class GhostButton extends StatelessWidget {
   final String text;
@@ -22,6 +23,7 @@ class GhostButton extends StatelessWidget {
       isDisabled: isDisabled,
       isLoading: isLoading,
       backgroundColor: Colors.transparent,
+      textColor: lead,
     );
   }
 }

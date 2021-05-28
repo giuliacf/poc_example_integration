@@ -22,7 +22,8 @@ class StandardButton extends StatelessWidget {
       onPressed: onPressed,
       isDisabled: isDisabled,
       isLoading: isLoading,
-      backgroundColor: aqua,
+      backgroundColor: lead,
+      textColor: aqua,
     );
   }
 }

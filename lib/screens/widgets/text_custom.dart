@@ -4,9 +4,9 @@ class TextCustom extends StatelessWidget {
   final String text;
   final Color? textColor;
   final double? fontSize;
-  final FontWeight? fontWeight;
-  final String fontFamily;
   final TextDecoration textDecoration;
+  final FontWeight? fontWeight;
+  final String? fontFamily;
   final TextOverflow? textOverflow;
   final int? maxLines;
 
@@ -15,7 +15,7 @@ class TextCustom extends StatelessWidget {
     this.textColor,
     this.fontSize,
     this.fontWeight,
-    this.fontFamily = 'ItauDisplay',
+    this.fontFamily,
     this.textDecoration = TextDecoration.none,
     this.textOverflow,
     this.maxLines,

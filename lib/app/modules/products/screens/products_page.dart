@@ -27,51 +27,56 @@ class _ProductsPageState extends State<ProductsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Observer(
-        builder: (context) {
-          if (_store.queryLoading) {
-            return Center(
-              child: CircularProgressIndicator(color: aqua),
-            );
-          }
+      body: Container(
+        padding: const EdgeInsets.all(16),
+        child: Observer(
+          builder: (context) {
+            if (_store.queryLoading) {
+              return Center(
+                child: CircularProgressIndicator(color: aqua),
+              );
+            }
 
-          if (_store.products.length > 0) {
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 240,
-                mainAxisExtent: 240,
-              ),
-              itemCount: _store.products.length,
-              itemBuilder: (context, index) {
-                final Product _product = _store.products[index];
-                return ProductCard(product: _product);
-              },
-            );
-          }
-
-          return Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  IuppIcons.icone_contorno_F_fechar,
-                  size: 40,
-                  color: red,
+            if (_store.products.length > 0) {
+              return GridView.builder(
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 240,
+                  mainAxisExtent: 240,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
                 ),
-                TextCustom(
-                  text: Strings.productNotFound,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                )
-              ],
-            ),
-          );
-        },
+                itemCount: _store.products.length,
+                itemBuilder: (context, index) {
+                  final Product _product = _store.products[index];
+                  return ProductCard(product: _product);
+                },
+              );
+            }
+
+            return Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    IuppIcons.icone_contorno_F_fechar,
+                    size: 40,
+                    color: red,
+                  ),
+                  TextCustom(
+                    text: Strings.productNotFound,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                  )
+                ],
+              ),
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: Strings.addProduct,
-        backgroundColor: aqua,
+        backgroundColor: lead,
         onPressed: () {
           showDialog(
             context: context,
@@ -80,8 +85,8 @@ class _ProductsPageState extends State<ProductsPage> {
           );
         },
         child: Icon(
-          Icons.add,
-          color: bluePool,
+          IuppIcons.icone_solidos_M_mais,
+          color: white,
         ),
       ),
     );

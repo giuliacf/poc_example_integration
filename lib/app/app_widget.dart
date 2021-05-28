@@ -8,7 +8,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(scaffoldBackgroundColor: lightGrey),
+      theme: ThemeData(scaffoldBackgroundColor: white, accentColor: aqua, primaryColor: lead, fontFamily: 'ItauDisplay'),
       title: 'POC Example Integration',
       builder: (context, widget) => ResponsiveWrapper.builder(
         ClampingScrollWrapper.builder(context, widget!),

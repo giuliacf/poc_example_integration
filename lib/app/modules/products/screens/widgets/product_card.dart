@@ -11,41 +11,38 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
-      margin: const EdgeInsets.all(16),
+      elevation: 3,
       child: Padding(
-        padding: EdgeInsets.only(
-          bottom: 16,
-          left: 16,
-          right: 16,
-        ),
+        padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 100,
+              alignment: Alignment.center,
+              height: 90,
               child: Image.asset(
-                'assets/images/product_placeholder.png',
+                'assets/images/cellphone.png',
                 fit: BoxFit.fitHeight,
               ),
             ),
+            SizedBox(height: 32),
+            TextCustom(
+              text: product.name,
+              fontWeight: FontWeight.w700,
+              maxLines: 1,
+              textColor: greyTwo,
+              textOverflow: TextOverflow.ellipsis,
+            ),
+            SizedBox(height: 8),
             TextCustom(
               text: 'R\$ ${product.price}',
               fontWeight: FontWeight.w700,
-              fontSize: 16,
             ),
             SizedBox(height: 8),
             TextCustom(
-              text: product.name,
-              maxLines: 1,
-              textOverflow: TextOverflow.ellipsis,
-            ),
-            SizedBox(height: 8),
-            TextCustom(
-              text: product.description ?? '',
-              maxLines: 2,
-              textColor: greyTwo,
-              textOverflow: TextOverflow.ellipsis,
+              text: ' ganhe ${product.points} pts',
+              textColor: green,
+              fontWeight: FontWeight.w700,
             ),
           ],
         ),

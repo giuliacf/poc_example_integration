@@ -5,7 +5,9 @@ class Strings {
   static const String add = 'Adicionar';
   static const String hidePassword = 'Ocultar senha';
   static const String showPassword = 'Exibir senha';
-  static const String saveButton = 'Salvar';
+  static const String save = 'Salvar';
+  static const String logout = 'Sair';
+  static const String cancel = 'Cancelar';
   // #endregion
 
   // #region login
@@ -29,21 +31,16 @@ class Strings {
 // #endregion
 
 // #region register
-  static const String accountAlreadyExists = 'Já existe uma conta com este email.';
-  static const String register = 'Registre-se';
+  static const String registerTitle = 'Registre-se';
   static const String invalidEmail = 'Email inválido';
   static const String validatePassword = 'A senha precisa ter mais que 6 caracteres';
   static const String confirmPassword = 'Confirmação de senha';
   static const String equalPasswords = 'As senhas devem ser iguais';
+  static const String accountAlreadyExists = 'Já existe uma conta com este email.';
+  static const String register = 'Cadastrar';
 // #endregion
 
 // #region search gifs
-  static const String searchGifs = 'Gifs';
+  static const String searchGifs = 'GIFs';
 // #endregion
-
-// #region general
-  static const String out = 'Sair';
-  static const String cancel = 'Cancelar';
-// #endregion
-
 }

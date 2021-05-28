@@ -9,6 +9,7 @@ class ButtonCustom extends StatelessWidget {
     required this.isDisabled,
     required this.isLoading,
     required this.backgroundColor,
+    required this.textColor,
   });
 
   final String text;
@@ -16,6 +17,7 @@ class ButtonCustom extends StatelessWidget {
   final bool isDisabled;
   final bool isLoading;
   final Color backgroundColor;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class ButtonCustom extends StatelessWidget {
               height: 24,
               child: CircularProgressIndicator.adaptive(
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  blackTwo,
+                  textColor,
                 ),
                 strokeWidth: 4,
               ),
@@ -35,7 +37,7 @@ class ButtonCustom extends StatelessWidget {
           : TextCustom(
               text: text,
               fontSize: 18,
-              textColor: !isDisabled ? black : grey,
+              textColor: !isDisabled ? textColor : grey,
               fontWeight: FontWeight.bold,
             ),
       style: OutlinedButton.styleFrom(
@@ -47,7 +49,7 @@ class ButtonCustom extends StatelessWidget {
         shape: RoundedRectangleBorder(
           side: BorderSide(color: aqua, width: 1),
           borderRadius: BorderRadius.all(
-            Radius.circular(14),
+            Radius.circular(50),
           ),
         ),
       ),

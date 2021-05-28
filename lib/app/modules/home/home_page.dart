@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/modules/home/home_store.dart';
+import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/widgets/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
@@ -23,33 +24,34 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         appBar: AppBar(
           title: TextCustom(
             text: this.store.currentPage,
-            textColor: bluePool,
+            textColor: white,
           ),
-          backgroundColor: aqua,
           actions: [
             Padding(
-              padding: EdgeInsets.all(20),
-              child: InkWell(
-                child: TextCustom(
-                  text: Strings.out,
-                  textColor: bluePool,
-                ),
-                onTap:() => Modular.to.navigate('/login'),
+              padding: EdgeInsets.only(right: 20),
+              child: IconButton(
+                tooltip: Strings.logout,
+                icon: Icon(IuppIcons.icone_solidos_S_sair, color: white),
+                onPressed: () {
+                  Modular.to.navigate('/login');
+                },
               ),
             )
           ],
         ),
         body: this.store.screens[this.store.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: lead,
+          unselectedItemColor: grey,
           currentIndex: this.store.currentIndex,
           onTap: this.store.changePage,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_basket),
+              icon: Icon(IuppIcons.icone_solidos_B_bike),
               label: Strings.products,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.all_inclusive),
+              icon: Icon(IuppIcons.icone_solidos_A_antecipacao_de_recebimento),
               label: Strings.searchGifs,
             ),
           ],

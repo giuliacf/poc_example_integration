@@ -100,7 +100,13 @@ abstract class ProductsStoreBase with Store {
       );
 
       GraphQL.QueryResult response = await _configuration.graphClientMutation().mutate(_options);
-      _addProduct(response as Product);
+      final json = response.data!['saveProduct'];
+
+      _addProduct(Product(
+        price: json['price'],
+        name: json['name'],
+        description: json['description'],
+      ));
     } catch (e) {
       throw e;
     } finally {

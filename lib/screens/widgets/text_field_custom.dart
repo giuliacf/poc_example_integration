@@ -5,7 +5,7 @@ import 'package:poc_example_integration/utils/colors.dart';
 class TextFieldCustom extends StatelessWidget {
   final String text;
   final bool obscure;
-  final String fontFamily;
+  final String? fontFamily;
   final Widget? suffixIcon;
   final Function(String)? onChanged;
   final List<TextInputFormatter>? inputFormatters;
@@ -16,7 +16,7 @@ class TextFieldCustom extends StatelessWidget {
     this.obscure = false,
     this.suffixIcon,
     this.onChanged,
-    this.fontFamily = 'ItauDisplay',
+    this.fontFamily,
     this.inputFormatters,
     this.errorText,
   });
@@ -43,13 +43,15 @@ class TextFieldCustom extends StatelessWidget {
       ),
       decoration: InputDecoration(
         enabledBorder: customBorder(grey),
-        focusedBorder: customBorder(aqua),
+        focusedBorder: customBorder(grey),
         errorBorder: customBorder(red),
         focusedErrorBorder: customBorder(red),
+        labelText: text,
+        labelStyle: TextStyle(color: greyTwo),
         hintStyle: TextStyle(color: greyTwo),
         hintText: text,
-        suffixIcon: suffixIcon,
         errorText: errorText,
+        suffixIcon: suffixIcon,
       ),
       inputFormatters: inputFormatters,
       onChanged: onChanged,
