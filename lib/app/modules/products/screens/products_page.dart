@@ -27,14 +27,6 @@ class _ProductsPageState extends State<ProductsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
-      appBar: AppBar(
-        title: Text(
-          Strings.products,
-          style: TextStyle(color: bluePool),
-        ),
-        backgroundColor: aqua,
-      ),
       body: Observer(
         builder: (context) {
           if (_store.queryLoading) {

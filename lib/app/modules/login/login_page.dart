@@ -29,8 +29,8 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                lead,
-                blackTwo,
+                lightGrey,
+                lightGrey
                 //lead,
               ],
             ),
@@ -40,7 +40,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
               alignment: Alignment.center,
               width: 500,
               child: Card(
-                color: lead,
+                color: white,
                 elevation: 8,
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(16, 40, 16, 16),
@@ -50,7 +50,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                         text: Strings.titleLoginPage,
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        textColor: white,
+                        textColor: greyTwo,
                       ),
                       SizedBox(
                         height: 25,
@@ -59,8 +59,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                         builder: (_) => TextFieldCustom(
                           text: Strings.email,
                           suffixIcon: Icon(
-                            IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
-                            color: white,
+                            IuppIcons
+                                .icone_contorno_E_email_resposta_rapida_outline,
+                            color: greyTwo,
                           ),
                           onChanged: this.store.setEmail,
                         ),
@@ -75,8 +76,12 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                           suffixIcon: InkWell(
                             onTap: this.store.changeShowPassword,
                             child: Icon(
-                              this.store.showPassword ? IuppIcons.icone_contorno_O_olho_ativo_outline : IuppIcons.icone_contorno_O_olho_inativo_outline,
-                              color: white,
+                              this.store.showPassword
+                                  ? IuppIcons
+                                      .icone_contorno_O_olho_ativo_outline
+                                  : IuppIcons
+                                      .icone_contorno_O_olho_inativo_outline,
+                              color: greyTwo,
                             ),
                           ),
                           onChanged: this.store.setPassword,
@@ -92,7 +97,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                             text: Strings.forgotPassword,
                             textDecoration: TextDecoration.underline,
                             fontSize: 11,
-                            textColor: white,
+                            textColor: greyTwo,
                           ),
                           onTap: () => print('clicou'),
                         ),
@@ -106,7 +111,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                           child: Observer(
                             builder: (_) => ButtonCustom(
                               text: Strings.buttonLogin,
-                              onPressed: () => null,
+                              onPressed: () => Modular.to.navigate('/home'),
                               isDisabled: !this.store.canLogin,
                               isLoading: false,
                             ),
@@ -120,7 +125,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                           TextCustom(
                             text: Strings.labelDontHaveAccount,
                             fontSize: 12,
-                            textColor: white,
+                            textColor: greyTwo,
                           ),
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
@@ -130,7 +135,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                                 text: Strings.labelRegisterNow,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 13,
-                                textColor: white,
+                                textColor: greyTwo,
                               ),
                             ),
                           )
@@ -143,7 +148,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                         width: 200,
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          border: Border.all(color: white),
+                          border: Border.all(color: greyTwo),
                           borderRadius: BorderRadius.all(
                             Radius.circular(14),
                           ),
@@ -166,7 +171,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                                   text: Strings.loginWithGoogle,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 13,
-                                  textColor: white,
+                                  textColor: greyTwo,
                                 ),
                               ],
                             ),

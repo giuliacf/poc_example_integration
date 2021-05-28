@@ -15,8 +15,9 @@ abstract class SearchGifsStoreBase with Store {
   @observable
   String searchedWord = '';
 
+
   @action
-  Future searchGifs() async {
+  Future<void> searchGifs() async {
     try {
       final response = await http.get(
         Uri.parse(tenorApiUrl),
@@ -24,11 +25,13 @@ abstract class SearchGifsStoreBase with Store {
 
       print('status ${response.statusCode}');
       if (response.statusCode == 200) {
+        print('caiu no if');
         var jsonList = jsonDecode(response.body);
         var genreIdsFromJson = jsonList['results'];
         for (var i in genreIdsFromJson) {
           gifs.add(i['media'][0]['gif']['url']);
         }
+        print('tamanho list ${gifs.length}');
       } else {
         throw Exception('Failed to load album');
       }

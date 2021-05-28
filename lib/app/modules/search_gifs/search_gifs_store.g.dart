@@ -42,7 +42,7 @@ mixin _$SearchGifsStore on SearchGifsStoreBase, Store {
   final _$searchGifsAsyncAction = AsyncAction('SearchGifsStoreBase.searchGifs');
 
   @override
-  Future<dynamic> searchGifs() {
+  Future<void> searchGifs() {
     return _$searchGifsAsyncAction.run(() => super.searchGifs());
   }
 
