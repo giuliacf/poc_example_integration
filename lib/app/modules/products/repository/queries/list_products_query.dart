@@ -4,6 +4,7 @@ const String listProductsQuery = r'''
       id
       name
       price
+      description
     }
   }
 ''';

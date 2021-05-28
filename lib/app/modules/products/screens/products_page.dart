@@ -47,7 +47,7 @@ class _ProductsPageState extends State<ProductsPage> {
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 240,
-                mainAxisExtent: 200,
+                mainAxisExtent: 240,
               ),
               itemCount: _store.products.length,
               itemBuilder: (context, index) {
@@ -84,6 +84,7 @@ class _ProductsPageState extends State<ProductsPage> {
           showDialog(
             context: context,
             builder: (context) => AddProductDialog(),
+            barrierDismissible: false,
           );
         },
         child: Icon(

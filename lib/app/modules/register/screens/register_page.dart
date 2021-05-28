@@ -32,9 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return IconButton(
       tooltip: show ? Strings.hidePassword : Strings.showPassword,
       icon: Icon(
-        show
-            ? IuppIcons.icone_contorno_O_olho_inativo_outline
-            : IuppIcons.icone_contorno_O_olho_ativo_outline,
+        show ? IuppIcons.icone_contorno_O_olho_inativo_outline : IuppIcons.icone_contorno_O_olho_ativo_outline,
         color: white,
         size: 24,
       ),
@@ -70,12 +68,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextFieldCustom(
                       text: Strings.email,
                       onChanged: _store.setEmail,
-                      errorText: _store.email.isEmpty || _store.isEmailValid
-                          ? null
-                          : Strings.invalidEmail,
+                      errorText: _store.email.isEmpty || _store.isEmailValid ? null : Strings.invalidEmail,
                       suffixIcon: Icon(
-                        IuppIcons
-                            .icone_contorno_E_email_resposta_rapida_outline,
+                        IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
                         color: white,
                         size: 24,
                       ),
@@ -85,10 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       text: Strings.password,
                       obscure: !_showPassword,
                       onChanged: _store.setPassword,
-                      errorText:
-                          _store.password.isEmpty || _store.isPasswordValid
-                              ? null
-                              : Strings.validatePassword,
+                      errorText: _store.password.isEmpty || _store.isPasswordValid ? null : Strings.validatePassword,
                       suffixIcon: getIcon(
                         show: _showPassword,
                         onPressed: () {
@@ -103,10 +95,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       text: Strings.confirmPassword,
                       obscure: !_showConfirmPassword,
                       onChanged: _store.setConfirmPassword,
-                      errorText: _store.confirmPassword.isEmpty ||
-                              _store.passwordsMatch
-                          ? null
-                          : Strings.equalPasswords,
+                      errorText: _store.confirmPassword.isEmpty || _store.passwordsMatch ? null : Strings.equalPasswords,
                       suffixIcon: getIcon(
                         show: _showConfirmPassword,
                         onPressed: () {

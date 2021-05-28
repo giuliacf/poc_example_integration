@@ -68,8 +68,9 @@ abstract class ProductsStoreBase with Store {
         List<Product> prods = [];
         json['findAllProducts'].forEach((p) {
           prods.add(Product(
-            name: p['name'],
             price: p['price'],
+            name: p['name'],
+            description: p['description'],
           ));
         });
 

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
+import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/widgets/button_custom.dart';
 import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
@@ -14,11 +15,10 @@ class AddProductDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(
-        Strings.newProduct,
-        style: TextStyle(color: white),
-      ),
-      backgroundColor: lead,
+      titleTextStyle: TextStyle(color: lead, fontSize: 18),
+      title: Text(Strings.newProduct),
+      scrollable: true,
+      backgroundColor: white,
       content: Form(
         child: Container(
           width: 400,
@@ -26,6 +26,27 @@ class AddProductDialog extends StatelessWidget {
             builder: (context) {
               return Column(
                 children: [
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: IconButton(
+                      icon: Icon(
+                        IuppIcons.icone_solidos_F_fechar,
+                        color: red,
+                      ),
+                      onPressed: () {
+                        Modular.to.pop();
+                      },
+                    ),
+                  ),
+                  TextFieldCustom(
+                    text: Strings.productPrice,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    onChanged: (value) {
+                      _store.setProductPrice(value.isEmpty ? null : double.parse(value));
+                    },
+                  ),
+                  SizedBox(height: 8),
                   TextFieldCustom(
                     text: Strings.productName,
                     onChanged: _store.setProductName,
@@ -34,14 +55,6 @@ class AddProductDialog extends StatelessWidget {
                   TextFieldCustom(
                     text: Strings.productDescription,
                     onChanged: _store.setProductDescription,
-                  ),
-                  SizedBox(height: 8),
-                  TextFieldCustom(
-                    text: Strings.productPrice,
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    onChanged: (value) {
-                      _store.setProductPrice(value.isEmpty ? null : double.parse(value));
-                    },
                   ),
                   SizedBox(height: 24),
                   SizedBox(
