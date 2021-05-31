@@ -31,15 +31,5 @@ class AppModule extends Module {
       module: HomeModule(),
       guards: [AuthenticationRouteGuard()],
     ),
-    ModuleRoute(
-      '/products',
-      module: ProductsModule(),
-      guards: [AuthenticationRouteGuard()],
-    ),
-    ModuleRoute(
-      '/search-gifs',
-      module: SearchGifsModule(),
-      guards: [AuthenticationRouteGuard()],
-    ),
   ];
 }
