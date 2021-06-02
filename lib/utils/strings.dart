@@ -54,6 +54,6 @@ class Strings {
 // #endregion
 
 // #region search gifs
-  static const String searchGifs = 'GIFs';
+  static const String gifs = 'Gifs';
 // #endregion
 }

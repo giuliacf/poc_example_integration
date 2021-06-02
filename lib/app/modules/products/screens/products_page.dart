@@ -27,51 +27,57 @@ class _ProductsPageState extends State<ProductsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(16),
-        child: Observer(
-          builder: (context) {
-            if (_store.queryLoading) {
-              return Center(
-                child: CircularProgressIndicator(color: aqua),
-              );
-            }
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 1200),
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Observer(
+              builder: (context) {
+                if (_store.queryLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(color: aqua),
+                  );
+                }
 
-            if (_store.products.length > 0) {
-              return GridView.builder(
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 240,
-                  mainAxisExtent: 240,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                ),
-                itemCount: _store.products.length,
-                itemBuilder: (context, index) {
-                  final Product _product = _store.products[index];
-                  return ProductCard(product: _product);
-                },
-              );
-            }
+                if (_store.products.length > 0) {
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 240,
+                      mainAxisExtent: 240,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                    ),
+                    itemCount: _store.products.length,
+                    itemBuilder: (context, index) {
+                      final Product _product = _store.products[index];
+                      return ProductCard(product: _product);
+                    },
+                  );
+                }
 
-            return Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Icon(
-                    IuppIcons.icone_contorno_F_fechar,
-                    size: 40,
-                    color: red,
+                return Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        IuppIcons.icone_contorno_F_fechar,
+                        size: 40,
+                        color: red,
+                      ),
+                      TextCustom(
+                        text: Strings.productNotFound,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                      )
+                    ],
                   ),
-                  TextCustom(
-                    text: Strings.productNotFound,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                  )
-                ],
-              ),
-            );
-          },
+                );
+              },
+            ),
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

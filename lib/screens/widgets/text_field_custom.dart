@@ -8,10 +8,12 @@ class TextFieldCustom extends StatelessWidget {
   final bool obscure;
   final String? fontFamily;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final Function(String)? onChanged;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
   final int maxLines;
+  final FloatingLabelBehavior floatingLabelBehavior;
 
   final String? errorText;
 
@@ -26,6 +28,8 @@ class TextFieldCustom extends StatelessWidget {
     this.keyboardType,
     this.maxLines = 1,
     this.placeholder,
+    this.floatingLabelBehavior = FloatingLabelBehavior.always,
+    this.prefixIcon,
   });
 
   OutlineInputBorder customBorder(Color borderColor) {
@@ -55,11 +59,12 @@ class TextFieldCustom extends StatelessWidget {
         focusedErrorBorder: customBorder(red),
         labelText: text,
         labelStyle: TextStyle(color: greyFour, fontSize: 14),
-        floatingLabelBehavior: FloatingLabelBehavior.always,
+        floatingLabelBehavior: floatingLabelBehavior,
         hintStyle: TextStyle(color: greyTwo),
         hintText: placeholder ?? text,
         errorText: errorText,
         suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
       ),
       inputFormatters: inputFormatters,
       keyboardType: keyboardType,

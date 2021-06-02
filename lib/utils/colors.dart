@@ -4,6 +4,7 @@ final aqua = Color(0xFF00EEE6); //primaryColor
 final lead = Color(0xFF23232E); //backgroundButtonColor
 final bluePool = Color(0xFF494C57);
 final lightGrey = Color(0xFFE1E4EC); //disabledButtonColor
+final greyOffWhite = Color(0xFFF4F7FE);
 final grey = Color(0xFFB1B5BF); //disabledButtonTextColor
 final greyTwo = Color(0xFF7C7B8B);
 final greyThree = Color(0xFF525252);
