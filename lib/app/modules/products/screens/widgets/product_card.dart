@@ -18,6 +18,7 @@ class ProductCard extends StatelessWidget {
 
     return Card(
       elevation: 3,
+      color: white,
       child: Padding(
         padding: EdgeInsets.all(16),
         child: Stack(
@@ -42,9 +43,7 @@ class ProductCard extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Icon(
-                    IuppIcons.icone_contorno_E_excluir_outline,
-                  ),
+                  child: Icon(IuppIcons.icone_contorno_E_excluir_outline),
                 ),
               ),
             ),
@@ -62,20 +61,23 @@ class ProductCard extends StatelessWidget {
                 SizedBox(height: 32),
                 TextCustom(
                   text: product.name,
+                  fontSize: 16,
                   fontWeight: FontWeight.w700,
                   maxLines: 1,
                   textColor: greyTwo,
                   textOverflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 16),
                 TextCustom(
                   text: 'R\$ ${product.price}',
+                  fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),
                 SizedBox(height: 8),
                 TextCustom(
-                  text: ' ganhe ${product.points} pts',
+                  text: Strings.winSomePoints(product.points),
                   textColor: green,
+                  fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),
               ],

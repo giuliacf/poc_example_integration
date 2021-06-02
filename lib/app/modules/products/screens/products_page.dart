@@ -27,6 +27,7 @@ class _ProductsPageState extends State<ProductsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: greyOffWhite,
       body: Align(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
@@ -44,8 +45,8 @@ class _ProductsPageState extends State<ProductsPage> {
                 if (_store.products.length > 0) {
                   return GridView.builder(
                     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 240,
-                      mainAxisExtent: 240,
+                      maxCrossAxisExtent: 250,
+                      mainAxisExtent: 250,
                       crossAxisSpacing: 8,
                       mainAxisSpacing: 8,
                     ),
@@ -92,7 +93,7 @@ class _ProductsPageState extends State<ProductsPage> {
         },
         child: Icon(
           IuppIcons.icone_solidos_M_mais,
-          color: white,
+          color: aqua,
         ),
       ),
     );

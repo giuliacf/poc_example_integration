@@ -26,32 +26,29 @@ class _HomePageState extends State<HomePage> {
           alignment: Alignment.center,
           child: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: 1200),
-            child: Container(
-              margin: EdgeInsets.only(left: 20),
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/images/logo.png',
-                    height: 58,
-                    width: 89,
-                  )
-                ],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset(
+                  'assets/images/logo.png',
+                  height: 58,
+                  width: 89,
+                ),
+                IconButton(
+                  tooltip: Strings.logout,
+                  icon: Icon(
+                    IuppIcons.icone_solidos_S_sair,
+                    color: aqua,
+                    size: 24,
+                  ),
+                  onPressed: () {
+                    Modular.to.navigate('/login');
+                  },
+                ),
+              ],
             ),
           ),
         ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: IconButton(
-              tooltip: Strings.logout,
-              icon: Icon(IuppIcons.icone_solidos_S_sair, color: white),
-              onPressed: () {
-                Modular.to.navigate('/login');
-              },
-            ),
-          )
-        ],
       ),
       body: DefaultTabController(
         length: 2,
@@ -61,6 +58,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.symmetric(vertical: 2),
               decoration: BoxDecoration(
                 border: Border.all(color: lead, width: 1),
+                color: white,
               ),
               constraints: BoxConstraints(maxHeight: 52),
               child: Material(
