@@ -12,4 +12,5 @@ final blackTwo = Color(0xFF181820);
 final white = Colors.white;
 final green = Color(0xFF1E8449);
 final blue = Color(0xFF0070D4);
+final blueTwo = Color(0xFF0062BA);
 final red = Color(0xFFDE1E12);

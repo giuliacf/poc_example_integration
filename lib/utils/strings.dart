@@ -11,12 +11,14 @@ class Strings {
   // #endregion
 
   // #region login
-  static const String titleLoginPage = 'Faça seu login!';
-  static const String forgotPassword = 'Esqueceu a senha?';
+  static const String titleLoginPage = 'iupp! Que bom que você veio!';
+  static const String subTitleLoginPage = 'Acesse sua conta ou cadastre-se';
+  static const String loginWithEmail = 'Ou entre com seu e-mail e senha';
+  static const String forgotPassword = 'oops! esqueci minha senha';
   static const String buttonLogin = 'Entrar';
   static const String labelDontHaveAccount = 'Ainda não possui conta? ';
-  static const String labelRegisterNow = ' Cadastre-se agora!';
-  static const String loginWithGoogle = ' Login com Google';
+  static const String labelRegisterNow = ' Cadastre-se aqui';
+  static const String loginWithGoogle = ' Fazer login com o Google';
   // #endregion
 
 // #region products
@@ -31,7 +33,8 @@ class Strings {
 // #endregion
 
 // #region register
-  static const String registerTitle = 'Registre-se';
+  static const String registerTitle = 'Cadastro';
+  static const String registerSubTitle = 'Faça um rápido cadastro e comece sua experiência iupp!';
   static const String invalidEmail = 'Email inválido';
   static const String validatePassword = 'A senha precisa ter mais que 6 caracteres';
   static const String confirmPassword = 'Confirmação de senha';
