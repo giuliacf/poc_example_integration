@@ -37,6 +37,9 @@ abstract class ProductsStoreBase with Store {
   @observable
   double? productPrice;
 
+  @observable
+  bool showPoints = false;
+
   @computed
   bool get isDisabled => productName.isEmpty || productDescription.isEmpty || productPrice == null;
 
@@ -54,6 +57,9 @@ abstract class ProductsStoreBase with Store {
 
   @action
   setQueryLoading(bool loading) => queryLoading = loading;
+
+  @action
+  setShowPoints(bool value) => showPoints = value;
 
   @action
   Future<void> listProducts() async {
