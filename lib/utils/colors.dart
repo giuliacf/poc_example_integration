@@ -7,6 +7,7 @@ final lightGrey = Color(0xFFE1E4EC); //disabledButtonColor
 final grey = Color(0xFFB1B5BF); //disabledButtonTextColor
 final greyTwo = Color(0xFF7C7B8B);
 final greyThree = Color(0xFF525252);
+final greyFour = Color(0xFF3B3C45);
 final black = Colors.black;
 final blackTwo = Color(0xFF181820);
 final white = Colors.white;

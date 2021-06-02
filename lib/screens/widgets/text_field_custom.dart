@@ -4,11 +4,15 @@ import 'package:poc_example_integration/utils/colors.dart';
 
 class TextFieldCustom extends StatelessWidget {
   final String text;
+  final String? placeholder;
   final bool obscure;
   final String? fontFamily;
   final Widget? suffixIcon;
   final Function(String)? onChanged;
   final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
+  final int maxLines;
+
   final String? errorText;
 
   TextFieldCustom({
@@ -19,6 +23,9 @@ class TextFieldCustom extends StatelessWidget {
     this.fontFamily,
     this.inputFormatters,
     this.errorText,
+    this.keyboardType,
+    this.maxLines = 1,
+    this.placeholder,
   });
 
   OutlineInputBorder customBorder(Color borderColor) {
@@ -47,13 +54,16 @@ class TextFieldCustom extends StatelessWidget {
         errorBorder: customBorder(red),
         focusedErrorBorder: customBorder(red),
         labelText: text,
-        labelStyle: TextStyle(color: greyTwo),
+        labelStyle: TextStyle(color: greyFour, fontSize: 14),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
         hintStyle: TextStyle(color: greyTwo),
-        hintText: text,
+        hintText: placeholder ?? text,
         errorText: errorText,
         suffixIcon: suffixIcon,
       ),
       inputFormatters: inputFormatters,
+      keyboardType: keyboardType,
+      maxLines: maxLines,
       onChanged: onChanged,
     );
   }

@@ -1,8 +1,8 @@
 class Strings {
   // #region generic strings
-  static const String email = 'Email';
-  static const String password = 'Senha';
-  static const String add = 'Adicionar';
+  static const String email = 'email';
+  static const String password = 'senha';
+  static const String add = 'adicionar';
   static const String hidePassword = 'Ocultar senha';
   static const String showPassword = 'Exibir senha';
   static const String save = 'Salvar';
@@ -18,10 +18,12 @@ class Strings {
   static const String subTitleLoginPage = 'Acesse sua conta ou cadastre-se';
   static const String loginWithEmail = 'Ou entre com seu e-mail e senha';
   static const String forgotPassword = 'oops! esqueci minha senha';
-  static const String buttonLogin = 'Entrar';
-  static const String labelDontHaveAccount = 'Ainda não possui conta? ';
-  static const String labelRegisterNow = ' Cadastre-se aqui';
-  static const String loginWithGoogle = ' Fazer login com o Google';
+  static const String buttonLogin = 'entrar';
+  static const String labelDontHaveAccount = 'ainda não possui conta? ';
+  static const String labelRegisterNow = 'cadastre-se aqui';
+  static const String loginWithGoogle = 'Fazer login com o Google';
+  static const String emailPlaceholder = 'seu e-mail cadastrado';
+  static const String passwordPlaceholder = 'digite sua senha';
   // #endregion
 
 // #region products
