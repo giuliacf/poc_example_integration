@@ -123,6 +123,15 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
     return _$saveProductAsyncAction.run(() => super.saveProduct());
   }
 
+  final _$deleteProductAsyncAction =
+      AsyncAction('ProductsStoreBase.deleteProduct');
+
+  @override
+  Future<void> deleteProduct(String id, BuildContext context) {
+    return _$deleteProductAsyncAction
+        .run(() => super.deleteProduct(id, context));
+  }
+
   final _$ProductsStoreBaseActionController =
       ActionController(name: 'ProductsStoreBase');
 
@@ -176,17 +185,6 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
         name: 'ProductsStoreBase.setQueryLoading');
     try {
       return super.setQueryLoading(loading);
-    } finally {
-      _$ProductsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic _addProduct(Product product) {
-    final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
-        name: 'ProductsStoreBase._addProduct');
-    try {
-      return super._addProduct(product);
     } finally {
       _$ProductsStoreBaseActionController.endAction(_$actionInfo);
     }

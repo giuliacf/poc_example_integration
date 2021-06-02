@@ -51,7 +51,7 @@ abstract class RegisterStoreBase with Store {
   bool get isDisabled => !(isEmailValid && isPasswordValid && passwordsMatch);
 
   @action
-  Future<void> loginWithUserAndEmail(BuildContext context) async {
+  Future<void> registerWithUserAndEmail(BuildContext context) async {
     setLoading(true);
 
     try {

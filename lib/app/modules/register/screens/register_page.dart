@@ -72,83 +72,84 @@ class _RegisterPageState extends State<RegisterPage> {
                     color: white,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: SingleChildScrollView(child: Observer(
-                    builder: (context) {
-                      return Form(
-                        key: _formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            TextCustom(
-                              text: Strings.registerTitle,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w800,
-                              textColor: lead,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextCustom(
-                              text: Strings.registerSubTitle,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              textColor: bluePool,
-                            ),
-                            SizedBox(height: 32),
-                            TextFieldCustom(
-                              text: Strings.email,
-                              onChanged: _store.setEmail,
-                              errorText:
-                              _store.email.isEmpty || _store.isEmailValid
-                                  ? null
-                                  : Strings.invalidEmail,
-                              suffixIcon: Icon(
-                                IuppIcons
-                                    .icone_contorno_E_email_resposta_rapida_outline,
-                                color: greyTwo,
-                                size: 24,
+                  child: SingleChildScrollView(
+                    child: Observer(
+                      builder: (context) {
+                        return Form(
+                          key: _formKey,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TextCustom(
+                                text: Strings.registerTitle,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w800,
+                                textColor: lead,
                               ),
-                            ),
-                            SizedBox(height: 16),
-                            TextFieldCustom(
-                              text: Strings.password,
-                              obscure: !_showPassword,
-                              onChanged: _store.setPassword,
-                              errorText: _store.password.isEmpty ||
-                                  _store.isPasswordValid
-                                  ? null
-                                  : Strings.validatePassword,
-                              suffixIcon: getIcon(
-                                show: _showPassword,
-                                onPressed: () {
-                                  setState(() {
-                                    _showPassword = !_showPassword;
-                                  });
-                                },
+                              SizedBox(
+                                height: 10,
                               ),
-                            ),
-                            SizedBox(height: 16),
-                            TextFieldCustom(
-                              text: Strings.confirmPassword,
-                              obscure: !_showConfirmPassword,
-                              onChanged: _store.setConfirmPassword,
-                              errorText: _store.confirmPassword.isEmpty ||
-                                  _store.passwordsMatch
-                                  ? null
-                                  : Strings.equalPasswords,
-                              suffixIcon: getIcon(
-                                show: _showConfirmPassword,
-                                onPressed: () {
-                                  setState(() {
-                                    _showConfirmPassword = !_showConfirmPassword;
-                                  });
-                                },
+                              TextCustom(
+                                text: Strings.registerSubTitle,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                textColor: bluePool,
                               ),
-                            ),
-                            SizedBox(height: 32),
-                            Center(
-                              child: SizedBox(
+                              SizedBox(height: 32),
+                              TextFieldCustom(
+                                text: Strings.email,
+                                onChanged: _store.setEmail,
+                                errorText:
+                                    _store.email.isEmpty || _store.isEmailValid
+                                        ? null
+                                        : Strings.invalidEmail,
+                                suffixIcon: Icon(
+                                  IuppIcons
+                                      .icone_contorno_E_email_resposta_rapida_outline,
+                                  color: greyTwo,
+                                  size: 24,
+                                ),
+                              ),
+                              SizedBox(height: 16),
+                              TextFieldCustom(
+                                text: Strings.password,
+                                obscure: !_showPassword,
+                                onChanged: _store.setPassword,
+                                errorText: _store.password.isEmpty ||
+                                        _store.isPasswordValid
+                                    ? null
+                                    : Strings.validatePassword,
+                                suffixIcon: getIcon(
+                                  show: _showPassword,
+                                  onPressed: () {
+                                    setState(() {
+                                      _showPassword = !_showPassword;
+                                    });
+                                  },
+                                ),
+                              ),
+                              SizedBox(height: 16),
+                              TextFieldCustom(
+                                text: Strings.confirmPassword,
+                                obscure: !_showConfirmPassword,
+                                onChanged: _store.setConfirmPassword,
+                                errorText: _store.confirmPassword.isEmpty ||
+                                        _store.passwordsMatch
+                                    ? null
+                                    : Strings.equalPasswords,
+                                suffixIcon: getIcon(
+                                  show: _showConfirmPassword,
+                                  onPressed: () {
+                                    setState(() {
+                                      _showConfirmPassword =
+                                          !_showConfirmPassword;
+                                    });
+                                  },
+                                ),
+                              ),
+                              SizedBox(height: 32),
+                              SizedBox(
                                 height: 48,
                                 width: 400,
                                 child: StandardButton(
@@ -156,20 +157,21 @@ class _RegisterPageState extends State<RegisterPage> {
                                   isDisabled: _store.isDisabled,
                                   isLoading: _store.isLoading,
                                   onPressed: () async {
-                                    await _store.loginWithUserAndEmail(context);
+                                    await _store
+                                        .registerWithUserAndEmail(context);
                                   },
                                 ),
                               ),
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                  )),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ),
             ],
-          )
+          ),
         ));
   }
 }

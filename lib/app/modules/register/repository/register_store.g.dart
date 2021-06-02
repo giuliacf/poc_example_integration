@@ -98,13 +98,13 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
     });
   }
 
-  final _$loginWithUserAndEmailAsyncAction =
-      AsyncAction('RegisterStoreBase.loginWithUserAndEmail');
+  final _$registerWithUserAndEmailAsyncAction =
+      AsyncAction('RegisterStoreBase.registerWithUserAndEmail');
 
   @override
-  Future<void> loginWithUserAndEmail(BuildContext context) {
-    return _$loginWithUserAndEmailAsyncAction
-        .run(() => super.loginWithUserAndEmail(context));
+  Future<void> registerWithUserAndEmail(BuildContext context) {
+    return _$registerWithUserAndEmailAsyncAction
+        .run(() => super.registerWithUserAndEmail(context));
   }
 
   final _$RegisterStoreBaseActionController =

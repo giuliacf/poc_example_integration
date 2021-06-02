@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
-import 'package:poc_example_integration/app/modules/products/screens/widgets/warning_dialog.dart';
+import 'package:poc_example_integration/screens/widgets/warning_dialog.dart';
 import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
 import 'package:poc_example_integration/screens/widgets/text_custom.dart';
 import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
@@ -99,29 +99,40 @@ class AddProductDialog extends StatelessWidget {
             Positioned(
               top: 2,
               right: 2,
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Icon(
-                        Icons.close,
-                        color: Colors.red,
+              child: Tooltip(
+                message: Strings.close,
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ),
                       ),
                     ),
-                  ),
-                  onTap: () async {
-                    final closeDialog = await showDialog(
-                      context: context,
-                      builder: (context) => WarningDialog(),
-                    );
+                    onTap: () async {
+                      final closeDialog = await showDialog(
+                        context: context,
+                        builder: (context) => WarningDialog(
+                          content: Strings.cancelEditWarning,
+                          onSave: () {
+                            Modular.to.pop(true);
+                          },
+                          onCancel: () {
+                            Modular.to.pop(false);
+                          },
+                        ),
+                      );
 
-                    if (closeDialog) {
-                      Modular.to.pop();
-                    }
-                  },
+                      if (closeDialog) {
+                        Modular.to.pop();
+                      }
+                    },
+                  ),
                 ),
               ),
             ),
