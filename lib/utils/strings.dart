@@ -8,6 +8,9 @@ class Strings {
   static const String save = 'Salvar';
   static const String logout = 'Sair';
   static const String cancel = 'Cancelar';
+  static const String confirm = 'Confirmar';
+  static const String close = 'Fechar';
+  static const String warning = 'Atenção';
   // #endregion
 
   // #region login
@@ -24,10 +27,14 @@ class Strings {
   static const String productNotFound = 'opps! \nnão conseguimos \nencontrar nenhum \nproduto';
   static const String newProduct = 'Novo produto';
   static const String addProduct = 'Adicionar produto';
+  static const String removeProduct = 'Remover produto';
   static const String productName = 'Nome do produto';
   static const String productDescription = 'Descrição do produto';
   static const String productPrice = 'Preço do produto';
-  static const String warning = 'Atenção';
+  static const String cancelEditWarning = 'Você deseja realmente sair? \nOs dados não serão salvos.';
+  static const String confirmDeleting = 'Você realmente deseja apagar este produto?';
+  static const String removingProductSuccess = 'Produto removido com sucesso';
+  static const String removingProductError = 'Erro ao remover um produto';
 // #endregion
 
 // #region register

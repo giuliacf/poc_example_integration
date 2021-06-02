@@ -116,7 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           isDisabled: _store.isDisabled,
                           isLoading: _store.isLoading,
                           onPressed: () async {
-                            await _store.loginWithUserAndEmail(context);
+                            await _store.registerWithUserAndEmail(context);
                           },
                         ),
                       ),

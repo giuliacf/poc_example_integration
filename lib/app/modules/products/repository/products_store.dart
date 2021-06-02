@@ -1,11 +1,16 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:graphql_flutter/graphql_flutter.dart' as GraphQL;
 import 'package:mobx/mobx.dart';
+import 'package:poc_example_integration/app/modules/products/repository/mutations/delete_product_mutation.dart';
 import 'package:poc_example_integration/app/modules/products/repository/mutations/save_products_mutation.dart';
 import 'package:poc_example_integration/app/modules/products/repository/queries/list_products_query.dart';
 import 'package:poc_example_integration/graphql_client.dart';
 import 'package:poc_example_integration/app/modules/products/models/product_model.dart';
 import 'package:gql/language.dart';
+import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
+import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_success.dart';
+import 'package:poc_example_integration/utils/strings.dart';
 
 part 'products_store.g.dart';
 
@@ -68,6 +73,7 @@ abstract class ProductsStoreBase with Store {
         List<Product> prods = [];
         json['findAllProducts'].forEach((p) {
           prods.add(Product(
+            id: p['id'],
             price: p['price'],
             name: p['name'],
             description: p['description'],
@@ -103,6 +109,7 @@ abstract class ProductsStoreBase with Store {
       final json = response.data!['saveProduct'];
 
       _addProduct(Product(
+        id: json['id'],
         price: json['price'],
         name: json['name'],
         description: json['description'],
@@ -115,6 +122,41 @@ abstract class ProductsStoreBase with Store {
   }
 
   @action
+  Future<void> deleteProduct(String id, BuildContext context) async {
+    try {
+      final document = parseString(deleteProductsMutation);
+
+      final GraphQL.MutationOptions _options = GraphQL.MutationOptions(
+        document: document,
+        variables: <String, String>{
+          'id': id,
+        },
+      );
+
+      await _configuration.graphClientMutation().mutate(_options);
+      _removeProduct(id);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        CustomSuccessSnackBar(
+          context,
+          message: Strings.removingProductSuccess,
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        CustomErrorSnackBar(
+          context,
+          message: Strings.removingProductError,
+        ),
+      );
+    }
+  }
+
+  _removeProduct(String id) {
+    int index = products.indexWhere((prod) => prod.id == id);
+    products.removeAt(index);
+  }
+
   _addProduct(Product product) {
     products.add(product);
   }

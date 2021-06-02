@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/screens/widgets/buttons/ghost_button.dart';
 import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
 import 'package:poc_example_integration/screens/widgets/text_custom.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
 class WarningDialog extends StatelessWidget {
+  final String content;
+  final Function onSave;
+  final Function onCancel;
+
+  const WarningDialog({
+    Key? key,
+    required this.content,
+    required this.onSave,
+    required this.onCancel,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -13,17 +23,17 @@ class WarningDialog extends StatelessWidget {
         text: '${Strings.warning}!',
         fontWeight: FontWeight.w700,
       ),
-      content: TextCustom(text: 'Você deseja realmente sair? \nOs dados não serão salvos.'),
+      content: TextCustom(text: content),
       actions: [
         SizedBox(
           height: 35,
-          width: 90,
+          width: 100,
           child: StandardButton(
-            text: 'Sair',
+            text: Strings.confirm,
             isDisabled: false,
             isLoading: false,
             onPressed: () {
-              Modular.to.pop(true);
+              onSave();
             },
           ),
         ),
@@ -31,11 +41,11 @@ class WarningDialog extends StatelessWidget {
           height: 35,
           width: 90,
           child: GhostButton(
-            text: 'Cancelar',
+            text: Strings.cancel,
             isDisabled: false,
             isLoading: false,
             onPressed: () {
-              Modular.to.pop(false);
+              onCancel();
             },
           ),
         ),
