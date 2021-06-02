@@ -46,10 +46,11 @@ class Strings {
   static const String registerSubTitle = 'Faça um rápido cadastro e comece sua experiência iupp!';
   static const String invalidEmail = 'Email inválido';
   static const String validatePassword = 'A senha precisa ter mais que 6 caracteres';
-  static const String confirmPassword = 'Confirmação de senha';
+  static const String confirmPassword = 'confirmação de senha';
   static const String equalPasswords = 'As senhas devem ser iguais';
   static const String accountAlreadyExists = 'Já existe uma conta com este email.';
-  static const String register = 'Cadastrar';
+  static const String register = 'cadastrar';
+  static const String agreeWithTerms = 'Concordo que meus dados sejam utilizados pelo iupp e aceito os Termos de Condições e a Política de Privacidade.';
 // #endregion
 
 // #region search gifs

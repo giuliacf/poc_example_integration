@@ -24,6 +24,9 @@ abstract class RegisterStoreBase with Store {
   String confirmPassword = '';
 
   @observable
+  bool agreeWithTerms = false;
+
+  @observable
   bool isLoading = false;
 
   @action
@@ -34,6 +37,9 @@ abstract class RegisterStoreBase with Store {
 
   @action
   void setConfirmPassword(String value) => confirmPassword = value;
+
+  @action
+  void setAgreeWithTerms(bool agree) => agreeWithTerms = agree;
 
   @action
   void setLoading(bool loading) => isLoading = loading;
@@ -48,7 +54,7 @@ abstract class RegisterStoreBase with Store {
   bool get passwordsMatch => password == confirmPassword;
 
   @computed
-  bool get isDisabled => !(isEmailValid && isPasswordValid && passwordsMatch);
+  bool get isDisabled => !(isEmailValid && isPasswordValid && passwordsMatch && agreeWithTerms);
 
   @action
   Future<void> registerWithUserAndEmail(BuildContext context) async {

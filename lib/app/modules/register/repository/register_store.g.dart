@@ -83,6 +83,21 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
     });
   }
 
+  final _$agreeWithTermsAtom = Atom(name: 'RegisterStoreBase.agreeWithTerms');
+
+  @override
+  bool get agreeWithTerms {
+    _$agreeWithTermsAtom.reportRead();
+    return super.agreeWithTerms;
+  }
+
+  @override
+  set agreeWithTerms(bool value) {
+    _$agreeWithTermsAtom.reportWrite(value, super.agreeWithTerms, () {
+      super.agreeWithTerms = value;
+    });
+  }
+
   final _$isLoadingAtom = Atom(name: 'RegisterStoreBase.isLoading');
 
   @override
@@ -144,6 +159,17 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
   }
 
   @override
+  void setAgreeWithTerms(bool agree) {
+    final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
+        name: 'RegisterStoreBase.setAgreeWithTerms');
+    try {
+      return super.setAgreeWithTerms(agree);
+    } finally {
+      _$RegisterStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setLoading(bool loading) {
     final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
         name: 'RegisterStoreBase.setLoading');
@@ -160,6 +186,7 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
 email: ${email},
 password: ${password},
 confirmPassword: ${confirmPassword},
+agreeWithTerms: ${agreeWithTerms},
 isLoading: ${isLoading},
 isEmailValid: ${isEmailValid},
 isPasswordValid: ${isPasswordValid},
