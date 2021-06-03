@@ -56,9 +56,9 @@ class _ProductsPageState extends State<ProductsPage> {
                           onChanged: (val) {
                             _store.setShowPoints(val);
                           },
-                          width: 160,
+                          width: 127,
                           height: 30,
-                          childOffset: 35,
+                          childOffset: 15,
                           openColor: lead,
                           color: lead,
                           openChild: Row(
@@ -71,7 +71,7 @@ class _ProductsPageState extends State<ProductsPage> {
                                 color: white,
                                 size: 24,
                               ),
-                              SizedBox(width: 12),
+                              SizedBox(width: 8),
                               TextCustom(
                                 text: 'pontos',
                                 textColor: white,
@@ -90,9 +90,9 @@ class _ProductsPageState extends State<ProductsPage> {
                                 fontSize: 14,
                                 fontWeight: FontWeight.w800,
                               ),
-                              SizedBox(width: 12),
+                              SizedBox(width: 8),
                               Icon(
-                                IuppIcons.icone_solidos_C_cartao,
+                                IuppIcons.icone_contorno_C_cartoes_outline,
                                 color: white,
                                 size: 24,
                               ),
