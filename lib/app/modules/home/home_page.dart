@@ -41,9 +41,7 @@ class _HomePageState extends State<HomePage> {
                     color: aqua,
                     size: 24,
                   ),
-                  onPressed: () {
-                    Modular.to.navigate('/login');
-                  },
+                  onPressed: () => Modular.to.navigate('/login'),
                 ),
               ],
             ),

@@ -44,7 +44,6 @@ class _ProductsPageState extends State<ProductsPage> {
                     child: CircularProgressIndicator(color: aqua),
                   );
                 }
-
                 if (_store.products.length > 0) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
