@@ -41,7 +41,6 @@ class _ProductsPageState extends State<ProductsPage> {
                     child: CircularProgressIndicator(color: aqua),
                   );
                 }
-
                 if (_store.products.length > 0) {
                   return GridView.builder(
                     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(

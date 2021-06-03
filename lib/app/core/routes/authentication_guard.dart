@@ -14,7 +14,8 @@ class AuthenticationRouteGuard implements RouteGuard {
 
   @override
   Future<bool> canActivate(String url, ModularRoute route) {
-    return Future.value(_isLogged);
+    //return Future.value(_isLogged);
+    return Future.value(true);
   }
 
   @override

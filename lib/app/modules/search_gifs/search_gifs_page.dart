@@ -14,20 +14,25 @@ class SearchGifsPage extends StatefulWidget {
   _SearchGifsPageState createState() => _SearchGifsPageState();
 }
 
-class _SearchGifsPageState extends ModularState<SearchGifsPage, SearchGifsStore> {
+class _SearchGifsPageState
+    extends ModularState<SearchGifsPage, SearchGifsStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: greyOffWhite,
       body: Observer(
-        builder: (_) => ListView.builder(
-            itemCount: this.store.gifs.length,
-            itemBuilder: (_, index) => Observer(
-                  builder: (_) => Image.network(
-                    this.store.gifs[index],
-                  ),
-                )),
-      ),
+          builder: (_) => GridView.builder(
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 250,
+                  mainAxisExtent: 250,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                ),
+                itemCount: this.store.gifs.length,
+                itemBuilder: (context, index) {
+                  return Image.network(this.store.gifs[index]);
+                },
+              )),
       floatingActionButton: FloatingActionButton(
         onPressed: () async => await this.store.searchGifs(),
         child: Icon(Icons.add),
