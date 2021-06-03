@@ -6,6 +6,7 @@ import 'package:poc_example_integration/app/modules/products/repository/products
 import 'package:poc_example_integration/app/modules/products/screens/widgets/add_product_dialog.dart';
 import 'package:poc_example_integration/app/modules/products/screens/widgets/product_card.dart';
 import 'package:poc_example_integration/iupp_icons.dart';
+import 'package:poc_example_integration/screens/widgets/custom_switcher.dart';
 import 'package:poc_example_integration/screens/widgets/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
@@ -26,6 +27,8 @@ class _ProductsPageState extends State<ProductsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: greyOffWhite,
       body: Align(
@@ -33,7 +36,7 @@ class _ProductsPageState extends State<ProductsPage> {
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: 1200),
           child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.only(bottom: 16),
             child: Observer(
               builder: (context) {
                 if (_store.queryLoading) {
@@ -42,18 +45,77 @@ class _ProductsPageState extends State<ProductsPage> {
                   );
                 }
                 if (_store.products.length > 0) {
-                  return GridView.builder(
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 250,
-                      mainAxisExtent: 250,
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                    ),
-                    itemCount: _store.products.length,
-                    itemBuilder: (context, index) {
-                      final Product _product = _store.products[index];
-                      return ProductCard(product: _product);
-                    },
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 40, horizontal: width > 1200 ? 0 : 32),
+                        child: CustomSwitcher(
+                          open: _store.showPoints,
+                          onChanged: (val) {
+                            _store.setShowPoints(val);
+                          },
+                          width: 160,
+                          height: 30,
+                          childOffset: 35,
+                          openColor: lead,
+                          color: lead,
+                          openChild: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Icon(
+                                IuppIcons.icone_solidos_P_programa_de_pontos,
+                                color: white,
+                                size: 24,
+                              ),
+                              SizedBox(width: 12),
+                              TextCustom(
+                                text: 'pontos',
+                                textColor: white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                              )
+                            ],
+                          ),
+                          closeChild: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TextCustom(
+                                text: 'cartão',
+                                textColor: white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                              ),
+                              SizedBox(width: 12),
+                              Icon(
+                                IuppIcons.icone_solidos_C_cartao,
+                                color: white,
+                                size: 24,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: GridView.builder(
+                          padding: EdgeInsets.symmetric(horizontal: width > 1200 ? 0 : 32),
+                          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 250,
+                            mainAxisExtent: 250,
+                            crossAxisSpacing: 8,
+                            mainAxisSpacing: 8,
+                          ),
+                          itemCount: _store.products.length,
+                          itemBuilder: (context, index) {
+                            final Product _product = _store.products[index];
+                            return ProductCard(product: _product);
+                          },
+                        ),
+                      ),
+                    ],
                   );
                 }
 

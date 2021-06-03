@@ -108,6 +108,21 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
     });
   }
 
+  final _$showPointsAtom = Atom(name: 'ProductsStoreBase.showPoints');
+
+  @override
+  bool get showPoints {
+    _$showPointsAtom.reportRead();
+    return super.showPoints;
+  }
+
+  @override
+  set showPoints(bool value) {
+    _$showPointsAtom.reportWrite(value, super.showPoints, () {
+      super.showPoints = value;
+    });
+  }
+
   final _$listProductsAsyncAction =
       AsyncAction('ProductsStoreBase.listProducts');
 
@@ -191,6 +206,17 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
   }
 
   @override
+  dynamic setShowPoints(bool value) {
+    final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
+        name: 'ProductsStoreBase.setShowPoints');
+    try {
+      return super.setShowPoints(value);
+    } finally {
+      _$ProductsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 saveLoading: ${saveLoading},
@@ -199,6 +225,7 @@ products: ${products},
 productName: ${productName},
 productDescription: ${productDescription},
 productPrice: ${productPrice},
+showPoints: ${showPoints},
 isDisabled: ${isDisabled}
     ''';
   }
