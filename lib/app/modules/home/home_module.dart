@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:poc_example_integration/app/modules/animals/animals_store.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
 import 'package:poc_example_integration/app/modules/search_gifs/search_gifs_store.dart';
 import '../../../graphql_client.dart';
@@ -10,6 +11,7 @@ class HomeModule extends Module {
   final List<Bind> binds = [
     Bind.lazySingleton((i) => ProductsStore()),
     Bind.lazySingleton((i) => SearchGifsStore()),
+    Bind.lazySingleton((i) => AnimalsStore()),
     Bind.lazySingleton((i) => GraphQLConfiguration()),
   ];
 

@@ -9,18 +9,18 @@ part of 'search_gifs_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SearchGifsStore on SearchGifsStoreBase, Store {
-  final _$dogsAtom = Atom(name: 'SearchGifsStoreBase.dogs');
+  final _$gifsAtom = Atom(name: 'SearchGifsStoreBase.gifs');
 
   @override
-  ObservableList<Dog> get dogs {
-    _$dogsAtom.reportRead();
-    return super.dogs;
+  ObservableList<String> get gifs {
+    _$gifsAtom.reportRead();
+    return super.gifs;
   }
 
   @override
-  set dogs(ObservableList<Dog> value) {
-    _$dogsAtom.reportWrite(value, super.dogs, () {
-      super.dogs = value;
+  set gifs(ObservableList<String> value) {
+    _$gifsAtom.reportWrite(value, super.gifs, () {
+      super.gifs = value;
     });
   }
 
@@ -49,7 +49,7 @@ mixin _$SearchGifsStore on SearchGifsStoreBase, Store {
   @override
   String toString() {
     return '''
-dogs: ${dogs},
+gifs: ${gifs},
 searchedWord: ${searchedWord}
     ''';
   }

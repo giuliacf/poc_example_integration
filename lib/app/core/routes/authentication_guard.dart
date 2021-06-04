@@ -19,5 +19,5 @@ class AuthenticationRouteGuard implements RouteGuard {
   }
 
   @override
-  String? get guardedRoute => '/login';
+  String? get guardedRoute => '/home';
 }

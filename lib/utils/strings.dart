@@ -57,4 +57,10 @@ class Strings {
 // #region search gifs
   static const String gifs = 'Gifs';
 // #endregion
+
+// #region animals
+  static const String animals = 'Pets';
+  static const String lifeTime = 'Tempo de vida: ';
+  static const String years = ' anos';
+// #endregion
 }
