@@ -6,7 +6,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:poc_example_integration/app/modules/search_gifs/search_gifs_store.dart';
 import 'package:poc_example_integration/screens/body_screen_custom.dart';
+import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
 import 'package:poc_example_integration/utils/colors.dart';
+import 'package:poc_example_integration/utils/strings.dart';
 
 class SearchGifsPage extends StatefulWidget {
   final String title;
@@ -31,23 +33,29 @@ class _SearchGifsPageState
       backgroundColor: greyOffWhite,
       body: BodyScreenCustom(
         body: Observer(
-          builder: (_) => GridView.builder(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 250,
-              mainAxisExtent: 250,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
-            ),
-            itemCount: this.store.gifs.length,
-            itemBuilder: (context, index) {
-              return Image.network(this.store.gifs[index]);
-            },
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async => await this.store.searchGifs(),
-        child: Icon(Icons.add),
+            builder: (_) => ListView(
+                  children: [
+                    GridView.builder(
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 250,
+                        mainAxisExtent: 250,
+                        crossAxisSpacing: 8,
+                        mainAxisSpacing: 8,
+                      ),
+                      itemCount: this.store.gifs.length,
+                      itemBuilder: (context, index) {
+                        return Image.network(this.store.gifs[index]);
+                      },
+                    ),
+                    StandardButton(
+                      text: Strings.loadingMore,
+                      onPressed: this.store.searchGifs,
+                      isDisabled: false,
+                      isLoading: false,
+                    )
+                  ],
+                )),
       ),
     );
   }

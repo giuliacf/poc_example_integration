@@ -11,6 +11,7 @@ class Strings {
   static const String confirm = 'Confirmar';
   static const String close = 'Fechar';
   static const String warning = 'Atenção';
+  static const String loadingMore = 'Carregar mais';
   // #endregion
 
   // #region login

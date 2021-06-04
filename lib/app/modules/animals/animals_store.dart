@@ -26,7 +26,6 @@ abstract class _AnimalsStore with Store {
         var genreIdsFromJson = jsonList;
 
         for (var i in genreIdsFromJson) {
-          print('name ${i['breeds'][0]['name']}');
           dogs.add(Dog(
               name: i['breeds'][0]['name'],
               photo: i['url'],
