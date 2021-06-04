@@ -45,7 +45,10 @@ class _ProductsPageState extends State<ProductsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 40, horizontal: width > 1200 ? 0 : 32),
+                    padding: EdgeInsets.symmetric(
+                      vertical: 40,
+                      horizontal: width > 1200 ? 0 : 32,
+                    ),
                     child: CustomSwitcher(
                         open: _store.showPoints,
                         onChanged: (val) {
@@ -68,7 +71,7 @@ class _ProductsPageState extends State<ProductsPage> {
                             ),
                             SizedBox(width: 8),
                             TextCustom(
-                              text: 'pontos',
+                              text: Strings.points,
                               textColor: white,
                               fontSize: 14,
                               fontWeight: FontWeight.w800,
@@ -80,7 +83,7 @@ class _ProductsPageState extends State<ProductsPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextCustom(
-                              text: 'cartão',
+                              text: Strings.card,
                               textColor: white,
                               fontSize: 14,
                               fontWeight: FontWeight.w800,

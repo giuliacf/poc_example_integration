@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class AuthenticationGuard implements RouteGuard {
+class LoggedGuard implements RouteGuard {
   bool _isLogged = false;
 
-  AuthenticationGuard() {
+  LoggedGuard() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user != null) {
         _isLogged = true;
@@ -14,9 +14,9 @@ class AuthenticationGuard implements RouteGuard {
 
   @override
   Future<bool> canActivate(String url, ModularRoute route) {
-    return Future.value(_isLogged);
+    return Future.value(!_isLogged);
   }
 
   @override
-  String? get guardedRoute => '/login';
+  String? get guardedRoute => '/home';
 }

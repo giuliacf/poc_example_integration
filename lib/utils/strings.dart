@@ -29,31 +29,37 @@ class Strings {
 
 // #region products
   static const String products = 'Produtos';
-  static const String productNotFound = 'opps! \nnão conseguimos \nencontrar nenhum \nproduto';
+  static const String productNotFound =
+      'opps! \nnão conseguimos \nencontrar nenhum \nproduto';
   static const String newProduct = 'Novo produto';
   static const String addProduct = 'Adicionar produto';
   static const String removeProduct = 'Remover produto';
   static const String productName = 'Nome do produto';
   static const String productDescription = 'Descrição do produto';
   static const String productPrice = 'Preço do produto';
-  static const String cancelEditWarning = 'Você deseja realmente sair? \nOs dados não serão salvos.';
+  static const String cancelEditWarning =
+      'Você deseja realmente sair? \nOs dados não serão salvos.';
   static const String confirmDeleting = 'Você realmente deseja apagar este produto?';
   static const String removingProductSuccess = 'Produto removido com sucesso';
   static const String removingProductError = 'Erro ao remover um produto';
   static const String usePointsAndMoney = 'ou utilize pontos + dinheiro';
   static String winSomePoints(var points) => 'ganhe $points pts';
+  static const String points = 'pontos';
+  static const String card = 'cartão';
 // #endregion
 
 // #region register
   static const String registerTitle = 'Cadastro';
-  static const String registerSubTitle = 'Faça um rápido cadastro e comece sua experiência iupp!';
+  static const String registerSubTitle =
+      'Faça um rápido cadastro e comece sua experiência iupp!';
   static const String invalidEmail = 'Email inválido';
   static const String validatePassword = 'A senha precisa ter mais que 6 caracteres';
   static const String confirmPassword = 'confirmação de senha';
   static const String equalPasswords = 'As senhas devem ser iguais';
   static const String accountAlreadyExists = 'Já existe uma conta com este email.';
   static const String register = 'cadastrar';
-  static const String agreeWithTerms = 'Concordo que meus dados sejam utilizados pelo iupp e aceito os Termos de Condições e a Política de Privacidade.';
+  static const String agreeWithTerms =
+      'Concordo que meus dados sejam utilizados pelo iupp e aceito os Termos de Condições e a Política de Privacidade.';
 // #endregion
 
 // #region search gifs

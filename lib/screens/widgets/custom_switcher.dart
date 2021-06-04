@@ -54,13 +54,23 @@ class _CustomSwitcher extends State<CustomSwitcher> {
   @override
   void initState() {
     super.initState();
-    fixOffset = widget.open ? widget.width! - (widget.offset ?? 2.0 / 36.0 * ((widget.height ?? widget.width! * 0.608))) * 2.0 - (widget.height ?? widget.width! * 0.608) * (32.52 / 36.0) : 0;
+    fixOffset = widget.open
+        ? widget.width! -
+            (widget.offset ?? 2.0 / 36.0 * ((widget.height ?? widget.width! * 0.608))) *
+                2.0 -
+            (widget.height ?? widget.width! * 0.608) * (32.52 / 36.0)
+        : 0;
   }
 
   @override
   void didUpdateWidget(CustomSwitcher oldWidget) {
     super.didUpdateWidget(oldWidget);
-    fixOffset = widget.open ? widget.width! - (widget.offset ?? 2.0 / 36.0 * ((widget.height ?? widget.width! * 0.608))) * 2.0 - (widget.height ?? widget.width! * 0.608) * (32.52 / 36.0) : 0;
+    fixOffset = widget.open
+        ? widget.width! -
+            (widget.offset ?? 2.0 / 36.0 * ((widget.height ?? widget.width! * 0.608))) *
+                2.0 -
+            (widget.height ?? widget.width! * 0.608) * (32.52 / 36.0)
+        : 0;
   }
 
   @override
@@ -115,7 +125,9 @@ class _CustomSwitcher extends State<CustomSwitcher> {
         height: circleSize,
         clipBehavior: Clip.antiAlias,
         alignment: Alignment.center,
-        decoration: BoxDecoration(color: widget.sliderColor ?? Color(0xffffffff), borderRadius: BorderRadius.all(Radius.circular(circleSize / 2.0))),
+        decoration: BoxDecoration(
+            color: widget.sliderColor ?? Color(0xffffffff),
+            borderRadius: BorderRadius.all(Radius.circular(circleSize / 2.0))),
         child: widget.sliderChild,
       ),
     );
@@ -127,7 +139,9 @@ class _CustomSwitcher extends State<CustomSwitcher> {
         child: Container(
           width: widget.width,
           height: height,
-          decoration: BoxDecoration(color: Color(0xfff1f1f1), borderRadius: BorderRadius.all(Radius.circular(height / 2.0))),
+          decoration: BoxDecoration(
+              color: Color(0xfff1f1f1),
+              borderRadius: BorderRadius.all(Radius.circular(height / 2.0))),
         ),
       );
       children.add(disableMask);
@@ -175,8 +189,17 @@ class _CustomSwitcher extends State<CustomSwitcher> {
       fixOffset = fixOffset! + details.delta.dx;
       if (fixOffset! < 0) {
         fixOffset = 0;
-      } else if (fixOffset! > widget.width! - widget.offset! - circleSize - (draging ? dragDxW : 0.0) - widget.offset!) {
-        fixOffset = widget.width! - widget.offset! - circleSize - (draging ? dragDxW : 0.0) - widget.offset!;
+      } else if (fixOffset! >
+          widget.width! -
+              widget.offset! -
+              circleSize -
+              (draging ? dragDxW : 0.0) -
+              widget.offset!) {
+        fixOffset = widget.width! -
+            widget.offset! -
+            circleSize -
+            (draging ? dragDxW : 0.0) -
+            widget.offset!;
       }
     });
   }
@@ -186,7 +209,12 @@ class _CustomSwitcher extends State<CustomSwitcher> {
       draging = false;
       double height = widget.height ?? widget.width! * 0.608;
       double circleSize = (height * (32.52 / 36.0));
-      double center = (widget.width! - widget.offset! - circleSize - (draging ? dragDxW : 0.0) - widget.offset!) / 2;
+      double center = (widget.width! -
+              widget.offset! -
+              circleSize -
+              (draging ? dragDxW : 0.0) -
+              widget.offset!) /
+          2;
       bool cacheValue = widget.open;
       if (fixOffset! < center) {
         fixOffset = 0;
