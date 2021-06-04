@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'package:poc_example_integration/app/modules/animals/animals_page.dart';
 import 'package:poc_example_integration/app/modules/products/screens/products_page.dart';
 import 'package:poc_example_integration/app/modules/search_gifs/search_gifs_page.dart';
@@ -17,6 +18,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final authDatasource = Modular.get<AuthDatasource>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                     color: aqua,
                     size: 24,
                   ),
-                  onPressed: () => Modular.to.navigate('/login'),
+                  onPressed: () async => await authDatasource.logout(),
                 ),
               ],
             ),

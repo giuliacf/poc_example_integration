@@ -12,17 +12,18 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.3
-  flutter_modular: ^3.2.2+1
-  mobx: ^2.0.1
-  flutter_mobx: ^2.0.0
-  responsive_framework: ^0.1.0
-  http: ^0.13.3
-  graphql_flutter: ^5.0.0-nullsafety.5
-  firebase_core: ^1.2.0
-  firebase_auth: ^1.2.0
-  intl: ^0.17.0
   currency_text_input_formatter: ^2.0.1
-  
+  firebase_auth: ^1.2.0
+  firebase_core: ^1.2.0
+  flutter_mobx: ^2.0.0
+  flutter_modular: ^3.2.2+1
+  google_sign_in: ^5.0.4
+  graphql_flutter: ^5.0.0-nullsafety.5
+  http: ^0.13.3
+  intl: ^0.17.0
+  mobx: ^2.0.1
+  responsive_framework: ^0.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -38,23 +39,23 @@ flutter:
     - assets/images/
 
   fonts:
-      - family: IuppIcons
-        fonts:
-          - asset: assets/fonts/IuppIcons.ttf
-          - asset: assets/fonts/IuppIcons.woff
+    - family: IuppIcons
+      fonts:
+        - asset: assets/fonts/IuppIcons.ttf
+        - asset: assets/fonts/IuppIcons.woff
 
-      - family: ItauDisplay
-        fonts:
-          - asset: assets/fonts/ItauDisplay_Lt.ttf
-            weight: 300
-          - asset: assets/fonts/ItauDisplay_Rg.ttf
-            weight: 400
-          - asset: assets/fonts/ItauDisplay_Bd.ttf
-            weight: 700
-          - asset: assets/fonts/ItauDisplay_XBd.ttf
-            weight: 800
-          - asset: assets/fonts/ItauDisplay_He.ttf
-            weight: 900
+    - family: ItauDisplay
+      fonts:
+        - asset: assets/fonts/ItauDisplay_Lt.ttf
+          weight: 300
+        - asset: assets/fonts/ItauDisplay_Rg.ttf
+          weight: 400
+        - asset: assets/fonts/ItauDisplay_Bd.ttf
+          weight: 700
+        - asset: assets/fonts/ItauDisplay_XBd.ttf
+          weight: 800
+        - asset: assets/fonts/ItauDisplay_He.ttf
+          weight: 900
 
 scripts:
   mobx: flutter pub run build_runner watch

@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthDatasource {
   Future<void> registerWithEmail({
@@ -26,5 +29,18 @@ class AuthDatasource {
 
   Future<void> logout() async {
     await FirebaseAuth.instance.signOut();
+    Modular.to.navigate('/login');
+  }
+
+  Future<void> signInWithGoogle({required BuildContext context}) async {
+    if (kIsWeb) {
+      GoogleAuthProvider authProvider = GoogleAuthProvider();
+
+      try {
+        await FirebaseAuth.instance.signInWithPopup(authProvider);
+      } catch (e) {
+        print(e);
+      }
+    }
   }
 }

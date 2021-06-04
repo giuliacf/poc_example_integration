@@ -6,9 +6,7 @@ class LoggedGuard implements RouteGuard {
 
   LoggedGuard() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user != null) {
-        _isLogged = true;
-      }
+      if (user != null) _isLogged = true;
     });
   }
 

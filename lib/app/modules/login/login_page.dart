@@ -29,32 +29,34 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
       subTitle: Strings.subTitleLoginPage,
       cardContent: Column(
         children: [
-          Container(
-            padding: EdgeInsets.all(10),
-            height: 46,
-            decoration: BoxDecoration(
-              border: Border.all(color: grey),
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-            ),
-            child: MouseRegion(
+          Observer(
+            builder: (_) => MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
-                onTap: () => print('google'),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/images/google.png', width: 24),
-                    SizedBox(width: 10),
-                    TextCustom(
-                      text: Strings.loginWithGoogle,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      textColor: greyTwo,
+                  onTap: () async =>
+                      await this.store.registerWithGoogle(context),
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    height: 46,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: grey),
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
                     ),
-                  ],
-                ),
-              ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/images/google.png', width: 24),
+                        SizedBox(width: 10),
+                        TextCustom(
+                          text: Strings.loginWithGoogle,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                          textColor: greyTwo,
+                        ),
+                      ],
+                    ),
+                  )),
             ),
           ),
           SizedBox(height: 24),
@@ -120,7 +122,11 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
             child: Observer(
               builder: (_) => StandardButton(
                 text: Strings.buttonLogin,
-                onPressed: () => Modular.to.navigate('/home'),
+                onPressed: () => this.store.login(
+                      this.store.email,
+                      this.store.password,
+                      context,
+                    ),
                 isDisabled: !this.store.canLogin,
                 isLoading: false,
               ),
