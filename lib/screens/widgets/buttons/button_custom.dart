@@ -10,6 +10,7 @@ class ButtonCustom extends StatelessWidget {
     required this.isLoading,
     required this.backgroundColor,
     required this.textColor,
+    required this.fontSize,
   });
 
   final String text;
@@ -18,6 +19,7 @@ class ButtonCustom extends StatelessWidget {
   final bool isLoading;
   final Color backgroundColor;
   final Color textColor;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class ButtonCustom extends StatelessWidget {
             )
           : TextCustom(
               text: text.toLowerCase(),
-              fontSize: 18,
+              fontSize: fontSize,
               textColor: !isDisabled ? textColor : grey,
               fontWeight: FontWeight.w700,
             ),

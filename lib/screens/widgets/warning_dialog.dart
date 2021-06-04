@@ -30,6 +30,7 @@ class WarningDialog extends StatelessWidget {
           width: 100,
           child: StandardButton(
             text: Strings.confirm,
+            fontSize: 14,
             isDisabled: false,
             isLoading: false,
             onPressed: () {
@@ -42,6 +43,7 @@ class WarningDialog extends StatelessWidget {
           width: 90,
           child: GhostButton(
             text: Strings.cancel,
+            fontSize: 14,
             isDisabled: false,
             isLoading: false,
             onPressed: () {

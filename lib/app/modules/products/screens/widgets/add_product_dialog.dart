@@ -1,3 +1,4 @@
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -66,9 +67,17 @@ class AddProductDialog extends StatelessWidget {
                               SizedBox(height: 32),
                               TextFieldCustom(
                                 text: Strings.productPrice,
-                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                inputFormatters: [
+                                  CurrencyTextInputFormatter(
+                                    decimalDigits: 2,
+                                    symbol: 'R\$',
+                                  )
+                                ],
+                                keyboardType: TextInputType.number,
                                 onChanged: (value) {
-                                  _store.setProductPrice(value.isEmpty ? null : double.parse(value));
+                                  _store.setProductPrice(_store.setProductPrice(
+                                    value.isEmpty ? null : double.parse(value),
+                                  ));
                                 },
                               ),
                               SizedBox(height: 48),

@@ -7,18 +7,21 @@ class StandardButton extends StatelessWidget {
   final void Function()? onPressed;
   final bool isDisabled;
   final bool isLoading;
+  final double fontSize;
 
   StandardButton({
     required this.text,
     required this.onPressed,
     required this.isDisabled,
     required this.isLoading,
+    this.fontSize = 18,
   });
 
   @override
   Widget build(BuildContext context) {
     return ButtonCustom(
       text: text,
+      fontSize: fontSize,
       onPressed: onPressed,
       isDisabled: isDisabled,
       isLoading: isLoading,
