@@ -111,15 +111,8 @@ abstract class ProductsStoreBase with Store {
         },
       );
 
-      GraphQL.QueryResult response = await _configuration.graphClientMutation().mutate(_options);
-      final json = response.data!['saveProduct'];
-
-      _addProduct(Product(
-        id: json['id'],
-        price: json['price'],
-        name: json['name'],
-        description: json['description'],
-      ));
+      await _configuration.graphClientMutation().mutate(_options);
+      listProducts();
     } catch (e) {
       throw e;
     } finally {
@@ -161,9 +154,5 @@ abstract class ProductsStoreBase with Store {
   _removeProduct(String id) {
     int index = products.indexWhere((prod) => prod.id == id);
     products.removeAt(index);
-  }
-
-  _addProduct(Product product) {
-    products.add(product);
   }
 }

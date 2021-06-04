@@ -103,15 +103,16 @@ class _ProductsPageState extends State<ProductsPage> {
                         child: GridView.builder(
                           padding: EdgeInsets.symmetric(horizontal: width > 1200 ? 0 : 32),
                           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 250,
-                            mainAxisExtent: 250,
-                            crossAxisSpacing: 8,
-                            mainAxisSpacing: 8,
+                            maxCrossAxisExtent: 280,
+                            mainAxisExtent: 338,
                           ),
                           itemCount: _store.products.length,
                           itemBuilder: (context, index) {
                             final Product _product = _store.products[index];
-                            return ProductCard(product: _product);
+                            return ProductCard(
+                              product: _product,
+                              usePoints: _store.showPoints,
+                            );
                           },
                         ),
                       ),

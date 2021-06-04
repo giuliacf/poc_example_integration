@@ -39,6 +39,7 @@ class Strings {
   static const String confirmDeleting = 'Você realmente deseja apagar este produto?';
   static const String removingProductSuccess = 'Produto removido com sucesso';
   static const String removingProductError = 'Erro ao remover um produto';
+  static const String usePointsAndMoney = 'ou utilize pontos + dinheiro';
   static String winSomePoints(var points) => 'ganhe $points pts';
 // #endregion
 

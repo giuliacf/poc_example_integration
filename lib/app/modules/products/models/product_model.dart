@@ -4,6 +4,7 @@ class Product {
   final String? description;
   final double price;
   late int points;
+  late int gainPoints;
 
   Product({
     required this.id,
@@ -11,6 +12,7 @@ class Product {
     required this.price,
     this.description,
   }) {
-    points = (price * 48).toInt();
+    points = (price * 55).toInt();
+    gainPoints = (price * 3).toInt();
   }
 }

@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                 color: white,
                 child: TabBar(
                   labelStyle: TextStyle(
-                    fontSize: 24,
+                    fontSize: 18,
                     fontWeight: FontWeight.w800,
                   ),
                   unselectedLabelColor: lead,

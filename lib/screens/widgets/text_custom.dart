@@ -9,6 +9,7 @@ class TextCustom extends StatelessWidget {
   final String? fontFamily;
   final TextOverflow? textOverflow;
   final int? maxLines;
+  final Key? key;
 
   TextCustom({
     required this.text,
@@ -19,12 +20,14 @@ class TextCustom extends StatelessWidget {
     this.textDecoration = TextDecoration.none,
     this.textOverflow,
     this.maxLines,
+    this.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      key: key,
       overflow: textOverflow,
       maxLines: maxLines,
       style: TextStyle(
