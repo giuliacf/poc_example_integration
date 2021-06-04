@@ -6,6 +6,7 @@ class TextFieldCustom extends StatelessWidget {
   final String text;
   final String? placeholder;
   final bool obscure;
+  final bool autofocus;
   final String? fontFamily;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
@@ -30,6 +31,7 @@ class TextFieldCustom extends StatelessWidget {
     this.placeholder,
     this.floatingLabelBehavior = FloatingLabelBehavior.always,
     this.prefixIcon,
+    this.autofocus = false,
   });
 
   OutlineInputBorder customBorder(Color borderColor) {
@@ -48,6 +50,7 @@ class TextFieldCustom extends StatelessWidget {
     return TextFormField(
       cursorColor: greyTwo,
       obscureText: obscure,
+      autofocus: autofocus,
       style: TextStyle(
         fontFamily: fontFamily,
         color: greyTwo,

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:poc_example_integration/app/app_widget.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
+import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/widgets/warning_dialog.dart';
 import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
 import 'package:poc_example_integration/screens/widgets/text_custom.dart';
@@ -56,6 +58,7 @@ class AddProductDialog extends StatelessWidget {
                               TextFieldCustom(
                                 text: Strings.productName,
                                 onChanged: _store.setProductName,
+                                autofocus: true,
                               ),
                               SizedBox(height: 32),
                               TextFieldCustom(
@@ -67,16 +70,23 @@ class AddProductDialog extends StatelessWidget {
                               SizedBox(height: 32),
                               TextFieldCustom(
                                 text: Strings.productPrice,
+                                suffixIcon: Icon(
+                                  IuppIcons.icone_contorno_C_consorcio_outline,
+                                  size: 24,
+                                  color: greyTwo,
+                                ),
+                                keyboardType: TextInputType.number,
                                 inputFormatters: [
                                   CurrencyTextInputFormatter(
                                     decimalDigits: 2,
-                                    symbol: 'R\$',
+                                    symbol: '',
                                   )
                                 ],
-                                keyboardType: TextInputType.number,
                                 onChanged: (value) {
                                   _store.setProductPrice(_store.setProductPrice(
-                                    value.isEmpty ? null : double.parse(value),
+                                    value.isEmpty
+                                        ? null
+                                        : currencyFormatter.parse(value).toDouble(),
                                   ));
                                 },
                               ),

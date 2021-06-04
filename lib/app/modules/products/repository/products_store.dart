@@ -41,7 +41,8 @@ abstract class ProductsStoreBase with Store {
   bool showPoints = false;
 
   @computed
-  bool get isDisabled => productName.isEmpty || productDescription.isEmpty || productPrice == null;
+  bool get isDisabled =>
+      productName.isEmpty || productDescription.isEmpty || productPrice == null;
 
   @action
   setProductName(String value) => productName = value;
@@ -72,7 +73,8 @@ abstract class ProductsStoreBase with Store {
         pollInterval: Duration(minutes: 5),
         fetchPolicy: GraphQL.FetchPolicy.networkOnly,
       );
-      final GraphQL.QueryResult response = await _configuration.graphClientQuery().query(_options);
+      final GraphQL.QueryResult response =
+          await _configuration.graphClientQuery().query(_options);
 
       final json = response.data;
       if (json!['findAllProducts'] != null) {
@@ -133,7 +135,7 @@ abstract class ProductsStoreBase with Store {
       );
 
       await _configuration.graphClientMutation().mutate(_options);
-      _removeProduct(id);
+      listProducts();
 
       ScaffoldMessenger.of(context).showSnackBar(
         CustomSuccessSnackBar(
@@ -149,10 +151,5 @@ abstract class ProductsStoreBase with Store {
         ),
       );
     }
-  }
-
-  _removeProduct(String id) {
-    int index = products.indexWhere((prod) => prod.id == id);
-    products.removeAt(index);
   }
 }
