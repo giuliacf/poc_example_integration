@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:poc_example_integration/app/modules/animals/animals_page.dart';
 import 'package:poc_example_integration/app/modules/products/screens/products_page.dart';
 import 'package:poc_example_integration/app/modules/search_gifs/search_gifs_page.dart';
 import 'package:poc_example_integration/iupp_icons.dart';
@@ -49,7 +50,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Column(
           children: [
             Container(
@@ -75,6 +76,7 @@ class _HomePageState extends State<HomePage> {
                   tabs: [
                     Tab(text: Strings.products),
                     Tab(text: Strings.gifs),
+                    Tab(text: Strings.animals)
                   ],
                 ),
               ),
@@ -84,6 +86,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   ProductsPage(),
                   SearchGifsPage(),
+                  AnimalsPage()
                 ],
               ),
             ),

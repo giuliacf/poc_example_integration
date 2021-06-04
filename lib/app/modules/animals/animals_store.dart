@@ -2,35 +2,35 @@ import 'dart:convert';
 
 import 'package:mobx/mobx.dart';
 import 'package:http/http.dart' as http;
+import 'package:poc_example_integration/app/modules/search_gifs/dog.dart';
 import 'package:poc_example_integration/utils/urls.dart';
 
-import 'dog.dart';
+part 'animals_store.g.dart';
 
-part 'search_gifs_store.g.dart';
+class AnimalsStore = _AnimalsStore with _$AnimalsStore;
 
-class SearchGifsStore = SearchGifsStoreBase with _$SearchGifsStore;
-
-abstract class SearchGifsStoreBase with Store {
-
- @observable
- ObservableList<String> gifs = ObservableList<String>.of([]);
-
+abstract class _AnimalsStore with Store {
   @observable
-  String searchedWord = '';
+  ObservableList<Dog> dogs = ObservableList<Dog>.of([]);
+
 
   @action
   Future<void> searchGifs() async {
     try {
       final response = await http.get(
-        Uri.parse(tenorApiUrl),
+        Uri.parse(animalsApiUrl),
       );
-
 
       if (response.statusCode == 200) {
         var jsonList = jsonDecode(response.body);
-        var genreIdsFromJson = jsonList['results'];
+        var genreIdsFromJson = jsonList;
+
         for (var i in genreIdsFromJson) {
-          gifs.add(i['media'][0]['gif']['url']);
+          dogs.add(Dog(
+              name: i['breeds'][0]['name'],
+              photo: i['url'],
+              life: i['breeds'][0]['life_span']
+          ));
         }
       } else {
         throw Exception('Failed to load album');
@@ -39,4 +39,5 @@ abstract class SearchGifsStoreBase with Store {
       print('CATCHHH $e');
     }
   }
+
 }

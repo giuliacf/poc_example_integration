@@ -11,6 +11,7 @@ class Strings {
   static const String confirm = 'Confirmar';
   static const String close = 'Fechar';
   static const String warning = 'Atenção';
+  static const String loadingMore = 'Carregar mais';
   // #endregion
 
   // #region login
@@ -57,5 +58,11 @@ class Strings {
 
 // #region search gifs
   static const String gifs = 'Gifs';
+// #endregion
+
+// #region animals
+  static const String animals = 'Pets';
+  static const String lifeTime = 'Tempo de vida: ';
+  static const String years = ' anos';
 // #endregion
 }
