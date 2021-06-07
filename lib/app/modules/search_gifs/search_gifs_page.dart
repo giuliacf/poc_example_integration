@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -6,7 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:poc_example_integration/app/modules/search_gifs/search_gifs_store.dart';
 import 'package:poc_example_integration/screens/body_screen_custom.dart';
-import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
+import 'package:poc_example_integration/screens/widgets/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
@@ -48,12 +47,24 @@ class _SearchGifsPageState
                         return Image.network(this.store.gifs[index]);
                       },
                     ),
-                    StandardButton(
-                      text: Strings.loadingMore,
-                      onPressed: this.store.searchGifs,
-                      isDisabled: false,
-                      isLoading: false,
-                    )
+                    SizedBox(
+                      height: 15,
+                    ),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: this.store.searchGifs,
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: TextCustom(
+                            text: Strings.loadingMore,
+                            textColor: blue,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 )),
       ),

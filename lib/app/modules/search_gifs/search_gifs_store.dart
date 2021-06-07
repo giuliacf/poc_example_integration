@@ -4,7 +4,7 @@ import 'package:mobx/mobx.dart';
 import 'package:http/http.dart' as http;
 import 'package:poc_example_integration/utils/urls.dart';
 
-import 'dog.dart';
+import '../animals/animal.dart';
 
 part 'search_gifs_store.g.dart';
 
@@ -22,7 +22,7 @@ abstract class SearchGifsStoreBase with Store {
   Future<void> searchGifs() async {
     try {
       final response = await http.get(
-        Uri.parse(tenorApiUrl),
+        Uri.parse(Urls.tenorApiUrl),
       );
 
 

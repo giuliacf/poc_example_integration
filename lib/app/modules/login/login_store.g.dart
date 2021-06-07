@@ -76,6 +76,22 @@ mixin _$LoginStore on LoginStoreBase, Store {
     });
   }
 
+  final _$registerWithGoogleAsyncAction =
+      AsyncAction('LoginStoreBase.registerWithGoogle');
+
+  @override
+  Future<void> registerWithGoogle(BuildContext context) {
+    return _$registerWithGoogleAsyncAction
+        .run(() => super.registerWithGoogle(context));
+  }
+
+  final _$loginAsyncAction = AsyncAction('LoginStoreBase.login');
+
+  @override
+  Future<void> login(String email, String password, BuildContext context) {
+    return _$loginAsyncAction.run(() => super.login(email, password, context));
+  }
+
   final _$LoginStoreBaseActionController =
       ActionController(name: 'LoginStoreBase');
 

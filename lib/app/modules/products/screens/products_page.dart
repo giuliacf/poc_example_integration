@@ -44,62 +44,26 @@ class _ProductsPageState extends State<ProductsPage> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 40,
-                      horizontal: width > 1200 ? 0 : 32,
+                  CustomSwitcher(
+                    openOrClosed: _store.showPoints,
+                    onChanged: _store.setShowPoints,
+                    stringOpened: Strings.points,
+                    widgetOpened: Icon(
+                      IuppIcons.icone_solidos_P_programa_de_pontos,
+                      color: white,
+                      size: 24,
                     ),
-                    child: CustomSwitcher(
-                        open: _store.showPoints,
-                        onChanged: (val) {
-                          _store.setShowPoints(val);
-                        },
-                        width: 127,
-                        height: 30,
-                        childOffset: 15,
-                        openColor: lead,
-                        color: lead,
-                        openChild: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Icon(
-                              IuppIcons.icone_solidos_P_programa_de_pontos,
-                              color: white,
-                              size: 24,
-                            ),
-                            SizedBox(width: 8),
-                            TextCustom(
-                              text: Strings.points,
-                              textColor: white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w800,
-                            )
-                          ],
-                        ),
-                        closeChild: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            TextCustom(
-                              text: Strings.card,
-                              textColor: white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w800,
-                            ),
-                            SizedBox(width: 8),
-                            Icon(
-                              IuppIcons.icone_contorno_C_cartoes_outline,
-                              color: white,
-                              size: 24,
-                            ),
-                          ],
-                        )),
+                    stringClosed: Strings.card,
+                    widgetClosed: Icon(
+                      IuppIcons.icone_contorno_C_cartoes_outline,
+                      color: white,
+                      size: 24,
+                    ),
                   ),
                   Expanded(
                     child: GridView.builder(
-                      padding: EdgeInsets.symmetric(horizontal: width > 1200 ? 0 : 32),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: width > 1200 ? 0 : 32),
                       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent: 280,
                         mainAxisExtent: 338,

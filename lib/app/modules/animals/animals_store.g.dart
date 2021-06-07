@@ -9,32 +9,62 @@ part of 'animals_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AnimalsStore on _AnimalsStore, Store {
-  final _$dogsAtom = Atom(name: '_AnimalsStore.dogs');
+  final _$animalsAtom = Atom(name: '_AnimalsStore.animals');
 
   @override
-  ObservableList<Dog> get dogs {
-    _$dogsAtom.reportRead();
-    return super.dogs;
+  ObservableList<Animal> get animals {
+    _$animalsAtom.reportRead();
+    return super.animals;
   }
 
   @override
-  set dogs(ObservableList<Dog> value) {
-    _$dogsAtom.reportWrite(value, super.dogs, () {
-      super.dogs = value;
+  set animals(ObservableList<Animal> value) {
+    _$animalsAtom.reportWrite(value, super.animals, () {
+      super.animals = value;
     });
   }
 
-  final _$searchGifsAsyncAction = AsyncAction('_AnimalsStore.searchGifs');
+  final _$isDogApiAtom = Atom(name: '_AnimalsStore.isDogApi');
 
   @override
-  Future<void> searchGifs() {
-    return _$searchGifsAsyncAction.run(() => super.searchGifs());
+  bool get isDogApi {
+    _$isDogApiAtom.reportRead();
+    return super.isDogApi;
+  }
+
+  @override
+  set isDogApi(bool value) {
+    _$isDogApiAtom.reportWrite(value, super.isDogApi, () {
+      super.isDogApi = value;
+    });
+  }
+
+  final _$getApiDataAsyncAction = AsyncAction('_AnimalsStore.getApiData');
+
+  @override
+  Future<void> getApiData() {
+    return _$getApiDataAsyncAction.run(() => super.getApiData());
+  }
+
+  final _$_AnimalsStoreActionController =
+      ActionController(name: '_AnimalsStore');
+
+  @override
+  dynamic changeApi(bool val) {
+    final _$actionInfo = _$_AnimalsStoreActionController.startAction(
+        name: '_AnimalsStore.changeApi');
+    try {
+      return super.changeApi(val);
+    } finally {
+      _$_AnimalsStoreActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
   String toString() {
     return '''
-dogs: ${dogs}
+animals: ${animals},
+isDogApi: ${isDogApi}
     ''';
   }
 }

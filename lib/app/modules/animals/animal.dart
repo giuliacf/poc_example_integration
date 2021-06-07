@@ -1,11 +1,11 @@
-class Dog {
+class Animal {
   final String name;
   final String photo;
-  final String life;
+  final String lifeTime;
 
-  Dog({
+  Animal({
     required this.name,
     required this.photo,
-    required this.life,
+    required this.lifeTime,
   });
 }
