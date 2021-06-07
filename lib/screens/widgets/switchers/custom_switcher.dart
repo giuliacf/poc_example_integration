@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:poc_example_integration/screens/widgets/text_custom.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 
 import 'base_switcher.dart';
+
+
 
 class CustomSwitcher extends StatelessWidget {
   final bool openOrClosed;

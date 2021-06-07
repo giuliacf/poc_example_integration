@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poc_example_integration/app/modules/login/login_store.dart';
+import 'package:poc_example_integration/app/modules/login/repository/login_store.dart';
 import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
-import 'package:poc_example_integration/screens/widgets/screen_with_background.dart';
-import 'package:poc_example_integration/screens/widgets/text_custom.dart';
-import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
+import 'package:poc_example_integration/screens/screen_with_background.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
-import '../../../iupp_icons.dart';
+import '../../../../iupp_icons.dart';
 
 class LoginPage extends StatefulWidget {
   final String title;

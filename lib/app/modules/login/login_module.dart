@@ -1,8 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
-import 'package:poc_example_integration/app/modules/login/login_store.dart';
+import 'package:poc_example_integration/app/modules/login/repository/login_store.dart';
 
-import 'login_page.dart';
+import 'screens/login_page.dart';
 
 class LoginModule extends Module {
   @override

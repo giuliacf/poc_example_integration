@@ -3,9 +3,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/app_widget.dart';
 import 'package:poc_example_integration/app/modules/products/models/product_model.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
-import 'package:poc_example_integration/screens/widgets/warning_dialog.dart';
+import 'package:poc_example_integration/screens/widgets/dialogs/warning_dialog.dart';
 import 'package:poc_example_integration/iupp_icons.dart';
-import 'package:poc_example_integration/screens/widgets/text_custom.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 

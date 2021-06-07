@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'package:poc_example_integration/app/modules/search_gifs/search_gifs_store.dart';
+import 'package:poc_example_integration/app/modules/search_gifs/repository/search_gifs_store.dart';
 import 'package:poc_example_integration/screens/body_screen_custom.dart';
-import 'package:poc_example_integration/screens/widgets/text_custom.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 

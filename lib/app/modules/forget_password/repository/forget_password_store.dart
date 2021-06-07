@@ -1,6 +1,3 @@
-import 'dart:js';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
@@ -13,7 +10,6 @@ part 'forget_password_store.g.dart';
 class ForgetPasswordStore = _ForgetPasswordStore with _$ForgetPasswordStore;
 
 abstract class _ForgetPasswordStore with Store {
-
   @observable
   String email = '';
 
@@ -46,3 +42,4 @@ abstract class _ForgetPasswordStore with Store {
     Modular.to.navigate('/login');
   }
 }
+

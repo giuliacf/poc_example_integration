@@ -3,14 +3,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/screens/body_screen_custom.dart';
-import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
-import 'package:poc_example_integration/screens/widgets/base_switcher.dart';
-import 'package:poc_example_integration/screens/widgets/custom_switcher.dart';
-import 'package:poc_example_integration/screens/widgets/text_custom.dart';
+import 'package:poc_example_integration/screens/widgets/switchers/custom_switcher.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
-import 'animals_store.dart';
+import '../repository/animals_store.dart';
 
 class AnimalsPage extends StatefulWidget {
   @override

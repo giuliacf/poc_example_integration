@@ -8,9 +8,9 @@ import 'package:poc_example_integration/utils/strings.dart';
 
 part 'login_store.g.dart';
 
-class LoginStore = LoginStoreBase with _$LoginStore;
+class LoginStore = _LoginStore with _$LoginStore;
 
-abstract class LoginStoreBase with Store {
+abstract class _LoginStore with Store {
   final authDatasource = Modular.get<AuthDatasource>();
 
   @observable

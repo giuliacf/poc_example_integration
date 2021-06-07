@@ -7,8 +7,8 @@ import 'package:poc_example_integration/app/modules/products/screens/widgets/add
 import 'package:poc_example_integration/app/modules/products/screens/widgets/product_card.dart';
 import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/body_screen_custom.dart';
-import 'package:poc_example_integration/screens/widgets/custom_switcher.dart';
-import 'package:poc_example_integration/screens/widgets/text_custom.dart';
+import 'package:poc_example_integration/screens/widgets/switchers/custom_switcher.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 

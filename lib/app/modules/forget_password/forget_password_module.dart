@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poc_example_integration/app/modules/forget_password/forget_password_store.dart';
+import 'package:poc_example_integration/app/modules/forget_password/repository/forget_password_store.dart';
 
-import 'forget_password_page.dart';
+import 'screens/forget_password_page.dart';
 
 class ForgetPasswordModule extends Module {
   @override

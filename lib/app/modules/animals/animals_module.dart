@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poc_example_integration/app/modules/login/login_store.dart';
+import 'package:poc_example_integration/app/modules/login/repository/login_store.dart';
 
-import 'animals_page.dart';
+import 'screens/animals_page.dart';
 
 class AnimalsModule extends Module {
   @override

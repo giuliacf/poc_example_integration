@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
-import 'package:poc_example_integration/screens/widgets/screen_with_background.dart';
-import 'package:poc_example_integration/screens/widgets/text_custom.dart';
-import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
+import 'package:poc_example_integration/screens/screen_with_background.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
-import '../../../iupp_icons.dart';
-import 'forget_password_store.dart';
+import '../../../../iupp_icons.dart';
+import '../repository/forget_password_store.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
   @override
@@ -58,7 +58,8 @@ class _ForgetPasswordPageState
                 IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
                 color: greyTwo,
               ),
-              errorText: this.store.confirmEmail.isEmpty || this.store.isConfirmEmailValid
+              errorText: this.store.confirmEmail.isEmpty ||
+                      this.store.isConfirmEmailValid
                   ? null
                   : Strings.invalidEmail,
               onChanged: this.store.setConfirmEmail,
