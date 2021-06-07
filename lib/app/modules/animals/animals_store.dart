@@ -16,6 +16,9 @@ abstract class _AnimalsStore with Store {
   @observable
   bool isDogApi = false;
 
+  @observable
+  bool isLoading = false;
+
   @action
   changeApi(bool val) {
     animals.clear();
@@ -24,6 +27,7 @@ abstract class _AnimalsStore with Store {
 
   @action
   Future<void> getApiData() async {
+    isLoading = true;
     try {
       final response = await http.get(
         Uri.parse(
@@ -49,5 +53,7 @@ abstract class _AnimalsStore with Store {
     } catch (e) {
       print('CATCHHH $e');
     }
+
+    isLoading = false;
   }
 }

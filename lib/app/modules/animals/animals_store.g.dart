@@ -39,6 +39,21 @@ mixin _$AnimalsStore on _AnimalsStore, Store {
     });
   }
 
+  final _$isLoadingAtom = Atom(name: '_AnimalsStore.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
   final _$getApiDataAsyncAction = AsyncAction('_AnimalsStore.getApiData');
 
   @override
@@ -64,7 +79,8 @@ mixin _$AnimalsStore on _AnimalsStore, Store {
   String toString() {
     return '''
 animals: ${animals},
-isDogApi: ${isDogApi}
+isDogApi: ${isDogApi},
+isLoading: ${isLoading}
     ''';
   }
 }

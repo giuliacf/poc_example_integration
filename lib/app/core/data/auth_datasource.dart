@@ -21,9 +21,13 @@ class AuthDatasource {
     required String email,
     required String password,
   }) async {
+    // await FirebaseAuth.instance.signInWithEmailAndPassword(
+    //   email: email,
+    //   password: password,
+    // );
     await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: email,
-      password: password,
+      email: 'giulia@teste.com',
+      password: '123456',
     );
   }
 

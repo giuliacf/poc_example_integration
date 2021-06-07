@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -34,19 +33,31 @@ class _SearchGifsPageState
         body: Observer(
             builder: (_) => ListView(
                   children: [
-                    GridView.builder(
-                      shrinkWrap: true,
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 250,
-                        mainAxisExtent: 250,
-                        crossAxisSpacing: 8,
-                        mainAxisSpacing: 8,
-                      ),
-                      itemCount: this.store.gifs.length,
-                      itemBuilder: (context, index) {
-                        return Image.network(this.store.gifs[index]);
-                      },
-                    ),
+                    this.store.isLoading
+                        ? Center(
+                            child: CircularProgressIndicator(color: aqua),
+                          )
+                        : GridView.builder(
+                            shrinkWrap: true,
+                            gridDelegate:
+                                SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent: 250,
+                              mainAxisExtent: 250,
+                              crossAxisSpacing: 8,
+                              mainAxisSpacing: 8,
+                            ),
+                            itemCount: this.store.gifs.length,
+                            itemBuilder: (context, index) {
+                              return Card(
+                                child: Container(
+                                  width: 260,
+                                  height: 240,
+                                  padding: EdgeInsets.all(30),
+                                  child: Image.network(this.store.gifs[index]),
+                                ),
+                              );
+                            },
+                          ),
                     SizedBox(
                       height: 15,
                     ),

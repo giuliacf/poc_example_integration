@@ -47,61 +47,68 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
                       widgetClosed: Image.asset('assets/images/dog_toogle.png',
                           width: 24),
                     ),
-                    GridView.builder(
-                      shrinkWrap: true,
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 250,
-                        mainAxisExtent: 250,
-                        crossAxisSpacing: 8,
-                        mainAxisSpacing: 8,
-                      ),
-                      itemCount: this.store.animals.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          child: Container(
-                            width: 255,
-                            height: 240,
-                            padding: EdgeInsets.all(30),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Center(
-                                  child: Image.network(
-                                    this.store.animals[index].photo,
-                                    width: 70,
-                                    height: 70,
-                                    fit: BoxFit.cover,
+                    this.store.isLoading
+                        ? Center(
+                            child: CircularProgressIndicator(color: aqua),
+                          )
+                        : GridView.builder(
+                            shrinkWrap: true,
+                            gridDelegate:
+                                SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent: 250,
+                              mainAxisExtent: 250,
+                              crossAxisSpacing: 8,
+                              mainAxisSpacing: 8,
+                            ),
+                            itemCount: this.store.animals.length,
+                            itemBuilder: (context, index) {
+                              return Card(
+                                child: Container(
+                                  width: 255,
+                                  height: 240,
+                                  padding: EdgeInsets.all(30),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                        child: Image.network(
+                                          this.store.animals[index].photo,
+                                          width: 70,
+                                          height: 70,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 12,
+                                      ),
+                                      TextCustom(
+                                        text: this.store.animals[index].name,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 18,
+                                      ),
+                                      SizedBox(
+                                        height: 12,
+                                      ),
+                                      TextCustom(
+                                        text: Strings.lifeTime +
+                                            this
+                                                .store
+                                                .animals[index]
+                                                .lifeTime
+                                                .replaceAll('years', '') +
+                                            Strings.years,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16,
+                                        textOverflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 12,
-                                ),
-                                TextCustom(
-                                  text: this.store.animals[index].name,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18,
-                                ),
-                                SizedBox(
-                                  height: 12,
-                                ),
-                                TextCustom(
-                                  text: Strings.lifeTime +
-                                      this
-                                          .store
-                                          .animals[index]
-                                          .lifeTime
-                                          .replaceAll('years', '') +
-                                      Strings.years,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 16,
-                                ),
-                              ],
-                            ),
-                          )
-                        );
-                      },
-                    ),
+                              );
+                            },
+                          ),
                     SizedBox(
                       height: 15,
                     ),

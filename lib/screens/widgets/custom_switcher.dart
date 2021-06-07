@@ -23,11 +23,9 @@ class CustomSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: 40,
-        horizontal: width > 1200 ? 0 : 32,
+      padding: EdgeInsets.only(
+        bottom: 40,
       ),
       child: BaseSwitcher(
         open: openOrClosed,

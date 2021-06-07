@@ -39,6 +39,21 @@ mixin _$SearchGifsStore on SearchGifsStoreBase, Store {
     });
   }
 
+  final _$isLoadingAtom = Atom(name: 'SearchGifsStoreBase.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
   final _$searchGifsAsyncAction = AsyncAction('SearchGifsStoreBase.searchGifs');
 
   @override
@@ -50,7 +65,8 @@ mixin _$SearchGifsStore on SearchGifsStoreBase, Store {
   String toString() {
     return '''
 gifs: ${gifs},
-searchedWord: ${searchedWord}
+searchedWord: ${searchedWord},
+isLoading: ${isLoading}
     ''';
   }
 }

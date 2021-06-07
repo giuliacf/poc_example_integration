@@ -11,20 +11,22 @@ part 'search_gifs_store.g.dart';
 class SearchGifsStore = SearchGifsStoreBase with _$SearchGifsStore;
 
 abstract class SearchGifsStoreBase with Store {
-
- @observable
- ObservableList<String> gifs = ObservableList<String>.of([]);
+  @observable
+  ObservableList<String> gifs = ObservableList<String>.of([]);
 
   @observable
   String searchedWord = '';
 
+  @observable
+  bool isLoading = false;
+
   @action
   Future<void> searchGifs() async {
+    isLoading = true;
     try {
       final response = await http.get(
         Uri.parse(Urls.tenorApiUrl),
       );
-
 
       if (response.statusCode == 200) {
         var jsonList = jsonDecode(response.body);
@@ -38,5 +40,6 @@ abstract class SearchGifsStoreBase with Store {
     } catch (e) {
       print('CATCHHH $e');
     }
+    isLoading = false;
   }
 }

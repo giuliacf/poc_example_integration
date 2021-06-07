@@ -68,7 +68,7 @@ class Strings {
 
 // #region animals
   static const String animals = 'Pets';
-  static const String lifeTime = 'Tempo de vida: ';
+  static const String lifeTime = 'Vida: ';
   static const String years = ' anos';
   static const String dogs = 'cães';
   static const String cats = 'gatos';
