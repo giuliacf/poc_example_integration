@@ -111,7 +111,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                   textColor: blueTwo,
                   fontWeight: FontWeight.bold,
                 ),
-                onTap: () => print('clicou'),
+                onTap: () => Modular.to.navigate('/forget-password'),
               ),
             ),
           ),
