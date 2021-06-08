@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poc_example_integration/app/core/routes/authentication_guard.dart';
-import 'package:poc_example_integration/app/core/routes/logged_guard.dart';
+import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
+import 'package:poc_example_integration/app/core/guards/auth_guard.dart';
 import 'package:poc_example_integration/app/modules/login/login_module.dart';
 import 'package:poc_example_integration/app/modules/register/register_module.dart';
 import 'package:poc_example_integration/app/modules/splash/splash_module.dart';
@@ -9,7 +9,9 @@ import 'modules/home/home_module.dart';
 
 class AppModule extends Module {
   @override
-  final List<Bind> binds = [];
+  final List<Bind> binds = [
+    Bind.singleton((i) => AuthDatasource()),
+  ];
 
   @override
   final List<ModularRoute> routes = [
@@ -20,17 +22,15 @@ class AppModule extends Module {
     ModuleRoute(
       '/login',
       module: LoginModule(),
-      guards: [LoggedGuard()],
     ),
     ModuleRoute(
       '/register',
       module: RegisterModule(),
-      guards: [LoggedGuard()],
     ),
     ModuleRoute(
       '/home',
       module: HomeModule(),
-      guards: [AuthenticationGuard()],
+      guards: [AuthGuard()],
     ),
   ];
 }

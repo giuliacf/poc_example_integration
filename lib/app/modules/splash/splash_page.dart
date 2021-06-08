@@ -1,43 +1,53 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poc_example_integration/app/modules/splash/splash_store.dart';
+import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 
 class SplashPage extends StatefulWidget {
-  final String title;
-
-  const SplashPage({Key? key, this.title = "Splash"}) : super(key: key);
+  const SplashPage({Key? key}) : super(key: key);
 
   @override
   _SplashPageState createState() => _SplashPageState();
 }
 
-class _SplashPageState extends ModularState<SplashPage, SplashStore> {
+class _SplashPageState extends State<SplashPage> {
+  AuthDatasource authDatasource = Modular.get<AuthDatasource>();
+
   initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 1000));
-    Modular.to.navigate('/login');
+    redirect();
+  }
+
+  void redirect() async {
+    Future.delayed(Duration(milliseconds: 1000));
+    if (authDatasource.auth.currentUser != null) {
+      Modular.to.navigate('/home');
+    } else {
+      Modular.to.navigate('/login');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: lead,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset("assets/images/logo.png"),
-              SizedBox(height: 30),
-              CircularProgressIndicator.adaptive(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  lead,
-                ),
-                strokeWidth: 2,
+      backgroundColor: lead,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/images/logo.png"),
+            SizedBox(height: 30),
+            CircularProgressIndicator.adaptive(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                lead,
               ),
-            ],
-          ),
-        ));
+              strokeWidth: 2,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

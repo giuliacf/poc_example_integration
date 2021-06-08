@@ -10,11 +10,11 @@ import 'home_page.dart';
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => ProductsStore()),
+    Bind.singleton((i) => ProductsStore()),
     Bind.lazySingleton((i) => SearchGifsStore()),
     Bind.lazySingleton((i) => AnimalsStore()),
     Bind.lazySingleton((i) => GraphQLConfiguration()),
-    Bind.lazySingleton((i) => AuthDatasource()),
+    Bind.instance((i) => AuthDatasource()),
   ];
 
   @override

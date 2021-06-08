@@ -7,7 +7,7 @@ class RegisterModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => RegisterStore()),
-    Bind.lazySingleton((i) => AuthDatasource()),
+    Bind.instance((i) => AuthDatasource()),
   ];
 
   @override

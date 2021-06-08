@@ -3,15 +3,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthDatasource {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  AuthDatasource() {
+    print(auth);
+  }
+
+  Stream<User?> get authChanges => auth.authStateChanges();
+
   Future<void> registerWithEmail({
     required String email,
     required String password,
     required BuildContext context,
   }) async {
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    await auth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
@@ -21,14 +28,14 @@ class AuthDatasource {
     required String email,
     required String password,
   }) async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
+    await auth.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
   }
 
   Future<void> logout() async {
-    await FirebaseAuth.instance.signOut();
+    await auth.signOut();
     Modular.to.navigate('/login');
   }
 
@@ -37,7 +44,7 @@ class AuthDatasource {
       GoogleAuthProvider authProvider = GoogleAuthProvider();
 
       try {
-        await FirebaseAuth.instance.signInWithPopup(authProvider);
+        await auth.signInWithPopup(authProvider);
       } catch (e) {
         print(e);
       }
