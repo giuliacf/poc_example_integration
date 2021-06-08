@@ -518,4 +518,5 @@ class IuppIcons {
   static const IconData icone_solidos_W_wifi = IconData(0xeafe, fontFamily: _fontFamily);
   static const IconData icone_solidos_W_word = IconData(0xeaff, fontFamily: _fontFamily);
   static const IconData icone_solidos_X_xicara = IconData(0xeb00, fontFamily: _fontFamily);
+  static const IconData icone_cachorro = IconData(0xeb00, fontFamily: _fontFamily);
 }

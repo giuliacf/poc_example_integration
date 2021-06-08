@@ -4,9 +4,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/modules/register/repository/register_store.dart';
 import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
-import 'package:poc_example_integration/screens/widgets/screen_with_background.dart';
-import 'package:poc_example_integration/screens/widgets/text_custom.dart';
-import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
+import 'package:poc_example_integration/screens/screen_with_background.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
@@ -60,8 +60,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ? null
                       : Strings.invalidEmail,
                   suffixIcon: Icon(
-                    IuppIcons
-                        .icone_contorno_E_email_resposta_rapida_outline,
+                    IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
                     color: greyTwo,
                     size: 24,
                   ),
@@ -71,8 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   text: Strings.password,
                   obscure: !_showPassword,
                   onChanged: _store.setPassword,
-                  errorText: _store.password.isEmpty ||
-                      _store.isPasswordValid
+                  errorText: _store.password.isEmpty || _store.isPasswordValid
                       ? null
                       : Strings.validatePassword,
                   suffixIcon: getIcon(
@@ -90,10 +88,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   placeholder: Strings.password,
                   obscure: !_showConfirmPassword,
                   onChanged: _store.setConfirmPassword,
-                  errorText: _store.confirmPassword.isEmpty ||
-                      _store.passwordsMatch
-                      ? null
-                      : Strings.equalPasswords,
+                  errorText:
+                      _store.confirmPassword.isEmpty || _store.passwordsMatch
+                          ? null
+                          : Strings.equalPasswords,
                   suffixIcon: getIcon(
                     show: _showConfirmPassword,
                     onPressed: () {

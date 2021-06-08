@@ -8,8 +8,8 @@ part of 'search_gifs_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$SearchGifsStore on SearchGifsStoreBase, Store {
-  final _$gifsAtom = Atom(name: 'SearchGifsStoreBase.gifs');
+mixin _$SearchGifsStore on _SearchGifsStore, Store {
+  final _$gifsAtom = Atom(name: '_SearchGifsStore.gifs');
 
   @override
   ObservableList<String> get gifs {
@@ -24,7 +24,7 @@ mixin _$SearchGifsStore on SearchGifsStoreBase, Store {
     });
   }
 
-  final _$searchedWordAtom = Atom(name: 'SearchGifsStoreBase.searchedWord');
+  final _$searchedWordAtom = Atom(name: '_SearchGifsStore.searchedWord');
 
   @override
   String get searchedWord {
@@ -39,7 +39,22 @@ mixin _$SearchGifsStore on SearchGifsStoreBase, Store {
     });
   }
 
-  final _$searchGifsAsyncAction = AsyncAction('SearchGifsStoreBase.searchGifs');
+  final _$isLoadingAtom = Atom(name: '_SearchGifsStore.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
+  final _$searchGifsAsyncAction = AsyncAction('_SearchGifsStore.searchGifs');
 
   @override
   Future<void> searchGifs() {
@@ -50,7 +65,8 @@ mixin _$SearchGifsStore on SearchGifsStoreBase, Store {
   String toString() {
     return '''
 gifs: ${gifs},
-searchedWord: ${searchedWord}
+searchedWord: ${searchedWord},
+isLoading: ${isLoading}
     ''';
   }
 }

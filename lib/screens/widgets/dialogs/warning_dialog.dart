@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poc_example_integration/screens/widgets/buttons/ghost_button.dart';
 import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
-import 'package:poc_example_integration/screens/widgets/text_custom.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
 class WarningDialog extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
-import 'package:poc_example_integration/app/modules/animals/animals_store.dart';
+import 'package:poc_example_integration/app/modules/animals/repository/animals_store.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
-import 'package:poc_example_integration/app/modules/search_gifs/search_gifs_store.dart';
+import 'package:poc_example_integration/app/modules/search_gifs/repository/search_gifs_store.dart';
 import '../../../graphql_client.dart';
 
 import 'home_page.dart';

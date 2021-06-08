@@ -4,13 +4,14 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
+import 'package:poc_example_integration/utils/regex.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
 part 'login_store.g.dart';
 
-class LoginStore = LoginStoreBase with _$LoginStore;
+class LoginStore = _LoginStore with _$LoginStore;
 
-abstract class LoginStoreBase with Store {
+abstract class _LoginStore with Store {
   final authDatasource = Modular.get<AuthDatasource>();
 
   @observable
@@ -25,6 +26,12 @@ abstract class LoginStoreBase with Store {
   @observable
   bool showPassword = false;
 
+  @observable
+  bool loading = false;
+
+  @computed
+  bool get isEmailValid => RegExp(emailRegex).hasMatch(email);
+
   @action
   void changeShowPassword() => showPassword = !showPassword;
 
@@ -34,11 +41,15 @@ abstract class LoginStoreBase with Store {
   @action
   void setPassword(String value) => password = value;
 
+  @action
+  void setLoading(bool value) => loading = value;
+
   @computed
   bool get canLogin => email.isNotEmpty && password.isNotEmpty;
 
   @action
   Future<void> registerWithGoogle(BuildContext context) async {
+    setLoading(true);
     try {
       await authDatasource.signInWithGoogle(context: context);
       Modular.to.navigate('/home');
@@ -53,12 +64,14 @@ abstract class LoginStoreBase with Store {
       }
     } catch (e) {
       print(e);
-    } finally {}
+    } finally {
+      setLoading(false);
+    }
   }
 
   @action
-  Future<void> login(
-      String email, String password, BuildContext context) async {
+  Future<void> login(String email, String password, BuildContext context) async {
+    setLoading(true);
     try {
       await authDatasource.loginWithEmail(
         email: email,
@@ -66,16 +79,18 @@ abstract class LoginStoreBase with Store {
       );
       Modular.to.navigate('/home');
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
+      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(
           CustomErrorSnackBar(
             context,
-            message: Strings.accountAlreadyExists,
+            message: Strings.loginProblem,
           ),
         );
       }
     } catch (e) {
       print(e);
-    } finally {}
+    } finally {
+      setLoading(false);
+    }
   }
 }

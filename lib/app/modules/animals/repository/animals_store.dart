@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:mobx/mobx.dart';
 import 'package:http/http.dart' as http;
-import 'package:poc_example_integration/app/modules/search_gifs/dog.dart';
+import 'package:poc_example_integration/app/modules/animals/models/animal.dart';
 import 'package:poc_example_integration/utils/urls.dart';
 
 part 'animals_store.g.dart';
@@ -11,14 +11,28 @@ class AnimalsStore = _AnimalsStore with _$AnimalsStore;
 
 abstract class _AnimalsStore with Store {
   @observable
-  ObservableList<Dog> dogs = ObservableList<Dog>.of([]);
+  ObservableList<Animal> animals = ObservableList<Animal>.of([]);
 
+  @observable
+  bool isDogApi = false;
+
+  @observable
+  bool isLoading = false;
 
   @action
-  Future<void> searchGifs() async {
+  changeApi(bool val) {
+    animals.clear();
+    isDogApi = val;
+  }
+
+  @action
+  Future<void> getApiData() async {
+    isLoading = true;
     try {
       final response = await http.get(
-        Uri.parse(animalsApiUrl),
+        Uri.parse(
+          Urls.animalsApiUrl(isDogApi ? 'dog' : 'cat'),
+        ),
       );
 
       if (response.statusCode == 200) {
@@ -26,11 +40,12 @@ abstract class _AnimalsStore with Store {
         var genreIdsFromJson = jsonList;
 
         for (var i in genreIdsFromJson) {
-          dogs.add(Dog(
-              name: i['breeds'][0]['name'],
-              photo: i['url'],
-              life: i['breeds'][0]['life_span']
-          ));
+          animals.add(
+            Animal(
+                name: i['breeds'][0]['name'],
+                photo: i['url'],
+                lifeTime: i['breeds'][0]['life_span']),
+          );
         }
       } else {
         throw Exception('Failed to load album');
@@ -38,6 +53,7 @@ abstract class _AnimalsStore with Store {
     } catch (e) {
       print('CATCHHH $e');
     }
-  }
 
+    isLoading = false;
+  }
 }

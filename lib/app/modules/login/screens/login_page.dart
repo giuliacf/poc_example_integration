@@ -2,20 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poc_example_integration/app/modules/login/login_store.dart';
+import 'package:poc_example_integration/app/modules/login/repository/login_store.dart';
 import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
-import 'package:poc_example_integration/screens/widgets/screen_with_background.dart';
-import 'package:poc_example_integration/screens/widgets/text_custom.dart';
-import 'package:poc_example_integration/screens/widgets/text_field_custom.dart';
+import 'package:poc_example_integration/screens/screen_with_background.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
-import '../../../iupp_icons.dart';
+import '../../../../iupp_icons.dart';
 
 class LoginPage extends StatefulWidget {
-  final String title;
-
-  const LoginPage({Key? key, this.title = "Login"}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -29,35 +27,32 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
       subTitle: Strings.subTitleLoginPage,
       cardContent: Column(
         children: [
-          Observer(
-            builder: (_) => MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                  onTap: () async =>
-                      await this.store.registerWithGoogle(context),
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    height: 46,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: grey),
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/images/google.png', width: 24),
-                        SizedBox(width: 10),
-                        TextCustom(
-                          text: Strings.loginWithGoogle,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                          textColor: greyTwo,
-                        ),
-                      ],
-                    ),
-                  )),
-            ),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+                onTap: () async => await this.store.registerWithGoogle(context),
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  height: 46,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: grey),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/google.png', width: 24),
+                      SizedBox(width: 10),
+                      TextCustom(
+                        text: Strings.loginWithGoogle,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                        textColor: greyTwo,
+                      ),
+                    ],
+                  ),
+                )),
           ),
           SizedBox(height: 24),
           Align(
@@ -74,6 +69,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
             builder: (_) => TextFieldCustom(
               text: Strings.email,
               placeholder: Strings.emailPlaceholder,
+              errorText: this.store.email.isEmpty || this.store.isEmailValid
+                  ? null
+                  : Strings.invalidEmail,
               suffixIcon: Icon(
                 IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
                 color: greyTwo,
@@ -111,7 +109,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                   textColor: blueTwo,
                   fontWeight: FontWeight.bold,
                 ),
-                onTap: () => print('clicou'),
+                onTap: () => Modular.to.navigate('/forget-password'),
               ),
             ),
           ),
@@ -128,7 +126,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                       context,
                     ),
                 isDisabled: !this.store.canLogin,
-                isLoading: false,
+                isLoading: this.store.loading,
               ),
             ),
           ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
-import 'package:poc_example_integration/app/modules/animals/animals_page.dart';
+import 'package:poc_example_integration/app/modules/animals/screens/animals_page.dart';
 import 'package:poc_example_integration/app/modules/products/screens/products_page.dart';
-import 'package:poc_example_integration/app/modules/search_gifs/search_gifs_page.dart';
+import 'package:poc_example_integration/app/modules/search_gifs/screens/search_gifs_page.dart';
 import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';

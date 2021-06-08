@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 // ignore: must_be_immutable
-class CustomSwitcher extends StatefulWidget {
+class BaseSwitcher extends StatefulWidget {
   bool open;
   ValueChanged<bool> onChanged;
   double? width;
@@ -20,7 +20,7 @@ class CustomSwitcher extends StatefulWidget {
   Offset? shadowOffset;
   double? shadowBlur;
 
-  CustomSwitcher({
+  BaseSwitcher({
     Key? key,
     required this.onChanged,
     this.open = false,
@@ -42,11 +42,11 @@ class CustomSwitcher extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _CustomSwitcher();
+    return _BaseSwitcher();
   }
 }
 
-class _CustomSwitcher extends State<CustomSwitcher> {
+class _BaseSwitcher extends State<BaseSwitcher> {
   double? fixOffset;
   bool draging = false;
   double dragDxW = 10.0;
@@ -63,7 +63,7 @@ class _CustomSwitcher extends State<CustomSwitcher> {
   }
 
   @override
-  void didUpdateWidget(CustomSwitcher oldWidget) {
+  void didUpdateWidget(BaseSwitcher oldWidget) {
     super.didUpdateWidget(oldWidget);
     fixOffset = widget.open
         ? widget.width! -
