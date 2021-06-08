@@ -45,7 +45,7 @@ abstract class _LoginStore with Store {
   void setLoading(bool value) => loading = value;
 
   @computed
-  bool get canLogin => email.isNotEmpty && password.isNotEmpty;
+  bool get canLogin => isEmailValid && password.isNotEmpty;
 
   @action
   Future<void> registerWithGoogle(BuildContext context) async {
@@ -53,15 +53,6 @@ abstract class _LoginStore with Store {
     try {
       await authDatasource.signInWithGoogle(context: context);
       Modular.to.navigate('/home');
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        ScaffoldMessenger.of(context).showSnackBar(
-          CustomErrorSnackBar(
-            context,
-            message: Strings.accountAlreadyExists,
-          ),
-        );
-      }
     } catch (e) {
       print(e);
     } finally {

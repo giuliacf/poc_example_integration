@@ -7,10 +7,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 class AuthDatasource {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
-  AuthDatasource() {
-    print(auth);
-  }
-
   Stream<User?> get authChanges => auth.authStateChanges();
 
   Future<void> registerWithEmail({

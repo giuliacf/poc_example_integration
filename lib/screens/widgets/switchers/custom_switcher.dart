@@ -4,8 +4,6 @@ import 'package:poc_example_integration/utils/colors.dart';
 
 import 'base_switcher.dart';
 
-
-
 class CustomSwitcher extends StatelessWidget {
   final bool openOrClosed;
   final Function onChanged;
