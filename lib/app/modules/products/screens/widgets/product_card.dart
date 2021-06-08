@@ -63,41 +63,55 @@ class ProductCard extends StatelessWidget {
                 AnimatedSwitcher(
                   duration: Duration(milliseconds: 500),
                   child: usePoints
-                      ? TextCustom(
+                      ? Container(
                           key: UniqueKey(),
-                          text: '${numberFormatter.format(product.points)} pts',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          textOverflow: TextOverflow.ellipsis,
+                          height: 63,
+                          alignment: Alignment.topLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextCustom(
+                                text: '${numberFormatter.format(product.points)} pts',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                textOverflow: TextOverflow.ellipsis,
+                              ),
+                              TextCustom(
+                                text: Strings.usePointsAndMoney,
+                                textColor: green,
+                                fontSize: 16,
+                                maxLines: 2,
+                                fontWeight: FontWeight.w700,
+                                textOverflow: TextOverflow.ellipsis,
+                              )
+                            ],
+                          ),
                         )
-                      : TextCustom(
+                      : Container(
+                          alignment: Alignment.topLeft,
                           key: UniqueKey(),
-                          text: 'R\$ ${currencyFormatter.format(product.price)}',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          textOverflow: TextOverflow.ellipsis,
+                          height: 63,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextCustom(
+                                text: 'R\$ ${currencyFormatter.format(product.price)}',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                textOverflow: TextOverflow.ellipsis,
+                              ),
+                              TextCustom(
+                                text: Strings.winSomePoints(
+                                    numberFormatter.format(product.points)),
+                                textColor: green,
+                                fontSize: 16,
+                                maxLines: 2,
+                                fontWeight: FontWeight.w700,
+                                textOverflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
                         ),
-                ),
-                AnimatedSwitcher(
-                  child: usePoints
-                      ? TextCustom(
-                          key: UniqueKey(),
-                          text: Strings.usePointsAndMoney,
-                          textColor: green,
-                          fontSize: 16,
-                          maxLines: 2,
-                          fontWeight: FontWeight.w700,
-                          textOverflow: TextOverflow.ellipsis,
-                        )
-                      : TextCustom(
-                          key: UniqueKey(),
-                          text: Strings.winSomePoints(numberFormatter.format(product.points)),
-                          textColor: green,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          textOverflow: TextOverflow.ellipsis,
-                        ),
-                  duration: Duration(milliseconds: 500),
                 ),
               ],
             ),
