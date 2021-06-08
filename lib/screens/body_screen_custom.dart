@@ -13,9 +13,14 @@ class BodyScreenCustom extends StatelessWidget {
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: 1200),
         child: Container(
-            padding: EdgeInsets.fromLTRB(
-                width > 1200 ? 0 : 32, 40, width > 1200 ? 0 : 32, 16),
-            child: body),
+          padding: EdgeInsets.fromLTRB(
+            width > 1200 ? 0 : 32,
+            40,
+            width > 1200 ? 0 : 32,
+            16,
+          ),
+          child: body,
+        ),
       ),
     );
   }

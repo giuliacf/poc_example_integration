@@ -28,23 +28,30 @@ class _ProductsPageState extends State<ProductsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    final double width = MediaQuery.of(context).size.width;
+    final double lateralPadding = width > 1200 ? (width - 1200) / 2 : 32;
 
     return Scaffold(
       backgroundColor: greyOffWhite,
-      body: BodyScreenCustom(
-        body: Observer(
-          builder: (context) {
-            if (_store.queryLoading) {
-              return Center(
-                child: CircularProgressIndicator(color: aqua),
-              );
-            }
-            if (_store.products.length > 0) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomSwitcher(
+      body: Observer(
+        builder: (context) {
+          if (_store.queryLoading) {
+            return Center(
+              child: CircularProgressIndicator(color: aqua),
+            );
+          }
+          if (_store.products.length > 0) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.fromLTRB(
+                    lateralPadding,
+                    40,
+                    lateralPadding,
+                    0,
+                  ),
+                  child: CustomSwitcher(
                     openOrClosed: _store.showPoints,
                     onChanged: _store.setShowPoints,
                     stringOpened: Strings.points,
@@ -60,48 +67,49 @@ class _ProductsPageState extends State<ProductsPage> {
                       size: 24,
                     ),
                   ),
-                  Expanded(
-                    child: GridView.builder(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: width > 1200 ? 0 : 32),
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 280,
-                        mainAxisExtent: 338,
-                      ),
-                      itemCount: _store.products.length,
-                      itemBuilder: (context, index) {
-                        final Product _product = _store.products[index];
-                        return ProductCard(
-                          product: _product,
-                          usePoints: _store.showPoints,
-                        );
-                      },
+                ),
+                Expanded(
+                  child: GridView.builder(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: lateralPadding,
                     ),
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 280,
+                      mainAxisExtent: 338,
+                    ),
+                    itemCount: _store.products.length,
+                    itemBuilder: (context, index) {
+                      final Product _product = _store.products[index];
+                      return ProductCard(
+                        product: _product,
+                        usePoints: _store.showPoints,
+                      );
+                    },
                   ),
-                ],
-              );
-            }
-
-            return Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Icon(
-                    IuppIcons.icone_contorno_F_fechar,
-                    size: 40,
-                    color: red,
-                  ),
-                  TextCustom(
-                    text: Strings.productNotFound,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                  )
-                ],
-              ),
+                ),
+              ],
             );
-          },
-        ),
+          }
+
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  IuppIcons.icone_contorno_F_fechar,
+                  size: 40,
+                  color: red,
+                ),
+                TextCustom(
+                  text: Strings.productNotFound,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
+                )
+              ],
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: Strings.addProduct,

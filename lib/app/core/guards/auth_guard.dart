@@ -5,7 +5,8 @@ class AuthGuard implements RouteGuard {
   @override
   Future<bool> canActivate(String path, ModularRoute router) {
     bool isLogged = FirebaseAuth.instance.currentUser != null;
-    return Future.value(isLogged);
+    return Future.value(true);
+    // return Future.value(isLogged);
   }
 
   @override
