@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthDatasource {
   Future<void> registerWithEmail({
@@ -21,13 +20,9 @@ class AuthDatasource {
     required String email,
     required String password,
   }) async {
-    // await FirebaseAuth.instance.signInWithEmailAndPassword(
-    //   email: email,
-    //   password: password,
-    // );
     await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: 'giulia@teste.com',
-      password: '123456',
+      email: email,
+      password: password,
     );
   }
 

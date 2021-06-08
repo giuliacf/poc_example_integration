@@ -74,6 +74,10 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
             builder: (_) => TextFieldCustom(
               text: Strings.email,
               placeholder: Strings.emailPlaceholder,
+              errorText:
+              this.store.email.isEmpty || this.store.isEmailValid
+                  ? null
+                  : Strings.invalidEmail,
               suffixIcon: Icon(
                 IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
                 color: greyTwo,

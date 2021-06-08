@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
+import 'package:poc_example_integration/utils/regex.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
 part 'login_store.g.dart';
@@ -24,6 +25,9 @@ abstract class _LoginStore with Store {
 
   @observable
   bool showPassword = false;
+
+  @computed
+  bool get isEmailValid => RegExp(emailRegex).hasMatch(email);
 
   @action
   void changeShowPassword() => showPassword = !showPassword;

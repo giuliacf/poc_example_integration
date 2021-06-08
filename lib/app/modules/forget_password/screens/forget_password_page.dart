@@ -33,7 +33,8 @@ class _ForgetPasswordPageState
                 IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
                 color: greyTwo,
               ),
-              errorText: this.store.email.isEmpty || this.store.isEmailValid
+              errorText:
+              this.store.email.isEmpty || this.store.isEmailValid
                   ? null
                   : Strings.invalidEmail,
               onChanged: this.store.setEmail,
