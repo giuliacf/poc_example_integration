@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: greyOffWhite,
       appBar: AppBar(
         toolbarHeight: 100,
         centerTitle: true,
@@ -62,7 +63,10 @@ class _HomePageState extends State<HomePage> {
                 border: Border.all(color: lead, width: 1),
                 color: white,
               ),
-              constraints: BoxConstraints(maxHeight: 52),
+              constraints: BoxConstraints(
+                maxHeight: 52,
+                maxWidth: 1200,
+              ),
               child: Material(
                 color: white,
                 child: TabBar(
@@ -89,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   ProductsPage(),
                   SearchGifsPage(),
-                  AnimalsPage()
+                  AnimalsPage(),
                 ],
               ),
             ),
