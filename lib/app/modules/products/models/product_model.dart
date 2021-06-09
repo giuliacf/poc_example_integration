@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class Product {
   final String id;
   final String name;
@@ -5,6 +7,7 @@ class Product {
   final double price;
   late int points;
   late int gainPoints;
+  late String image;
 
   Product({
     required this.id,
@@ -14,5 +17,6 @@ class Product {
   }) {
     points = (price * 55).toInt();
     gainPoints = (price * 3).toInt();
+    image = 'assets/images/products/${Random().nextInt(8) + 1}.png';
   }
 }

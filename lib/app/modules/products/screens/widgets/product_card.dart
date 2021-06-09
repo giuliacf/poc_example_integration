@@ -36,7 +36,7 @@ class ProductCard extends StatelessWidget {
                   alignment: Alignment.center,
                   height: 110,
                   child: Image.asset(
-                    'assets/images/cellphone.png',
+                    product.image,
                     fit: BoxFit.fitHeight,
                   ),
                 ),
