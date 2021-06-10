@@ -68,22 +68,26 @@ class _ProductsPageState extends State<ProductsPage> {
                   ),
                 ),
                 Expanded(
-                  child: GridView.builder(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: lateralPadding,
+                  child: Scrollbar(
+                    isAlwaysShown: true,
+                    showTrackOnHover: true,
+                    child: GridView.builder(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: lateralPadding,
+                      ),
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 280,
+                        mainAxisExtent: 338,
+                      ),
+                      itemCount: _store.products.length,
+                      itemBuilder: (context, index) {
+                        final Product _product = _store.products[index];
+                        return ProductCard(
+                          product: _product,
+                          usePoints: _store.showPoints,
+                        );
+                      },
                     ),
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 280,
-                      mainAxisExtent: 338,
-                    ),
-                    itemCount: _store.products.length,
-                    itemBuilder: (context, index) {
-                      final Product _product = _store.products[index];
-                      return ProductCard(
-                        product: _product,
-                        usePoints: _store.showPoints,
-                      );
-                    },
                   ),
                 ),
               ],
