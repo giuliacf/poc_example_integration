@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poc_example_integration/app/modules/register/repository/register_store.dart';
+import 'package:poc_example_integration/app/modules/authentication/register/repository/register_store.dart';
 import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
 import 'package:poc_example_integration/screens/screen_with_background.dart';
 import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
-import 'package:poc_example_integration/screens/widgets/texts/text_field_custom.dart';
+import 'package:poc_example_integration/screens/widgets/inputs/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
 class RegisterPage extends StatefulWidget {
-  final String title;
-
-  const RegisterPage({Key? key, this.title = "Register"}) : super(key: key);
-
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
@@ -55,8 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 TextFieldCustom(
                   text: Strings.email,
                   onChanged: _store.setEmail,
-                  errorText:
-                  _store.email.isEmpty || _store.isEmailValid
+                  errorText: _store.email.isEmpty || _store.isEmailValid
                       ? null
                       : Strings.invalidEmail,
                   suffixIcon: Icon(
@@ -88,10 +83,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   placeholder: Strings.password,
                   obscure: !_showConfirmPassword,
                   onChanged: _store.setConfirmPassword,
-                  errorText:
-                      _store.confirmPassword.isEmpty || _store.passwordsMatch
-                          ? null
-                          : Strings.equalPasswords,
+                  errorText: _store.confirmPassword.isEmpty || _store.passwordsMatch
+                      ? null
+                      : Strings.equalPasswords,
                   suffixIcon: getIcon(
                     show: _showConfirmPassword,
                     onPressed: () {

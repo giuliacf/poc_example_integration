@@ -24,21 +24,6 @@ mixin _$SearchGifsStore on _SearchGifsStore, Store {
     });
   }
 
-  final _$wordSearchedAtom = Atom(name: '_SearchGifsStore.wordSearched');
-
-  @override
-  String get wordSearched {
-    _$wordSearchedAtom.reportRead();
-    return super.wordSearched;
-  }
-
-  @override
-  set wordSearched(String value) {
-    _$wordSearchedAtom.reportWrite(value, super.wordSearched, () {
-      super.wordSearched = value;
-    });
-  }
-
   final _$isLoadingAtom = Atom(name: '_SearchGifsStore.isLoading');
 
   @override
@@ -54,19 +39,56 @@ mixin _$SearchGifsStore on _SearchGifsStore, Store {
     });
   }
 
+  final _$searchTextAtom = Atom(name: '_SearchGifsStore.searchText');
+
+  @override
+  String? get searchText {
+    _$searchTextAtom.reportRead();
+    return super.searchText;
+  }
+
+  @override
+  set searchText(String? value) {
+    _$searchTextAtom.reportWrite(value, super.searchText, () {
+      super.searchText = value;
+    });
+  }
+
   final _$searchGifsAsyncAction = AsyncAction('_SearchGifsStore.searchGifs');
 
   @override
-  Future<dynamic> searchGifs(String word) {
-    return _$searchGifsAsyncAction.run(() => super.searchGifs(word));
+  Future<void> searchGifs(String text) {
+    return _$searchGifsAsyncAction.run(() => super.searchGifs(text));
+  }
+
+  final _$loadMoreGifsAsyncAction =
+      AsyncAction('_SearchGifsStore.loadMoreGifs');
+
+  @override
+  Future<void> loadMoreGifs() {
+    return _$loadMoreGifsAsyncAction.run(() => super.loadMoreGifs());
+  }
+
+  final _$_SearchGifsStoreActionController =
+      ActionController(name: '_SearchGifsStore');
+
+  @override
+  dynamic setSearchText(String? value) {
+    final _$actionInfo = _$_SearchGifsStoreActionController.startAction(
+        name: '_SearchGifsStore.setSearchText');
+    try {
+      return super.setSearchText(value);
+    } finally {
+      _$_SearchGifsStoreActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
   String toString() {
     return '''
 gifs: ${gifs},
-wordSearched: ${wordSearched},
-isLoading: ${isLoading}
+isLoading: ${isLoading},
+searchText: ${searchText}
     ''';
   }
 }

@@ -16,8 +16,7 @@ class SearchGifsPage extends StatefulWidget {
   _SearchGifsPageState createState() => _SearchGifsPageState();
 }
 
-class _SearchGifsPageState
-    extends ModularState<SearchGifsPage, SearchGifsStore> {
+class _SearchGifsPageState extends ModularState<SearchGifsPage, SearchGifsStore> {
   @override
   void initState() {
     super.initState();
@@ -67,9 +66,7 @@ class _SearchGifsPageState
                         },
                       ),
                       WidgetLoadMore(
-                        onTap: () => this.store.searchGifs(
-                              this.store.wordSearched,
-                            ),
+                        onTap: this.store.loadMoreGifs,
                         lateralPadding: lateralPadding,
                       ),
                     ],

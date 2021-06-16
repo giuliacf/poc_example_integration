@@ -9,7 +9,7 @@ import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/widgets/dialogs/warning_dialog.dart';
 import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
 import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
-import 'package:poc_example_integration/screens/widgets/texts/text_field_custom.dart';
+import 'package:poc_example_integration/screens/widgets/inputs/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
@@ -99,7 +99,7 @@ class AddProductDialog extends StatelessWidget {
                                   isDisabled: _store.isDisabled,
                                   isLoading: _store.saveLoading,
                                   onPressed: () {
-                                    _store.saveProduct();
+                                    _store.addProduct();
                                     Modular.to.pop();
                                   },
                                 ),

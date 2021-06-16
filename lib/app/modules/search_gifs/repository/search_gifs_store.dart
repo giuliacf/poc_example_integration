@@ -13,35 +13,67 @@ abstract class _SearchGifsStore with Store {
   ObservableList<String> gifs = ObservableList<String>.of([]);
 
   @observable
-  String wordSearched = '';
-
-  @observable
   bool isLoading = false;
 
+  @observable
+  String? searchText;
+
   @action
-  Future<dynamic> searchGifs(String word) async {
+  setSearchText(String? value) => searchText = value;
+
+  @action
+  Future<void> searchGifs(String text) async {
     isLoading = true;
+    searchText = text;
+
     gifs = ObservableList<String>.of([]);
-    wordSearched = word;
     try {
       final response = await http.get(
-        Uri.parse(Urls.tenorApiUrl(word)),
+        Uri.parse(Urls.tenorApiUrl(text)),
       );
 
-      switch (response.statusCode) {
-        case 200:
-          var jsonList = jsonDecode(response.body);
-          var genreIdsFromJson = jsonList['results'];
-          for (var i in genreIdsFromJson) {
-            gifs.add(i['media'][0]['gif']['url']);
-          }
-          break;
-        default:
-          break;
+      if (response.statusCode == 200) {
+        final jsonList = jsonDecode(response.body);
+        final genreIdsFromJson = jsonList['results'];
+
+        for (var i in genreIdsFromJson) {
+          gifs.add(i['media'][0]['gif']['url']);
+        }
+      } else {
+        throw Exception('Failed to load album');
       }
     } catch (e) {
       throw Exception('Failed to load album');
+    } finally {
+      isLoading = false;
     }
-    isLoading = false;
+  }
+
+  @action
+  Future<void> loadMoreGifs() async {
+    isLoading = true;
+    try {
+      final response = await http.get(
+        Uri.parse(Urls.tenorApiUrl(
+          searchText ?? '',
+          position: gifs.length + 1,
+        )),
+      );
+
+      if (response.statusCode == 200) {
+        final jsonList = jsonDecode(response.body);
+        final genreIdsFromJson = jsonList['results'];
+
+        for (var i in genreIdsFromJson) {
+          gifs.add(i['media'][0]['gif']['url']);
+        }
+      } else {
+        throw Exception('Failed to load album');
+      }
+    } catch (e) {
+      throw Exception('Failed to load album');
+    } finally {
+      isLoading = false;
+    }
   }
 }

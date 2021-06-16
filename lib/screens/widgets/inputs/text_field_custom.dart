@@ -3,11 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 
 class TextFieldCustom extends StatelessWidget {
-  final String text;
+  final String? text;
   final String? placeholder;
   final bool obscure;
   final bool autofocus;
   final String? fontFamily;
+  final TextEditingController? controller;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final Function(String)? onChanged;
@@ -33,7 +34,8 @@ class TextFieldCustom extends StatelessWidget {
     this.floatingLabelBehavior = FloatingLabelBehavior.always,
     this.prefixIcon,
     this.autofocus = false,
-    this.textSize
+    this.textSize,
+    this.controller,
   });
 
   OutlineInputBorder customBorder(Color borderColor) {
@@ -53,10 +55,11 @@ class TextFieldCustom extends StatelessWidget {
       cursorColor: greyTwo,
       obscureText: obscure,
       autofocus: autofocus,
+      controller: controller,
       style: TextStyle(
         fontFamily: fontFamily,
         color: greyTwo,
-        fontSize: textSize
+        fontSize: textSize,
       ),
       decoration: InputDecoration(
         enabledBorder: customBorder(grey),
@@ -64,7 +67,10 @@ class TextFieldCustom extends StatelessWidget {
         errorBorder: customBorder(red),
         focusedErrorBorder: customBorder(red),
         labelText: text,
-        labelStyle: TextStyle(color: greyFour, fontSize: 14),
+        labelStyle: TextStyle(
+          color: greyFour,
+          fontSize: 14,
+        ),
         floatingLabelBehavior: floatingLabelBehavior,
         hintStyle: TextStyle(color: greyTwo),
         hintText: placeholder ?? text,

@@ -39,7 +39,7 @@ class _ProductsPageState extends State<ProductsPage> {
               child: CircularProgressIndicator(color: aqua),
             );
           }
-          if (_store.products.length > 0) {
+          if (_store.productsFiltered.length > 0) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -79,9 +79,9 @@ class _ProductsPageState extends State<ProductsPage> {
                         maxCrossAxisExtent: 280,
                         mainAxisExtent: 338,
                       ),
-                      itemCount: _store.products.length,
+                      itemCount: _store.productsFiltered.length,
                       itemBuilder: (context, index) {
-                        final Product _product = _store.products[index];
+                        final Product _product = _store.productsFiltered[index];
                         return ProductCard(
                           product: _product,
                           usePoints: _store.showPoints,

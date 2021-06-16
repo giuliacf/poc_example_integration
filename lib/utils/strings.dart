@@ -13,7 +13,8 @@ class Strings {
   static const String close = 'Fechar';
   static const String warning = 'Atenção';
   static const String loadingMore = 'Carregar mais';
-  static const String searchNotFound = 'oops! Nenhum resultado foi encontrado.';
+  static const String searchNotFound =
+      'oops! Não encontramos nenhum resultados para sua busca.';
 
   // #endregion
 
@@ -91,12 +92,12 @@ class Strings {
 // #endregion
 
 // #region app bar
-  static String typeCurrentPage(String currentPage) =>
-      'que $currentPage você está buscando?';
+  static const String whatAreYouLookingFor = 'o que você está bucando?';
   static const String typeAnimal = 'animal';
   static const String typeProduct = 'produto';
   static const String typeGif = 'tipo de gif';
   static const String clearSearch = 'Limpar busca';
+  static const String search = 'Pesquisar';
 // #endregion
 
 }

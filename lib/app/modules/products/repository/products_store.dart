@@ -40,6 +40,16 @@ abstract class ProductsStoreBase with Store {
   @observable
   bool showPoints = false;
 
+  @observable
+  String? searchText;
+
+  @computed
+  List<Product> get productsFiltered => searchText == null
+      ? products.toList()
+      : products
+          .where((p) => p.name.toLowerCase().contains(searchText!.toLowerCase()))
+          .toList();
+
   @computed
   bool get isDisabled =>
       productName.isEmpty || productDescription.isEmpty || productPrice == null;
@@ -61,6 +71,9 @@ abstract class ProductsStoreBase with Store {
 
   @action
   setShowPoints(bool value) => showPoints = value;
+
+  @action
+  setSearchText(String? value) => searchText = value;
 
   @action
   Future<void> listProducts() async {
@@ -98,7 +111,7 @@ abstract class ProductsStoreBase with Store {
   }
 
   @action
-  Future<void> saveProduct() async {
+  Future<void> addProduct() async {
     setSaveLoading(true);
 
     try {
@@ -151,16 +164,5 @@ abstract class ProductsStoreBase with Store {
         ),
       );
     }
-  }
-
-  @action
-  void searchProduct(String word) {
-    setSaveLoading(true);
-    products.removeWhere(
-          (element) => !element.name.toLowerCase().contains(
-        word.toLowerCase(),
-      ),
-    );
-    setSaveLoading(false);
   }
 }

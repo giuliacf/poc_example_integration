@@ -5,7 +5,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/modules/animals/repository/animals_store.dart';
 import 'package:poc_example_integration/app/modules/animals/screens/widgets/animal_card.dart';
 import 'package:poc_example_integration/screens/widgets/switchers/custom_switcher.dart';
-import 'package:poc_example_integration/screens/widgets/texts/text_field_custom.dart';
 import 'package:poc_example_integration/screens/widgets/widget_load_more.dart';
 import 'package:poc_example_integration/screens/widgets/widget_search_not_found.dart';
 import 'package:poc_example_integration/utils/colors.dart';
@@ -55,11 +54,9 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
                       this.store.getApiData();
                     },
                     stringOpened: Strings.dogs,
-                    widgetOpened:
-                        Image.asset('assets/images/dog_toggle.png', width: 24),
+                    widgetOpened: Image.asset('assets/images/dog_toggle.png', width: 24),
                     stringClosed: Strings.cats,
-                    widgetClosed:
-                        Image.asset('assets/images/cat_toggle.png', width: 24),
+                    widgetClosed: Image.asset('assets/images/cat_toggle.png', width: 24),
                   ),
                 ),
                 Expanded(

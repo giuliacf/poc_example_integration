@@ -9,6 +9,13 @@ part of 'products_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ProductsStore on ProductsStoreBase, Store {
+  Computed<List<Product>>? _$productsFilteredComputed;
+
+  @override
+  List<Product> get productsFiltered => (_$productsFilteredComputed ??=
+          Computed<List<Product>>(() => super.productsFiltered,
+              name: 'ProductsStoreBase.productsFiltered'))
+      .value;
   Computed<bool>? _$isDisabledComputed;
 
   @override
@@ -123,6 +130,21 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
     });
   }
 
+  final _$searchTextAtom = Atom(name: 'ProductsStoreBase.searchText');
+
+  @override
+  String? get searchText {
+    _$searchTextAtom.reportRead();
+    return super.searchText;
+  }
+
+  @override
+  set searchText(String? value) {
+    _$searchTextAtom.reportWrite(value, super.searchText, () {
+      super.searchText = value;
+    });
+  }
+
   final _$listProductsAsyncAction =
       AsyncAction('ProductsStoreBase.listProducts');
 
@@ -131,11 +153,11 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
     return _$listProductsAsyncAction.run(() => super.listProducts());
   }
 
-  final _$saveProductAsyncAction = AsyncAction('ProductsStoreBase.saveProduct');
+  final _$addProductAsyncAction = AsyncAction('ProductsStoreBase.addProduct');
 
   @override
-  Future<void> saveProduct() {
-    return _$saveProductAsyncAction.run(() => super.saveProduct());
+  Future<void> addProduct() {
+    return _$addProductAsyncAction.run(() => super.addProduct());
   }
 
   final _$deleteProductAsyncAction =
@@ -217,11 +239,11 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
   }
 
   @override
-  void searchProduct(String word) {
+  dynamic setSearchText(String? value) {
     final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
-        name: 'ProductsStoreBase.searchProduct');
+        name: 'ProductsStoreBase.setSearchText');
     try {
-      return super.searchProduct(word);
+      return super.setSearchText(value);
     } finally {
       _$ProductsStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -237,6 +259,8 @@ productName: ${productName},
 productDescription: ${productDescription},
 productPrice: ${productPrice},
 showPoints: ${showPoints},
+searchText: ${searchText},
+productsFiltered: ${productsFiltered},
 isDisabled: ${isDisabled}
     ''';
   }

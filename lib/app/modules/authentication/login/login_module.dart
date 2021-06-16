@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
-import 'package:poc_example_integration/app/modules/login/repository/login_store.dart';
+import 'package:poc_example_integration/app/modules/authentication/login/repository/login_store.dart';
 
 import 'screens/login_page.dart';
 
