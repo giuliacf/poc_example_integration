@@ -13,30 +13,34 @@ abstract class _SearchGifsStore with Store {
   ObservableList<String> gifs = ObservableList<String>.of([]);
 
   @observable
-  String searchedWord = '';
+  String wordSearched = '';
 
   @observable
   bool isLoading = false;
 
   @action
-  Future<void> searchGifs() async {
+  Future<dynamic> searchGifs(String word) async {
     isLoading = true;
+    gifs = ObservableList<String>.of([]);
+    wordSearched = word;
     try {
       final response = await http.get(
-        Uri.parse(Urls.tenorApiUrl),
+        Uri.parse(Urls.tenorApiUrl(word)),
       );
 
-      if (response.statusCode == 200) {
-        var jsonList = jsonDecode(response.body);
-        var genreIdsFromJson = jsonList['results'];
-        for (var i in genreIdsFromJson) {
-          gifs.add(i['media'][0]['gif']['url']);
-        }
-      } else {
-        throw Exception('Failed to load album');
+      switch (response.statusCode) {
+        case 200:
+          var jsonList = jsonDecode(response.body);
+          var genreIdsFromJson = jsonList['results'];
+          for (var i in genreIdsFromJson) {
+            gifs.add(i['media'][0]['gif']['url']);
+          }
+          break;
+        default:
+          break;
       }
     } catch (e) {
-      print('CATCHHH $e');
+      throw Exception('Failed to load album');
     }
     isLoading = false;
   }

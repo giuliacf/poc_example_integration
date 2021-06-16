@@ -7,7 +7,7 @@ import 'package:poc_example_integration/app/modules/products/screens/widgets/add
 import 'package:poc_example_integration/app/modules/products/screens/widgets/product_card.dart';
 import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/widgets/switchers/custom_switcher.dart';
-import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
+import 'package:poc_example_integration/screens/widgets/widget_search_not_found.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
@@ -90,24 +90,7 @@ class _ProductsPageState extends State<ProductsPage> {
             );
           }
 
-          return Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  IuppIcons.icone_contorno_F_fechar,
-                  size: 40,
-                  color: red,
-                ),
-                TextCustom(
-                  text: Strings.productNotFound,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                )
-              ],
-            ),
-          );
+          return WidgetSearchNotFound();
         },
       ),
       floatingActionButton: FloatingActionButton(

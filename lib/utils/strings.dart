@@ -13,6 +13,7 @@ class Strings {
   static const String close = 'Fechar';
   static const String warning = 'Atenção';
   static const String loadingMore = 'Carregar mais';
+  static const String searchNotFound = 'oops! Nenhum resultado foi encontrado.';
 
   // #endregion
 
@@ -32,8 +33,6 @@ class Strings {
 
 // #region products
   static const String products = 'Produtos';
-  static const String productNotFound =
-      'opps! \nnão conseguimos \nencontrar nenhum \nproduto';
   static const String newProduct = 'Novo produto';
   static const String addProduct = 'Adicionar produto';
   static const String removeProduct = 'Remover produto';
@@ -90,4 +89,14 @@ class Strings {
   static const String confirmEmail = 'Confirme seu email';
   static const String emailSendSuccess = 'E-mail enviado com sucesso';
 // #endregion
+
+// #region app bar
+  static String typeCurrentPage(String currentPage) =>
+      'que $currentPage você está buscando?';
+  static const String typeAnimal = 'animal';
+  static const String typeProduct = 'produto';
+  static const String typeGif = 'tipo de gif';
+  static const String clearSearch = 'Limpar busca';
+// #endregion
+
 }

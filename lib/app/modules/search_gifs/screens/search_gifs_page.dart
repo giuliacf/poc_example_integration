@@ -3,10 +3,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:poc_example_integration/app/modules/search_gifs/repository/search_gifs_store.dart';
-import 'package:poc_example_integration/screens/body_screen_custom.dart';
-import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
+import 'package:poc_example_integration/screens/widgets/widget_load_more.dart';
+import 'package:poc_example_integration/screens/widgets/widget_search_not_found.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:poc_example_integration/utils/strings.dart';
 
 class SearchGifsPage extends StatefulWidget {
   final String title;
@@ -22,62 +21,66 @@ class _SearchGifsPageState
   @override
   void initState() {
     super.initState();
-    this.store.searchGifs();
+    this.store.searchGifs('nazare');
   }
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final double lateralPadding = width > 1200 ? (width - 1200) / 2 : 32;
+
     return Scaffold(
       backgroundColor: greyOffWhite,
-      body: BodyScreenCustom(
-        body: Observer(
-            builder: (_) => ListView(
-                  children: [
-                    this.store.isLoading
-                        ? Center(
-                            child: CircularProgressIndicator(color: aqua),
-                          )
-                        : GridView.builder(
-                            shrinkWrap: true,
-                            gridDelegate:
-                                SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 250,
-                              mainAxisExtent: 250,
-                              crossAxisSpacing: 8,
-                              mainAxisSpacing: 8,
-                            ),
-                            itemCount: this.store.gifs.length,
-                            itemBuilder: (context, index) {
-                              return Card(
-                                child: Container(
-                                  width: 260,
-                                  height: 240,
-                                  padding: EdgeInsets.all(30),
-                                  child: Image.network(this.store.gifs[index]),
-                                ),
-                              );
-                            },
-                          ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        onTap: this.store.searchGifs,
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: TextCustom(
-                            text: Strings.loadingMore,
-                            textColor: blue,
-                            fontWeight: FontWeight.w800,
-                            fontSize: 16,
-                          ),
+      body: Observer(
+        builder: (context) {
+          if (this.store.isLoading) {
+            return Center(
+              child: CircularProgressIndicator(color: aqua),
+            );
+          }
+          if (this.store.gifs.length > 0) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: ListView(
+                    children: [
+                      GridView.builder(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: lateralPadding,
                         ),
+                        shrinkWrap: true,
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 250,
+                          mainAxisExtent: 250,
+                        ),
+                        itemCount: this.store.gifs.length,
+                        itemBuilder: (context, index) {
+                          return Card(
+                            child: Container(
+                              width: 260,
+                              height: 240,
+                              padding: EdgeInsets.all(30),
+                              child: Image.network(this.store.gifs[index]),
+                            ),
+                          );
+                        },
                       ),
-                    ),
-                  ],
-                )),
+                      WidgetLoadMore(
+                        onTap: () => this.store.searchGifs(
+                              this.store.wordSearched,
+                            ),
+                        lateralPadding: lateralPadding,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          }
+
+          return WidgetSearchNotFound();
+        },
       ),
     );
   }

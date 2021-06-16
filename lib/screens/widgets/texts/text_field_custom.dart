@@ -15,6 +15,7 @@ class TextFieldCustom extends StatelessWidget {
   final TextInputType? keyboardType;
   final int maxLines;
   final FloatingLabelBehavior floatingLabelBehavior;
+  final double? textSize;
 
   final String? errorText;
 
@@ -32,6 +33,7 @@ class TextFieldCustom extends StatelessWidget {
     this.floatingLabelBehavior = FloatingLabelBehavior.always,
     this.prefixIcon,
     this.autofocus = false,
+    this.textSize
   });
 
   OutlineInputBorder customBorder(Color borderColor) {
@@ -54,6 +56,7 @@ class TextFieldCustom extends StatelessWidget {
       style: TextStyle(
         fontFamily: fontFamily,
         color: greyTwo,
+        fontSize: textSize
       ),
       decoration: InputDecoration(
         enabledBorder: customBorder(grey),

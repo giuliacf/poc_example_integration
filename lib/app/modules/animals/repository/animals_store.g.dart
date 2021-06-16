@@ -76,6 +76,17 @@ mixin _$AnimalsStore on _AnimalsStore, Store {
   }
 
   @override
+  void searchAnimal(String word) {
+    final _$actionInfo = _$_AnimalsStoreActionController.startAction(
+        name: '_AnimalsStore.searchAnimal');
+    try {
+      return super.searchAnimal(word);
+    } finally {
+      _$_AnimalsStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 animals: ${animals},

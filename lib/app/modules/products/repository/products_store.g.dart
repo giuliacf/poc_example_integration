@@ -217,6 +217,17 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
   }
 
   @override
+  void searchProduct(String word) {
+    final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
+        name: 'ProductsStoreBase.searchProduct');
+    try {
+      return super.searchProduct(word);
+    } finally {
+      _$ProductsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 saveLoading: ${saveLoading},

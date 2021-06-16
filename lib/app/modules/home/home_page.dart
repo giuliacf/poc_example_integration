@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
+import 'package:poc_example_integration/app/modules/animals/repository/animals_store.dart';
 import 'package:poc_example_integration/app/modules/animals/screens/animals_page.dart';
+import 'package:poc_example_integration/app/modules/app_bar/repository/app_bar_store.dart';
+import 'package:poc_example_integration/app/modules/app_bar/screens/app_bar_page.dart';
+import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
 import 'package:poc_example_integration/app/modules/products/screens/products_page.dart';
+import 'package:poc_example_integration/app/modules/search_gifs/repository/search_gifs_store.dart';
 import 'package:poc_example_integration/app/modules/search_gifs/screens/search_gifs_page.dart';
-import 'package:poc_example_integration/iupp_icons.dart';
+import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
@@ -17,42 +22,12 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final authDatasource = Modular.get<AuthDatasource>();
-
+class _HomePageState extends ModularState<HomePage, AppBarStore> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Observer(builder: (_) => Scaffold(
       backgroundColor: greyOffWhite,
-      appBar: AppBar(
-        toolbarHeight: 100,
-        centerTitle: true,
-        title: Align(
-          alignment: Alignment.center,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 1200),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset(
-                  'assets/images/logo.png',
-                  height: 58,
-                  width: 89,
-                ),
-                IconButton(
-                  tooltip: Strings.logout,
-                  icon: Icon(
-                    IuppIcons.icone_solidos_S_sair,
-                    color: aqua,
-                    size: 24,
-                  ),
-                  onPressed: () async => await authDatasource.logout(),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      appBar: AppBarPage(currentPage: this.store.pageSelected,),
       body: DefaultTabController(
         length: 3,
         child: Column(
@@ -70,6 +45,7 @@ class _HomePageState extends State<HomePage> {
               child: Material(
                 color: white,
                 child: TabBar(
+                  onTap: (index) => this.store.changeSelectedIndex(index),
                   labelStyle: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w800,
@@ -100,6 +76,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-    );
+    ),);
   }
 }

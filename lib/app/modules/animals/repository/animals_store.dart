@@ -35,25 +35,41 @@ abstract class _AnimalsStore with Store {
         ),
       );
 
-      if (response.statusCode == 200) {
-        var jsonList = jsonDecode(response.body);
-        var genreIdsFromJson = jsonList;
-
-        for (var i in genreIdsFromJson) {
-          animals.add(
-            Animal(
-                name: i['breeds'][0]['name'],
-                photo: i['url'],
-                lifeTime: i['breeds'][0]['life_span']),
-          );
-        }
-      } else {
-        throw Exception('Failed to load album');
+      switch (response.statusCode) {
+        case 200:
+          var jsonList = jsonDecode(response.body);
+          print('URL ${Urls.animalsApiUrl(isDogApi ? 'dog' : 'cat')}');
+          for (var i in jsonList) {
+            if(i != null)
+              animals.add(
+                Animal(
+                  name: i['breeds'][0]['name'],
+                  photo: i['url'],
+                  lifeTime: i['breeds'][0]['life_span'],
+                ),
+              );
+          }
+          break;
+        default:
+          break;
       }
     } catch (e) {
-      print('CATCHHH $e');
+      print('URL ${Urls.animalsApiUrl(isDogApi ? 'dog' : 'cat')}');
+      print('CATCHHHH $e');
+      throw Exception('Failed to load album');
     }
 
+    isLoading = false;
+  }
+
+  @action
+  void searchAnimal(String word) {
+    isLoading = true;
+    animals.removeWhere(
+      (element) => !element.name.toLowerCase().contains(
+            word.toLowerCase(),
+          ),
+    );
     isLoading = false;
   }
 }

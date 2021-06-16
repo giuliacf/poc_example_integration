@@ -152,4 +152,15 @@ abstract class ProductsStoreBase with Store {
       );
     }
   }
+
+  @action
+  void searchProduct(String word) {
+    setSaveLoading(true);
+    products.removeWhere(
+          (element) => !element.name.toLowerCase().contains(
+        word.toLowerCase(),
+      ),
+    );
+    setSaveLoading(false);
+  }
 }

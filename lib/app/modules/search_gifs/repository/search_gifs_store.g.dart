@@ -24,18 +24,18 @@ mixin _$SearchGifsStore on _SearchGifsStore, Store {
     });
   }
 
-  final _$searchedWordAtom = Atom(name: '_SearchGifsStore.searchedWord');
+  final _$wordSearchedAtom = Atom(name: '_SearchGifsStore.wordSearched');
 
   @override
-  String get searchedWord {
-    _$searchedWordAtom.reportRead();
-    return super.searchedWord;
+  String get wordSearched {
+    _$wordSearchedAtom.reportRead();
+    return super.wordSearched;
   }
 
   @override
-  set searchedWord(String value) {
-    _$searchedWordAtom.reportWrite(value, super.searchedWord, () {
-      super.searchedWord = value;
+  set wordSearched(String value) {
+    _$wordSearchedAtom.reportWrite(value, super.wordSearched, () {
+      super.wordSearched = value;
     });
   }
 
@@ -57,15 +57,15 @@ mixin _$SearchGifsStore on _SearchGifsStore, Store {
   final _$searchGifsAsyncAction = AsyncAction('_SearchGifsStore.searchGifs');
 
   @override
-  Future<void> searchGifs() {
-    return _$searchGifsAsyncAction.run(() => super.searchGifs());
+  Future<dynamic> searchGifs(String word) {
+    return _$searchGifsAsyncAction.run(() => super.searchGifs(word));
   }
 
   @override
   String toString() {
     return '''
 gifs: ${gifs},
-searchedWord: ${searchedWord},
+wordSearched: ${wordSearched},
 isLoading: ${isLoading}
     ''';
   }
