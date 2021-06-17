@@ -16,6 +16,9 @@ abstract class _SearchGifsStore with Store {
   bool isLoading = false;
 
   @observable
+  bool isLoadingMore = false;
+
+  @observable
   String? searchText;
 
   @action
@@ -26,7 +29,9 @@ abstract class _SearchGifsStore with Store {
     searchText = text;
     gifs = ObservableList<String>.of([]);
 
+    isLoading = true;
     await _getGifsFromApi(Urls.tenorApiUrl(text));
+    isLoading = false;
   }
 
   @action
@@ -36,11 +41,12 @@ abstract class _SearchGifsStore with Store {
       position: gifs.length + 1,
     );
 
+    isLoadingMore = true;
     await _getGifsFromApi(url);
+    isLoadingMore = false;
   }
 
   Future<void> _getGifsFromApi(String url) async {
-    isLoading = true;
     try {
       final response = await http.get(Uri.parse(url));
 
@@ -57,8 +63,6 @@ abstract class _SearchGifsStore with Store {
     } catch (e) {
       print(e);
       throw Exception(e);
-    } finally {
-      isLoading = false;
     }
   }
 }

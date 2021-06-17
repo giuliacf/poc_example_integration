@@ -79,8 +79,9 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
                         },
                       ),
                       WidgetLoadMore(
-                        onTap: () => store.getApiData(),
+                        onTap: store.loadMoreAnimals,
                         lateralPadding: lateralPadding,
+                        isLoading: store.isLoadingMore,
                       ),
                     ],
                   ),

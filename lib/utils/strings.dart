@@ -13,6 +13,7 @@ class Strings {
   static const String close = 'Fechar';
   static const String warning = 'Atenção';
   static const String loadingMore = 'Carregar mais';
+  static const String loading = 'Carregando...';
   static const String searchNotFound =
       'oops! Não encontramos nenhum resultados para sua busca.';
 

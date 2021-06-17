@@ -64,6 +64,7 @@ class _SearchGifsPageState extends ModularState<SearchGifsPage, SearchGifsStore>
                       WidgetLoadMore(
                         onTap: store.loadMoreGifs,
                         lateralPadding: lateralPadding,
+                        isLoading: store.isLoadingMore,
                       ),
                     ],
                   ),

@@ -62,6 +62,21 @@ mixin _$AnimalsStore on _AnimalsStore, Store {
     });
   }
 
+  final _$isLoadingMoreAtom = Atom(name: '_AnimalsStore.isLoadingMore');
+
+  @override
+  bool get isLoadingMore {
+    _$isLoadingMoreAtom.reportRead();
+    return super.isLoadingMore;
+  }
+
+  @override
+  set isLoadingMore(bool value) {
+    _$isLoadingMoreAtom.reportWrite(value, super.isLoadingMore, () {
+      super.isLoadingMore = value;
+    });
+  }
+
   final _$searchTextAtom = Atom(name: '_AnimalsStore.searchText');
 
   @override
@@ -138,6 +153,7 @@ mixin _$AnimalsStore on _AnimalsStore, Store {
 animals: ${animals},
 isDogApi: ${isDogApi},
 isLoading: ${isLoading},
+isLoadingMore: ${isLoadingMore},
 searchText: ${searchText},
 apiPage: ${apiPage},
 animalsFiltered: ${animalsFiltered}

@@ -39,6 +39,21 @@ mixin _$SearchGifsStore on _SearchGifsStore, Store {
     });
   }
 
+  final _$isLoadingMoreAtom = Atom(name: '_SearchGifsStore.isLoadingMore');
+
+  @override
+  bool get isLoadingMore {
+    _$isLoadingMoreAtom.reportRead();
+    return super.isLoadingMore;
+  }
+
+  @override
+  set isLoadingMore(bool value) {
+    _$isLoadingMoreAtom.reportWrite(value, super.isLoadingMore, () {
+      super.isLoadingMore = value;
+    });
+  }
+
   final _$searchTextAtom = Atom(name: '_SearchGifsStore.searchText');
 
   @override
@@ -88,6 +103,7 @@ mixin _$SearchGifsStore on _SearchGifsStore, Store {
     return '''
 gifs: ${gifs},
 isLoading: ${isLoading},
+isLoadingMore: ${isLoadingMore},
 searchText: ${searchText}
     ''';
   }

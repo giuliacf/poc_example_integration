@@ -20,6 +20,9 @@ abstract class _AnimalsStore with Store {
   bool isLoading = false;
 
   @observable
+  bool isLoadingMore = false;
+
+  @observable
   String? searchText;
 
   @observable
@@ -46,27 +49,28 @@ abstract class _AnimalsStore with Store {
     apiPage = 0;
     animals = ObservableList<Animal>.of([]);
 
+    isLoading = true;
     await _getGifsFromApi();
+    isLoading = false;
   }
 
   @action
   Future<void> loadMoreAnimals() async {
     apiPage++;
+
+    isLoadingMore = true;
     await _getGifsFromApi();
+    isLoadingMore = false;
   }
 
   Future<void> _getGifsFromApi() async {
-    isLoading = true;
-
     try {
-      final response = await http.get(
-        Uri.parse(
-          Urls.animalsApiUrl(
-            typeAnimal: isDogApi ? 'dog' : 'cat',
-            page: apiPage,
-          ),
+      final response = await http.get(Uri.parse(
+        Urls.animalsApiUrl(
+          typeAnimal: isDogApi ? 'dog' : 'cat',
+          page: apiPage,
         ),
-      );
+      ));
 
       if (response.statusCode == 200) {
         final jsonList = jsonDecode(response.body);
@@ -87,8 +91,6 @@ abstract class _AnimalsStore with Store {
     } catch (e) {
       print(e);
       throw Exception('Unable to get the ${isDogApi ? 'dogs' : 'cats'}');
-    } finally {
-      isLoading = false;
     }
   }
 }
