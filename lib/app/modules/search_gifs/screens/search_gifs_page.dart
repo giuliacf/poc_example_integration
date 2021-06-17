@@ -8,10 +8,6 @@ import 'package:poc_example_integration/screens/widgets/widget_search_not_found.
 import 'package:poc_example_integration/utils/colors.dart';
 
 class SearchGifsPage extends StatefulWidget {
-  final String title;
-
-  const SearchGifsPage({Key? key, this.title = "SearchGifs"}) : super(key: key);
-
   @override
   _SearchGifsPageState createState() => _SearchGifsPageState();
 }
@@ -20,7 +16,7 @@ class _SearchGifsPageState extends ModularState<SearchGifsPage, SearchGifsStore>
   @override
   void initState() {
     super.initState();
-    this.store.searchGifs('nazare');
+    store.searchGifs('nazare');
   }
 
   @override
@@ -32,12 +28,12 @@ class _SearchGifsPageState extends ModularState<SearchGifsPage, SearchGifsStore>
       backgroundColor: greyOffWhite,
       body: Observer(
         builder: (context) {
-          if (this.store.isLoading) {
+          if (store.isLoading) {
             return Center(
               child: CircularProgressIndicator(color: aqua),
             );
           }
-          if (this.store.gifs.length > 0) {
+          if (store.gifs.length > 0) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -53,20 +49,20 @@ class _SearchGifsPageState extends ModularState<SearchGifsPage, SearchGifsStore>
                           maxCrossAxisExtent: 250,
                           mainAxisExtent: 250,
                         ),
-                        itemCount: this.store.gifs.length,
+                        itemCount: store.gifs.length,
                         itemBuilder: (context, index) {
                           return Card(
                             child: Container(
                               width: 260,
                               height: 240,
                               padding: EdgeInsets.all(30),
-                              child: Image.network(this.store.gifs[index]),
+                              child: Image.network(store.gifs[index]),
                             ),
                           );
                         },
                       ),
                       WidgetLoadMore(
-                        onTap: this.store.loadMoreGifs,
+                        onTap: store.loadMoreGifs,
                         lateralPadding: lateralPadding,
                       ),
                     ],

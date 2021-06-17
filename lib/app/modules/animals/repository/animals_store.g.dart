@@ -9,6 +9,14 @@ part of 'animals_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AnimalsStore on _AnimalsStore, Store {
+  Computed<List<Animal>>? _$animalsFilteredComputed;
+
+  @override
+  List<Animal> get animalsFiltered => (_$animalsFilteredComputed ??=
+          Computed<List<Animal>>(() => super.animalsFiltered,
+              name: '_AnimalsStore.animalsFiltered'))
+      .value;
+
   final _$animalsAtom = Atom(name: '_AnimalsStore.animals');
 
   @override
@@ -54,6 +62,36 @@ mixin _$AnimalsStore on _AnimalsStore, Store {
     });
   }
 
+  final _$searchTextAtom = Atom(name: '_AnimalsStore.searchText');
+
+  @override
+  String? get searchText {
+    _$searchTextAtom.reportRead();
+    return super.searchText;
+  }
+
+  @override
+  set searchText(String? value) {
+    _$searchTextAtom.reportWrite(value, super.searchText, () {
+      super.searchText = value;
+    });
+  }
+
+  final _$apiPageAtom = Atom(name: '_AnimalsStore.apiPage');
+
+  @override
+  int get apiPage {
+    _$apiPageAtom.reportRead();
+    return super.apiPage;
+  }
+
+  @override
+  set apiPage(int value) {
+    _$apiPageAtom.reportWrite(value, super.apiPage, () {
+      super.apiPage = value;
+    });
+  }
+
   final _$getApiDataAsyncAction = AsyncAction('_AnimalsStore.getApiData');
 
   @override
@@ -61,11 +99,30 @@ mixin _$AnimalsStore on _AnimalsStore, Store {
     return _$getApiDataAsyncAction.run(() => super.getApiData());
   }
 
+  final _$loadMoreAnimalsAsyncAction =
+      AsyncAction('_AnimalsStore.loadMoreAnimals');
+
+  @override
+  Future<void> loadMoreAnimals() {
+    return _$loadMoreAnimalsAsyncAction.run(() => super.loadMoreAnimals());
+  }
+
   final _$_AnimalsStoreActionController =
       ActionController(name: '_AnimalsStore');
 
   @override
-  dynamic changeApi(bool val) {
+  dynamic setSearchText(String? value) {
+    final _$actionInfo = _$_AnimalsStoreActionController.startAction(
+        name: '_AnimalsStore.setSearchText');
+    try {
+      return super.setSearchText(value);
+    } finally {
+      _$_AnimalsStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeApi(bool val) {
     final _$actionInfo = _$_AnimalsStoreActionController.startAction(
         name: '_AnimalsStore.changeApi');
     try {
@@ -76,22 +133,14 @@ mixin _$AnimalsStore on _AnimalsStore, Store {
   }
 
   @override
-  void searchAnimal(String word) {
-    final _$actionInfo = _$_AnimalsStoreActionController.startAction(
-        name: '_AnimalsStore.searchAnimal');
-    try {
-      return super.searchAnimal(word);
-    } finally {
-      _$_AnimalsStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 animals: ${animals},
 isDogApi: ${isDogApi},
-isLoading: ${isLoading}
+isLoading: ${isLoading},
+searchText: ${searchText},
+apiPage: ${apiPage},
+animalsFiltered: ${animalsFiltered}
     ''';
   }
 }

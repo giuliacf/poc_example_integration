@@ -52,6 +52,7 @@ class TextFieldCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textAlignVertical: TextAlignVertical.center,
       cursorColor: greyTwo,
       obscureText: obscure,
       autofocus: autofocus,
@@ -77,6 +78,8 @@ class TextFieldCustom extends StatelessWidget {
         errorText: errorText,
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
+        fillColor: red,
+        focusColor: red,
       ),
       inputFormatters: inputFormatters,
       keyboardType: keyboardType,

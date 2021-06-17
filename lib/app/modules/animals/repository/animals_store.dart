@@ -19,57 +19,76 @@ abstract class _AnimalsStore with Store {
   @observable
   bool isLoading = false;
 
+  @observable
+  String? searchText;
+
+  @observable
+  int apiPage = 0;
+
+  @computed
+  List<Animal> get animalsFiltered => searchText == null
+      ? animals.toList()
+      : animals
+          .where((p) => p.name.toLowerCase().contains(searchText!.toLowerCase()))
+          .toList();
+
   @action
-  changeApi(bool val) {
+  setSearchText(String? value) => searchText = value;
+
+  @action
+  void changeApi(bool val) {
     animals.clear();
     isDogApi = val;
   }
 
   @action
   Future<void> getApiData() async {
-    isLoading = true;
-    try {
-      final response = await http.get(
-        Uri.parse(
-          Urls.animalsApiUrl(isDogApi ? 'dog' : 'cat'),
-        ),
-      );
+    apiPage = 0;
+    animals = ObservableList<Animal>.of([]);
 
-      switch (response.statusCode) {
-        case 200:
-          var jsonList = jsonDecode(response.body);
-          print('URL ${Urls.animalsApiUrl(isDogApi ? 'dog' : 'cat')}');
-          for (var i in jsonList) {
-            if(i != null)
-              animals.add(
-                Animal(
-                  name: i['breeds'][0]['name'],
-                  photo: i['url'],
-                  lifeTime: i['breeds'][0]['life_span'],
-                ),
-              );
-          }
-          break;
-        default:
-          break;
-      }
-    } catch (e) {
-      print('URL ${Urls.animalsApiUrl(isDogApi ? 'dog' : 'cat')}');
-      print('CATCHHHH $e');
-      throw Exception('Failed to load album');
-    }
-
-    isLoading = false;
+    await _getGifsFromApi();
   }
 
   @action
-  void searchAnimal(String word) {
+  Future<void> loadMoreAnimals() async {
+    apiPage++;
+    await _getGifsFromApi();
+  }
+
+  Future<void> _getGifsFromApi() async {
     isLoading = true;
-    animals.removeWhere(
-      (element) => !element.name.toLowerCase().contains(
-            word.toLowerCase(),
+
+    try {
+      final response = await http.get(
+        Uri.parse(
+          Urls.animalsApiUrl(
+            typeAnimal: isDogApi ? 'dog' : 'cat',
+            page: apiPage,
           ),
-    );
-    isLoading = false;
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        final jsonList = jsonDecode(response.body);
+        for (final i in jsonList) {
+          if (i != null) {
+            animals.add(
+              Animal(
+                name: i['breeds'][0]['name'],
+                photo: i['url'],
+                lifeTime: i['breeds'][0]['life_span'],
+              ),
+            );
+          }
+        }
+      } else {
+        throw Exception();
+      }
+    } catch (e) {
+      print(e);
+      throw Exception('Unable to get the ${isDogApi ? 'dogs' : 'cats'}');
+    } finally {
+      isLoading = false;
+    }
   }
 }

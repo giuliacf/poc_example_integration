@@ -6,7 +6,7 @@ import 'package:poc_example_integration/app/modules/products/repository/products
 import 'package:poc_example_integration/app/modules/search_gifs/repository/search_gifs_store.dart';
 import '../../../graphql_client.dart';
 
-import 'home_page.dart';
+import 'screens/home_page.dart';
 
 class HomeModule extends Module {
   @override

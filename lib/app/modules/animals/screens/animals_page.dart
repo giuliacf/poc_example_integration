@@ -19,7 +19,7 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
   @override
   void initState() {
     super.initState();
-    this.store.getApiData();
+    store.getApiData();
   }
 
   @override
@@ -31,12 +31,12 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
       backgroundColor: greyOffWhite,
       body: Observer(
         builder: (context) {
-          if (this.store.isLoading) {
+          if (store.isLoading) {
             return Center(
               child: CircularProgressIndicator(color: aqua),
             );
           }
-          if (this.store.animals.length > 0) {
+          if (store.animalsFiltered.length > 0) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -48,10 +48,10 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
                     0,
                   ),
                   child: CustomSwitcher(
-                    openOrClosed: this.store.isDogApi,
+                    openOrClosed: store.isDogApi,
                     onChanged: (val) async {
-                      this.store.changeApi(val);
-                      this.store.getApiData();
+                      store.changeApi(val);
+                      store.getApiData();
                     },
                     stringOpened: Strings.dogs,
                     widgetOpened: Image.asset('assets/images/dog_toggle.png', width: 24),
@@ -71,15 +71,15 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
                           maxCrossAxisExtent: 250,
                           mainAxisExtent: 250,
                         ),
-                        itemCount: this.store.animals.length,
+                        itemCount: store.animalsFiltered.length,
                         itemBuilder: (context, index) {
                           return AnimalCard(
-                            animal: this.store.animals[index],
+                            animal: store.animalsFiltered[index],
                           );
                         },
                       ),
                       WidgetLoadMore(
-                        onTap: () => this.store.getApiData(),
+                        onTap: () => store.getApiData(),
                         lateralPadding: lateralPadding,
                       ),
                     ],

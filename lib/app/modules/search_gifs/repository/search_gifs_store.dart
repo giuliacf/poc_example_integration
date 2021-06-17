@@ -23,42 +23,26 @@ abstract class _SearchGifsStore with Store {
 
   @action
   Future<void> searchGifs(String text) async {
-    isLoading = true;
     searchText = text;
-
     gifs = ObservableList<String>.of([]);
-    try {
-      final response = await http.get(
-        Uri.parse(Urls.tenorApiUrl(text)),
-      );
 
-      if (response.statusCode == 200) {
-        final jsonList = jsonDecode(response.body);
-        final genreIdsFromJson = jsonList['results'];
-
-        for (var i in genreIdsFromJson) {
-          gifs.add(i['media'][0]['gif']['url']);
-        }
-      } else {
-        throw Exception('Failed to load album');
-      }
-    } catch (e) {
-      throw Exception('Failed to load album');
-    } finally {
-      isLoading = false;
-    }
+    await _getGifsFromApi(Urls.tenorApiUrl(text));
   }
 
   @action
   Future<void> loadMoreGifs() async {
+    final url = Urls.tenorApiUrl(
+      searchText ?? '',
+      position: gifs.length + 1,
+    );
+
+    await _getGifsFromApi(url);
+  }
+
+  Future<void> _getGifsFromApi(String url) async {
     isLoading = true;
     try {
-      final response = await http.get(
-        Uri.parse(Urls.tenorApiUrl(
-          searchText ?? '',
-          position: gifs.length + 1,
-        )),
-      );
+      final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
         final jsonList = jsonDecode(response.body);
@@ -68,10 +52,11 @@ abstract class _SearchGifsStore with Store {
           gifs.add(i['media'][0]['gif']['url']);
         }
       } else {
-        throw Exception('Failed to load album');
+        throw Exception();
       }
     } catch (e) {
-      throw Exception('Failed to load album');
+      print(e);
+      throw Exception(e);
     } finally {
       isLoading = false;
     }

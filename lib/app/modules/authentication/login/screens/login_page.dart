@@ -64,6 +64,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
           SizedBox(height: 20),
           Observer(
             builder: (_) => TextFieldCustom(
+              autofocus: true,
               text: Strings.email,
               placeholder: Strings.emailPlaceholder,
               errorText: this.store.email.isEmpty || this.store.isEmailValid

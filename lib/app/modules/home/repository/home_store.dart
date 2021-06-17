@@ -32,6 +32,8 @@ abstract class _HomeStore with Store {
   @action
   void changeSelectedIndex(int index) {
     currentIndex = index;
+    searchText = null;
+    searchTextController.clear();
   }
 
   @action
@@ -45,7 +47,7 @@ abstract class _HomeStore with Store {
           _gifsStore.searchGifs(searchText!);
           break;
         case 2:
-          _animalsStore.searchAnimal(searchText!);
+          _animalsStore.setSearchText(searchText!);
       }
     }
   }
@@ -57,13 +59,13 @@ abstract class _HomeStore with Store {
 
     switch (currentIndex) {
       case 0:
-        _productsStore.setSearchText('');
+        _productsStore.setSearchText(null);
         break;
       case 1:
         _gifsStore.searchGifs('nazare');
         break;
       case 2:
-        _animalsStore.getApiData();
+        _animalsStore.setSearchText(null);
         break;
     }
   }
