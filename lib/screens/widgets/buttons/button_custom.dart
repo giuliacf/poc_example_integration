@@ -49,7 +49,6 @@ class ButtonCustom extends StatelessWidget {
           color: !isDisabled ? Colors.transparent : grey,
         ),
         shape: RoundedRectangleBorder(
-          // side: BorderSide(color: aqua, width: 1),
           borderRadius: BorderRadius.all(
             Radius.circular(50),
           ),

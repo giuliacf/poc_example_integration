@@ -8,9 +8,9 @@ class WidgetSearchNotFound extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 540,
         height: 80,
         padding: EdgeInsets.symmetric(horizontal: 18),
+        margin: EdgeInsets.all(18),
         decoration: BoxDecoration(
           color: white,
           border: Border.all(color: grey),
@@ -26,15 +26,20 @@ class WidgetSearchNotFound extends StatelessWidget {
           ],
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset('assets/images/sad_face.png', width: 30),
-            TextCustom(
-              text: Strings.searchNotFound,
-              textColor: bluePool,
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
+            SizedBox(width: 18),
+            Flexible(
+              child: TextCustom(
+                text: Strings.searchNotFound,
+                textColor: bluePool,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+                textAlign: TextAlign.center,
+              ),
             )
           ],
         ),

@@ -39,6 +39,12 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  Future<void> _onSubmitForm() async {
+    if (!_store.isDisabled) {
+      await _store.registerWithUserAndEmail(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScreenWithBackground(
@@ -51,6 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 TextFieldCustom(
                   text: Strings.email,
                   onChanged: _store.setEmail,
+                  onFieldSubmitted: (value) => _onSubmitForm(),
                   errorText: _store.email.isEmpty || _store.isEmailValid
                       ? null
                       : Strings.invalidEmail,
@@ -65,6 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   text: Strings.password,
                   obscure: !_showPassword,
                   onChanged: _store.setPassword,
+                  onFieldSubmitted: (value) => _onSubmitForm(),
                   errorText: _store.password.isEmpty || _store.isPasswordValid
                       ? null
                       : Strings.validatePassword,
@@ -83,9 +91,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   placeholder: Strings.password,
                   obscure: !_showConfirmPassword,
                   onChanged: _store.setConfirmPassword,
-                  errorText: _store.confirmPassword.isEmpty || _store.passwordsMatch
-                      ? null
-                      : Strings.equalPasswords,
+                  onFieldSubmitted: (value) => _onSubmitForm(),
+                  errorText:
+                      _store.confirmPassword.isEmpty || _store.passwordsMatch
+                          ? null
+                          : Strings.equalPasswords,
                   suffixIcon: getIcon(
                     show: _showConfirmPassword,
                     onPressed: () {

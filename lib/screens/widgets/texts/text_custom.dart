@@ -10,6 +10,7 @@ class TextCustom extends StatelessWidget {
   final TextOverflow? textOverflow;
   final int? maxLines;
   final Key? key;
+  final TextAlign? textAlign;
 
   TextCustom({
     required this.text,
@@ -19,6 +20,7 @@ class TextCustom extends StatelessWidget {
     this.fontFamily,
     this.textDecoration = TextDecoration.none,
     this.textOverflow,
+    this.textAlign,
     this.maxLines,
     this.key,
   });
@@ -30,6 +32,8 @@ class TextCustom extends StatelessWidget {
       key: key,
       overflow: textOverflow,
       maxLines: maxLines,
+      softWrap: true,
+      textAlign: textAlign,
       style: TextStyle(
         color: textColor,
         fontSize: fontSize,

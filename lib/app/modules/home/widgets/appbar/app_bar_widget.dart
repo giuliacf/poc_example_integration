@@ -6,6 +6,8 @@ import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/widgets/inputs/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import 'package:responsive_framework/responsive_value.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final HomeStore homeStore;
@@ -54,47 +56,52 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Container _buildSearchBar() {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(8)),
-        color: white,
-      ),
-      child: Observer(
-        builder: (_) => TextFieldCustom(
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          text: homeStore.searchText,
-          controller: homeStore.searchTextController,
-          textSize: 16,
-          placeholder: Strings.whatAreYouLookingFor,
-          onChanged: homeStore.changeSearch,
-          prefixIcon: Tooltip(
-            message: Strings.search,
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () => homeStore.search(),
-                child: Icon(
-                  IuppIcons.icone_contorno_B_busca_outline,
-                  color: bluePool,
-                ),
-              ),
-            ),
-          ),
-          suffixIcon: AnimatedOpacity(
-            opacity: homeStore.showCleanSearch ? 1.0 : 0.0,
-            duration: Duration(milliseconds: 500),
-            child: Tooltip(
-              message: Strings.clearSearch,
+  Widget _buildSearchBar() {
+    return ResponsiveVisibility(
+      visible: false,
+      visibleWhen: [Condition.largerThan(name: MOBILE)],
+      child: Container(
+        alignment: Alignment.bottomCenter,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          color: white,
+        ),
+        child: Observer(
+          builder: (_) => TextFieldCustom(
+            floatingLabelBehavior: FloatingLabelBehavior.never,
+            text: homeStore.searchText,
+            controller: homeStore.searchTextController,
+            textSize: 16,
+            placeholder: Strings.whatAreYouLookingFor,
+            onChanged: homeStore.changeSearch,
+            prefixIcon: Tooltip(
+              message: Strings.search,
               child: MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
-                  onTap: () {
-                    homeStore.clearSearch();
-                  },
+                  onTap: () => homeStore.search(),
                   child: Icon(
-                    IuppIcons.icone_contorno_F_fechar,
+                    IuppIcons.icone_contorno_B_busca_outline,
                     color: bluePool,
+                  ),
+                ),
+              ),
+            ),
+            suffixIcon: AnimatedOpacity(
+              opacity: homeStore.showCleanSearch ? 1.0 : 0.0,
+              duration: Duration(milliseconds: 500),
+              child: Tooltip(
+                message: Strings.clearSearch,
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {
+                      homeStore.clearSearch();
+                    },
+                    child: Icon(
+                      IuppIcons.icone_contorno_F_fechar,
+                      color: bluePool,
+                    ),
                   ),
                 ),
               ),

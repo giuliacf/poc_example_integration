@@ -17,6 +17,7 @@ class TextFieldCustom extends StatelessWidget {
   final int maxLines;
   final FloatingLabelBehavior floatingLabelBehavior;
   final double? textSize;
+  final Function(String)? onFieldSubmitted;
 
   final String? errorText;
 
@@ -36,6 +37,7 @@ class TextFieldCustom extends StatelessWidget {
     this.autofocus = false,
     this.textSize,
     this.controller,
+    this.onFieldSubmitted,
   });
 
   OutlineInputBorder customBorder(Color borderColor) {
@@ -78,13 +80,12 @@ class TextFieldCustom extends StatelessWidget {
         errorText: errorText,
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
-        fillColor: red,
-        focusColor: red,
       ),
       inputFormatters: inputFormatters,
       keyboardType: keyboardType,
       maxLines: maxLines,
       onChanged: onChanged,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }

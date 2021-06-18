@@ -16,6 +16,13 @@ import 'package:poc_example_integration/utils/strings.dart';
 class AddProductDialog extends StatelessWidget {
   final ProductsStore _store = Modular.get<ProductsStore>();
 
+  Future<void> _onSubmitForm() async {
+    if (!_store.isDisabled) {
+      _store.addProduct();
+      Modular.to.pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -59,6 +66,7 @@ class AddProductDialog extends StatelessWidget {
                                 text: Strings.productName,
                                 onChanged: _store.setProductName,
                                 autofocus: true,
+                                onFieldSubmitted: (value) => _onSubmitForm(),
                               ),
                               SizedBox(height: 32),
                               TextFieldCustom(
@@ -66,15 +74,12 @@ class AddProductDialog extends StatelessWidget {
                                 onChanged: _store.setProductDescription,
                                 maxLines: 5,
                                 keyboardType: TextInputType.multiline,
+                                onFieldSubmitted: (value) => _onSubmitForm(),
                               ),
                               SizedBox(height: 32),
                               TextFieldCustom(
                                 text: Strings.productPrice,
-                                suffixIcon: Icon(
-                                  IuppIcons.icone_contorno_C_consorcio_outline,
-                                  size: 24,
-                                  color: greyTwo,
-                                ),
+                                onFieldSubmitted: (value) => _onSubmitForm(),
                                 keyboardType: TextInputType.number,
                                 inputFormatters: [
                                   CurrencyTextInputFormatter(
@@ -82,6 +87,11 @@ class AddProductDialog extends StatelessWidget {
                                     symbol: '',
                                   )
                                 ],
+                                suffixIcon: Icon(
+                                  IuppIcons.icone_contorno_C_consorcio_outline,
+                                  size: 24,
+                                  color: greyTwo,
+                                ),
                                 onChanged: (value) {
                                   _store.setProductPrice(_store.setProductPrice(
                                     value.isEmpty

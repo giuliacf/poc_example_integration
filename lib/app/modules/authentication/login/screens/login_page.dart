@@ -17,6 +17,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends ModularState<LoginPage, LoginStore> {
+  Future<void> _onSubmitForm() async {
+    if (store.canLogin) {
+      store.login(
+        store.email,
+        store.password,
+        context,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScreenWithBackground(
@@ -27,7 +37,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
           MouseRegion(
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
-                onTap: () async => await this.store.registerWithGoogle(context),
+                onTap: () async => await store.registerWithGoogle(context),
                 child: Container(
                   padding: EdgeInsets.all(10),
                   height: 46,
@@ -62,70 +72,78 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
             ),
           ),
           SizedBox(height: 20),
-          Observer(
-            builder: (_) => TextFieldCustom(
-              autofocus: true,
-              text: Strings.email,
-              placeholder: Strings.emailPlaceholder,
-              errorText: this.store.email.isEmpty || this.store.isEmailValid
-                  ? null
-                  : Strings.invalidEmail,
-              suffixIcon: Icon(
-                IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
-                color: greyTwo,
-              ),
-              onChanged: this.store.setEmail,
-            ),
-          ),
-          SizedBox(height: 21),
-          Observer(
-            builder: (_) => TextFieldCustom(
-              text: Strings.password,
-              placeholder: Strings.passwordPlaceholder,
-              obscure: !this.store.showPassword,
-              suffixIcon: InkWell(
-                onTap: this.store.changeShowPassword,
-                child: Icon(
-                  this.store.showPassword
-                      ? IuppIcons.icone_contorno_O_olho_ativo_outline
-                      : IuppIcons.icone_contorno_O_olho_inativo_outline,
-                  color: greyTwo,
-                ),
-              ),
-              onChanged: this.store.setPassword,
-            ),
-          ),
-          SizedBox(height: 16),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                child: TextCustom(
-                  text: Strings.forgotPassword,
-                  fontSize: 16,
-                  textColor: blueTwo,
-                  fontWeight: FontWeight.bold,
-                ),
-                onTap: () => Modular.to.navigate('/forget-password'),
-              ),
-            ),
-          ),
-          SizedBox(height: 48),
-          SizedBox(
-            width: 500,
-            height: 48,
-            child: Observer(
-              builder: (_) => StandardButton(
-                text: Strings.buttonLogin,
-                onPressed: () => this.store.login(
-                      this.store.email,
-                      this.store.password,
-                      context,
+          Form(
+            child: Column(
+              children: [
+                Observer(
+                  builder: (_) => TextFieldCustom(
+                    autofocus: true,
+                    text: Strings.email,
+                    placeholder: Strings.emailPlaceholder,
+                    onFieldSubmitted: (value) => _onSubmitForm(),
+                    errorText: store.email.isEmpty || store.isEmailValid
+                        ? null
+                        : Strings.invalidEmail,
+                    suffixIcon: Icon(
+                      IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
+                      color: greyTwo,
                     ),
-                isDisabled: !this.store.canLogin,
-                isLoading: this.store.loading,
-              ),
+                    onChanged: store.setEmail,
+                  ),
+                ),
+                SizedBox(height: 21),
+                Observer(
+                  builder: (_) => TextFieldCustom(
+                    text: Strings.password,
+                    placeholder: Strings.passwordPlaceholder,
+                    obscure: !store.showPassword,
+                    onFieldSubmitted: (value) => _onSubmitForm(),
+                    suffixIcon: InkWell(
+                      onTap: store.changeShowPassword,
+                      child: Icon(
+                        store.showPassword
+                            ? IuppIcons.icone_contorno_O_olho_ativo_outline
+                            : IuppIcons.icone_contorno_O_olho_inativo_outline,
+                        color: greyTwo,
+                      ),
+                    ),
+                    onChanged: store.setPassword,
+                  ),
+                ),
+                SizedBox(height: 16),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      child: TextCustom(
+                        text: Strings.forgotPassword,
+                        fontSize: 16,
+                        textColor: blueTwo,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      onTap: () => Modular.to.navigate('/forget-password'),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 48),
+                SizedBox(
+                  width: 500,
+                  height: 48,
+                  child: Observer(
+                    builder: (_) => StandardButton(
+                      text: Strings.buttonLogin,
+                      onPressed: () => store.login(
+                        store.email,
+                        store.password,
+                        context,
+                      ),
+                      isDisabled: !store.canLogin,
+                      isLoading: store.loading,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
