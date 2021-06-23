@@ -41,62 +41,63 @@ class _ProductsPageState extends State<ProductsPage> {
               child: CircularProgressIndicator(color: aqua),
             );
           }
-          if (_store.productsFiltered.length > 0) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: EdgeInsets.fromLTRB(
-                    lateralPadding,
-                    40,
-                    lateralPadding,
-                    0,
-                  ),
-                  child: CustomSwitcher(
-                    openOrClosed: _store.showPoints,
-                    onChanged: _store.setShowPoints,
-                    stringOpened: Strings.points,
-                    widgetOpened: Icon(
-                      IuppIcons.icone_solidos_P_programa_de_pontos,
-                      color: white,
-                      size: 24,
-                    ),
-                    stringClosed: Strings.card,
-                    widgetClosed: Icon(
-                      IuppIcons.icone_contorno_C_cartoes_outline,
-                      color: white,
-                      size: 24,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Scrollbar(
-                    isAlwaysShown: true,
-                    showTrackOnHover: true,
-                    child: GridView.builder(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: lateralPadding,
-                      ),
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 280,
-                        mainAxisExtent: 338,
-                      ),
-                      itemCount: _store.productsFiltered.length,
-                      itemBuilder: (context, index) {
-                        final Product _product = _store.productsFiltered[index];
-                        return ProductCard(
-                          product: _product,
-                          usePoints: _store.showPoints,
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            );
-          }
 
-          return WidgetSearchNotFound();
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                  lateralPadding,
+                  40,
+                  lateralPadding,
+                  0,
+                ),
+                child: CustomSwitcher(
+                  openOrClosed: _store.showPoints,
+                  onChanged: _store.setShowPoints,
+                  stringOpened: Strings.points,
+                  widgetOpened: Icon(
+                    IuppIcons.icone_solidos_P_programa_de_pontos,
+                    color: white,
+                    size: 24,
+                  ),
+                  stringClosed: Strings.card,
+                  widgetClosed: Icon(
+                    IuppIcons.icone_contorno_C_cartoes_outline,
+                    color: white,
+                    size: 24,
+                  ),
+                ),
+              ),
+              _store.productsFiltered.length > 0
+                  ? Expanded(
+                      child: Scrollbar(
+                        isAlwaysShown: true,
+                        showTrackOnHover: true,
+                        child: GridView.builder(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: lateralPadding,
+                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 280,
+                            mainAxisExtent: 338,
+                          ),
+                          itemCount: _store.productsFiltered.length,
+                          itemBuilder: (context, index) {
+                            final Product _product =
+                                _store.productsFiltered[index];
+                            return ProductCard(
+                              product: _product,
+                              usePoints: _store.showPoints,
+                            );
+                          },
+                        ),
+                      ),
+                    )
+                  : WidgetSearchNotFound(),
+            ],
+          );
         },
       ),
       floatingActionButton: FloatingActionButton(

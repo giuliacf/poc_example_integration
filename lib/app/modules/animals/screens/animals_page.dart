@@ -31,37 +31,44 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
 
     return Scaffold(
       backgroundColor: greyOffWhite,
-      body: Observer(
-        builder: (context) {
-          if (store.isLoading) {
-            return Center(
-              child: CircularProgressIndicator(color: aqua),
-            );
-          }
-          if (store.animalsFiltered.length > 0) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: EdgeInsets.fromLTRB(
-                    lateralPadding,
-                    40,
-                    lateralPadding,
-                    0,
-                  ),
-                  child: CustomSwitcher(
-                    openOrClosed: store.isDogApi,
-                    onChanged: (val) async {
-                      store.changeApi(val);
-                      store.getApiData();
-                    },
-                    stringOpened: Strings.dogs,
-                    widgetOpened: Image.asset('assets/images/dog_toggle.png', width: 24),
-                    stringClosed: Strings.cats,
-                    widgetClosed: Image.asset('assets/images/cat_toggle.png', width: 24),
-                  ),
-                ),
-                Expanded(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.fromLTRB(
+              lateralPadding,
+              40,
+              lateralPadding,
+              0,
+            ),
+            child: Observer(
+              builder: (_) {
+                return CustomSwitcher(
+                  openOrClosed: store.isDogApi,
+                  onChanged: (val) async {
+                    store.changeApi(val);
+                    store.getApiData();
+                  },
+                  stringOpened: Strings.dogs,
+                  widgetOpened:
+                      Image.asset('assets/images/dog_toggle.png', width: 24),
+                  stringClosed: Strings.cats,
+                  widgetClosed:
+                      Image.asset('assets/images/cat_toggle.png', width: 24),
+                );
+              },
+            ),
+          ),
+          Observer(
+            builder: (context) {
+              if (store.isLoading) {
+                return Center(
+                  child: CircularProgressIndicator(color: aqua),
+                );
+              }
+
+              if (store.animalsFiltered.length > 0) {
+                return Expanded(
                   child: ListView(
                     children: [
                       GridView.builder(
@@ -87,12 +94,12 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
                       ),
                     ],
                   ),
-                ),
-              ],
-            );
-          }
-          return WidgetSearchNotFound();
-        },
+                );
+              }
+              return WidgetSearchNotFound();
+            },
+          ),
+        ],
       ),
     );
   }
