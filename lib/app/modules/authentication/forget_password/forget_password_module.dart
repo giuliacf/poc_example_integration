@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+
 import 'package:poc_example_integration/app/modules/authentication/forget_password/repository/forget_password_store.dart';
 import 'package:poc_example_integration/app/modules/authentication/forget_password/screens/forget_password_page.dart';
 

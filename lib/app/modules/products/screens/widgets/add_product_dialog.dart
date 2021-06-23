@@ -1,14 +1,14 @@
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:iupp_components/iupp_components.dart';
+
 import 'package:poc_example_integration/app/app_widget.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
-import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/widgets/dialogs/warning_dialog.dart';
-import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
-import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
 import 'package:poc_example_integration/screens/widgets/inputs/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
@@ -35,9 +35,9 @@ class AddProductDialog extends StatelessWidget {
                 width: 376,
                 padding: EdgeInsets.only(
                   top: 54,
-                  left: 32,
-                  right: 32,
-                  bottom: 32,
+                  left: 24,
+                  right: 24,
+                  bottom: 24,
                 ),
                 decoration: BoxDecoration(
                   color: white,
@@ -61,14 +61,14 @@ class AddProductDialog extends StatelessWidget {
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              SizedBox(height: 32),
+                              SizedBox(height: 18),
                               TextFieldCustom(
                                 text: Strings.productName,
                                 onChanged: _store.setProductName,
                                 autofocus: true,
                                 onFieldSubmitted: (value) => _onSubmitForm(),
                               ),
-                              SizedBox(height: 32),
+                              SizedBox(height: 16),
                               TextFieldCustom(
                                 text: Strings.productDescription,
                                 onChanged: _store.setProductDescription,
@@ -76,7 +76,7 @@ class AddProductDialog extends StatelessWidget {
                                 keyboardType: TextInputType.multiline,
                                 onFieldSubmitted: (value) => _onSubmitForm(),
                               ),
-                              SizedBox(height: 32),
+                              SizedBox(height: 16),
                               TextFieldCustom(
                                 text: Strings.productPrice,
                                 onFieldSubmitted: (value) => _onSubmitForm(),
@@ -93,27 +93,32 @@ class AddProductDialog extends StatelessWidget {
                                   color: greyTwo,
                                 ),
                                 onChanged: (value) {
-                                  _store.setProductPrice(_store.setProductPrice(
-                                    value.isEmpty
-                                        ? null
-                                        : currencyFormatter.parse(value).toDouble(),
-                                  ));
+                                  _store.setProductPrice(
+                                    _store.setProductPrice(
+                                      value.isEmpty
+                                          ? null
+                                          : currencyFormatter
+                                              .parse(value)
+                                              .toDouble(),
+                                    ),
+                                  );
                                 },
                               ),
-                              SizedBox(height: 48),
+                              SizedBox(height: 24),
                               SizedBox(
                                 height: 48,
                                 width: MediaQuery.of(context).size.width,
-                                child: StandardButton(
+                                child: IuppElevatedButton(
                                   text: Strings.add,
-                                  isDisabled: _store.isDisabled,
+                                  onPressed: !_store.isDisabled
+                                      ? () {
+                                          _store.addProduct();
+                                          Modular.to.pop();
+                                        }
+                                      : null,
                                   isLoading: _store.saveLoading,
-                                  onPressed: () {
-                                    _store.addProduct();
-                                    Modular.to.pop();
-                                  },
                                 ),
-                              )
+                              ),
                             ],
                           );
                         },
@@ -128,10 +133,9 @@ class AddProductDialog extends StatelessWidget {
                   top: 32,
                   bottom: 32,
                 ),
-                child: TextCustom(
-                  text: Strings.addProduct,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w800,
+                child: Text(
+                  Strings.addProduct,
+                  style: IuppTextStyles.titleTitle5Bold,
                 ),
               ),
               Positioned(

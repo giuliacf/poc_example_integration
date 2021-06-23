@@ -1,16 +1,16 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:iupp_components/iupp_components.dart';
+
 import 'package:poc_example_integration/app/modules/animals/models/animal.dart';
-import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
 class AnimalCard extends StatelessWidget {
   final Animal animal;
 
-  AnimalCard({
-    required this.animal,
-  });
+  AnimalCard({required this.animal});
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +38,18 @@ class AnimalCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: 12),
-            TextCustom(
-              text: animal.name,
-              fontWeight: FontWeight.w700,
-              fontSize: 18,
+            Text(
+              animal.name,
+              style: IuppTextStyles.textLargeXBold,
+              maxLines: 2,
             ),
             SizedBox(height: 12),
-            TextCustom(
-              text: Strings.lifeTime +
+            Text(
+              Strings.lifeTime +
                   animal.lifeTime.replaceAll('years', '') +
                   Strings.years,
-              fontWeight: FontWeight.w400,
-              fontSize: 16,
-              textOverflow: TextOverflow.ellipsis,
+              style: IuppTextStyles.textMediumRegular,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),

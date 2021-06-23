@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
 import 'package:poc_example_integration/app/modules/animals/repository/animals_store.dart';
 import 'package:poc_example_integration/app/modules/animals/screens/widgets/animal_card.dart';
 import 'package:poc_example_integration/screens/widgets/switchers/custom_switcher.dart';

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:iupp_components/components/atoms/atoms.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import 'package:responsive_framework/responsive_value.dart';
+
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'package:poc_example_integration/app/modules/home/repository/home_store.dart';
-import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/widgets/inputs/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
-import 'package:responsive_framework/responsive_framework.dart';
-import 'package:responsive_framework/responsive_value.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final HomeStore homeStore;
@@ -23,6 +25,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       toolbarHeight: 100,
       centerTitle: true,
+      backgroundColor: lead,
       title: Align(
         alignment: Alignment.center,
         child: ConstrainedBox(
@@ -36,9 +39,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                 width: 89,
               ),
               SizedBox(width: 100),
-              Expanded(
-                child: _buildSearchBar(),
-              ),
+              Expanded(child: _buildSearchBar()),
               SizedBox(width: 100),
               IconButton(
                 tooltip: Strings.logout,
@@ -71,7 +72,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             floatingLabelBehavior: FloatingLabelBehavior.never,
             text: homeStore.searchText,
             controller: homeStore.searchTextController,
-            textSize: 16,
             placeholder: Strings.whatAreYouLookingFor,
             onChanged: homeStore.changeSearch,
             prefixIcon: Tooltip(

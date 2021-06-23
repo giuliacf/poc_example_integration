@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'package:poc_example_integration/app/modules/authentication/register/repository/register_store.dart';
 import 'package:poc_example_integration/app/modules/authentication/register/screens/register_page.dart';

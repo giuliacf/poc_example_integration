@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
+
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'package:poc_example_integration/app/modules/animals/screens/animals_page.dart';
 import 'package:poc_example_integration/app/modules/home/repository/home_store.dart';

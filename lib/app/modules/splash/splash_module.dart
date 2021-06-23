@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 
+import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'splash_page.dart';
 
 class SplashModule extends Module {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:poc_example_integration/screens/widgets/buttons/ghost_button.dart';
-import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
-import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
+
+import 'package:iupp_components/iupp_components.dart';
+
+import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
 class WarningDialog extends StatelessWidget {
@@ -19,33 +20,32 @@ class WarningDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: TextCustom(
-        text: '${Strings.warning}!',
-        fontWeight: FontWeight.w700,
+      title: Text(
+        '${Strings.warning}!',
+        style: IuppTextStyles.textSmallBold,
       ),
-      content: TextCustom(text: content),
+      content: Text(
+        content,
+        style: IuppTextStyles.textSmallRegular,
+      ),
       actions: [
         SizedBox(
-          height: 35,
-          width: 100,
-          child: StandardButton(
+          child: IuppElevatedButton(
             text: Strings.confirm,
-            fontSize: 14,
-            isDisabled: false,
             isLoading: false,
+            textStyle: IuppTextStyles.textSmallBold.copyWith(
+              color: aqua,
+            ),
             onPressed: () {
               onSave();
             },
           ),
         ),
         SizedBox(
-          height: 35,
-          width: 90,
-          child: GhostButton(
+          width: 100,
+          child: IuppTextButton(
             text: Strings.cancel,
-            fontSize: 14,
-            isDisabled: false,
-            isLoading: false,
+            textStyle: IuppTextStyles.textSmallBold,
             onPressed: () {
               onCancel();
             },

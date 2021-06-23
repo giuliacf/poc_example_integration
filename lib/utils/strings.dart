@@ -15,7 +15,7 @@ class Strings {
   static const String loadingMore = 'Carregar mais';
   static const String loading = 'Carregando...';
   static const String searchNotFound =
-      'oops! Não encontramos nenhum resultados para sua busca.';
+      'oops! Não encontramos nenhum resultado para sua busca.';
 
   // #endregion
 
@@ -28,7 +28,7 @@ class Strings {
   static const String labelDontHaveAccount = 'ainda não possui conta? ';
   static const String labelRegisterNow = 'cadastre-se aqui';
   static const String loginWithGoogle = 'Fazer login com o Google';
-  static const String emailPlaceholder = 'seu e-mail cadastrado';
+  static const String emailPlaceholder = 'Ex: jorge@exemplo.com';
   static const String passwordPlaceholder = 'digite sua senha';
 
   // #endregion
@@ -43,7 +43,8 @@ class Strings {
   static const String productPrice = 'Preço do produto';
   static const String cancelEditWarning =
       'Você deseja realmente sair? \nOs dados não serão salvos.';
-  static const String confirmDeleting = 'Você realmente deseja apagar este produto?';
+  static const String confirmDeleting =
+      'Você realmente deseja apagar este produto?';
   static const String removingProductSuccess = 'Produto removido com sucesso';
   static const String removingProductError = 'Erro ao remover um produto';
   static const String usePointsAndMoney = 'ou utilize pontos + dinheiro';
@@ -59,14 +60,19 @@ class Strings {
   static const String registerSubTitle =
       'Faça um rápido cadastro e comece sua experiência iupp!';
   static const String invalidEmail = 'Email inválido';
-  static const String validatePassword = 'A senha precisa ter mais que 6 caracteres';
+  static const String validatePassword =
+      'A senha precisa ter mais que 6 caracteres';
   static const String confirmPassword = 'confirmação de senha';
   static const String equalPasswords = 'As senhas devem ser iguais';
-  static const String accountAlreadyExists = 'Já existe uma conta com este email.';
+  static const String accountAlreadyExists =
+      'Já existe uma conta com este email.';
   static const String loginProblem = 'Senha ou usuário incorretos!';
   static const String register = 'cadastrar';
   static const String agreeWithTerms =
-      'Concordo que meus dados sejam utilizados pelo iupp e aceito os Termos de Condições e a Política de Privacidade.';
+      'Concordo que meus dados sejam utilizados pelo iupp e aceito os ';
+  static const String termsAndConditions = 'Termos de Condições';
+  static const String privacyPolicy = 'Politica de privacidade';
+  static const String and = 'e';
 
 // #endregion
 

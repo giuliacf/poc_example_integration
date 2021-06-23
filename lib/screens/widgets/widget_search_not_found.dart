@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
+
+import 'package:iupp_components/iupp_components.dart';
+
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
@@ -33,12 +35,12 @@ class WidgetSearchNotFound extends StatelessWidget {
             Image.asset('assets/images/sad_face.png', width: 30),
             SizedBox(width: 18),
             Flexible(
-              child: TextCustom(
-                text: Strings.searchNotFound,
-                textColor: bluePool,
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
+              child: Text(
+                Strings.searchNotFound,
                 textAlign: TextAlign.center,
+                style: IuppTextStyles.textLargeBold.copyWith(
+                  color: bluePool,
+                ),
               ),
             )
           ],

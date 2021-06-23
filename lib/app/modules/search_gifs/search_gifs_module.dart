@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'repository/search_gifs_store.dart';
 
+import 'repository/search_gifs_store.dart';
 import 'screens/search_gifs_page.dart';
 
 class SearchGifsModule extends Module {

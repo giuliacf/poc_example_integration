@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:iupp_components/components/atoms/atoms.dart';
+import 'package:iupp_components/iupp_components.dart';
+
 import 'package:poc_example_integration/app/app_widget.dart';
 import 'package:poc_example_integration/app/modules/products/models/product_model.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
 import 'package:poc_example_integration/screens/widgets/dialogs/warning_dialog.dart';
-import 'package:poc_example_integration/iupp_icons.dart';
-import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
@@ -41,22 +43,21 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 16),
-                TextCustom(
-                  text: product.name,
+                Text(
+                  product.name,
+                  style: IuppTextStyles.textLargeBold,
                   maxLines: 1,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
                 ),
                 SizedBox(height: 8),
                 SizedBox(
                   height: 40,
-                  child: TextCustom(
-                    text: product.description ?? '',
-                    textColor: greyTwo,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
+                  child: Text(
+                    product.description ?? '',
+                    style: IuppTextStyles.textMediumBold.copyWith(
+                      color: greyTwo,
+                    ),
                     maxLines: 2,
-                    textOverflow: TextOverflow.ellipsis,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 SizedBox(height: 16),
@@ -70,19 +71,18 @@ class ProductCard extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              TextCustom(
-                                text: '${numberFormatter.format(product.points)} pts',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                textOverflow: TextOverflow.ellipsis,
+                              Text(
+                                '${numberFormatter.format(product.points)} pts',
+                                overflow: TextOverflow.ellipsis,
+                                style: IuppTextStyles.textMediumBold,
                               ),
-                              TextCustom(
-                                text: Strings.usePointsAndMoney,
-                                textColor: green,
-                                fontSize: 16,
+                              Text(
+                                Strings.usePointsAndMoney,
+                                style: IuppTextStyles.textMediumBold.copyWith(
+                                  color: green,
+                                ),
                                 maxLines: 2,
-                                fontWeight: FontWeight.w700,
-                                textOverflow: TextOverflow.ellipsis,
+                                overflow: TextOverflow.ellipsis,
                               )
                             ],
                           ),
@@ -94,20 +94,19 @@ class ProductCard extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              TextCustom(
-                                text: 'R\$ ${currencyFormatter.format(product.price)}',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                textOverflow: TextOverflow.ellipsis,
+                              Text(
+                                'R\$ ${currencyFormatter.format(product.price)}',
+                                style: IuppTextStyles.textMediumBold,
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              TextCustom(
-                                text: Strings.winSomePoints(
+                              Text(
+                                Strings.winSomePoints(
                                     numberFormatter.format(product.points)),
-                                textColor: green,
-                                fontSize: 16,
+                                style: IuppTextStyles.textMediumBold.copyWith(
+                                  color: green,
+                                ),
                                 maxLines: 2,
-                                fontWeight: FontWeight.w700,
-                                textOverflow: TextOverflow.ellipsis,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ],
                           ),

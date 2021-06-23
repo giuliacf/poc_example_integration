@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poc_example_integration/utils/theme.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 import 'package:intl/intl.dart';
+import 'package:iupp_components/iupp_components.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 final numberFormatter = NumberFormat.currency(symbol: "", decimalDigits: 0);
 final currencyFormatter = NumberFormat.currency(symbol: "", decimalDigits: 2);
@@ -12,7 +13,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: theme,
+      theme: iuppTheme,
       title: 'POC Example Integration',
       builder: (context, widget) => ResponsiveWrapper.builder(
         ClampingScrollWrapper.builder(context, widget!),

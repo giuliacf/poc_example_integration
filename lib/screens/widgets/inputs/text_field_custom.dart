@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:iupp_components/iupp_components.dart';
+
 import 'package:poc_example_integration/utils/colors.dart';
 
 class TextFieldCustom extends StatelessWidget {
@@ -7,7 +10,6 @@ class TextFieldCustom extends StatelessWidget {
   final String? placeholder;
   final bool obscure;
   final bool autofocus;
-  final String? fontFamily;
   final TextEditingController? controller;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
@@ -16,7 +18,6 @@ class TextFieldCustom extends StatelessWidget {
   final TextInputType? keyboardType;
   final int maxLines;
   final FloatingLabelBehavior floatingLabelBehavior;
-  final double? textSize;
   final Function(String)? onFieldSubmitted;
 
   final String? errorText;
@@ -26,7 +27,6 @@ class TextFieldCustom extends StatelessWidget {
     this.obscure = false,
     this.suffixIcon,
     this.onChanged,
-    this.fontFamily,
     this.inputFormatters,
     this.errorText,
     this.keyboardType,
@@ -35,7 +35,6 @@ class TextFieldCustom extends StatelessWidget {
     this.floatingLabelBehavior = FloatingLabelBehavior.always,
     this.prefixIcon,
     this.autofocus = false,
-    this.textSize,
     this.controller,
     this.onFieldSubmitted,
   });
@@ -59,10 +58,8 @@ class TextFieldCustom extends StatelessWidget {
       obscureText: obscure,
       autofocus: autofocus,
       controller: controller,
-      style: TextStyle(
-        fontFamily: fontFamily,
+      style: IuppTextStyles.textSmallRegular.copyWith(
         color: greyTwo,
-        fontSize: textSize,
       ),
       decoration: InputDecoration(
         enabledBorder: customBorder(grey),
@@ -72,7 +69,7 @@ class TextFieldCustom extends StatelessWidget {
         labelText: text,
         labelStyle: TextStyle(
           color: greyFour,
-          fontSize: 14,
+          fontSize: 18,
         ),
         floatingLabelBehavior: floatingLabelBehavior,
         hintStyle: TextStyle(color: greyTwo),

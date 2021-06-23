@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:iupp_components/components/atoms/atoms.dart';
+import 'package:iupp_components/iupp_components.dart';
+
 import 'package:poc_example_integration/app/modules/authentication/register/repository/register_store.dart';
-import 'package:poc_example_integration/iupp_icons.dart';
-import 'package:poc_example_integration/screens/widgets/buttons/standard_button.dart';
 import 'package:poc_example_integration/screens/screen_with_background.dart';
-import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
 import 'package:poc_example_integration/screens/widgets/inputs/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
@@ -67,7 +68,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     size: 24,
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 16),
                 TextFieldCustom(
                   text: Strings.password,
                   obscure: !_showPassword,
@@ -85,7 +86,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 16),
                 TextFieldCustom(
                   text: Strings.confirmPassword,
                   placeholder: Strings.password,
@@ -105,32 +106,52 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 16),
                 CheckboxListTile(
                   contentPadding: EdgeInsets.zero,
+                  activeColor: aqua,
                   value: _store.agreeWithTerms,
-                  title: TextCustom(
-                    text: Strings.agreeWithTerms,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    maxLines: 2,
+                  title: Text.rich(
+                    TextSpan(
+                      text: Strings.agreeWithTerms,
+                      style: IuppTextStyles.bodyBody3Regular,
+                      children: [
+                        TextSpan(
+                          text: Strings.termsAndConditions,
+                          style: IuppTextStyles.bodyBody3Regular.copyWith(
+                            color: blue,
+                          ),
+                        ),
+                        TextSpan(
+                          text: ' ${Strings.and} ',
+                          style: IuppTextStyles.bodyBody3Regular,
+                        ),
+                        TextSpan(
+                          text: Strings.privacyPolicy,
+                          style: IuppTextStyles.bodyBody3Regular.copyWith(
+                            color: blue,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   controlAffinity: ListTileControlAffinity.leading,
                   onChanged: (bool? value) {
                     _store.setAgreeWithTerms(value ?? false);
                   },
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: 32),
                 SizedBox(
+                  width: 500,
                   height: 48,
-                  width: 529,
-                  child: StandardButton(
-                    text: Strings.register,
-                    isDisabled: _store.isDisabled,
+                  child: IuppElevatedButton(
                     isLoading: _store.isLoading,
-                    onPressed: () async {
-                      await _store.registerWithUserAndEmail(context);
-                    },
+                    text: Strings.register,
+                    onPressed: !_store.isDisabled
+                        ? () async {
+                            await _store.registerWithUserAndEmail(context);
+                          }
+                        : null,
                   ),
                 ),
               ],

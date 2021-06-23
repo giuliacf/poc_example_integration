@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:iupp_components/components/atoms/atoms.dart';
+
 import 'package:poc_example_integration/app/modules/products/models/product_model.dart';
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
 import 'package:poc_example_integration/app/modules/products/screens/widgets/add_product_dialog.dart';
 import 'package:poc_example_integration/app/modules/products/screens/widgets/product_card.dart';
-import 'package:poc_example_integration/iupp_icons.dart';
 import 'package:poc_example_integration/screens/widgets/switchers/custom_switcher.dart';
 import 'package:poc_example_integration/screens/widgets/widget_search_not_found.dart';
 import 'package:poc_example_integration/utils/colors.dart';

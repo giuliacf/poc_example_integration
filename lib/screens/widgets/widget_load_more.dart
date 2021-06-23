@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
+
+import 'package:iupp_components/iupp_components.dart';
+
 import 'package:poc_example_integration/utils/colors.dart';
 import 'package:poc_example_integration/utils/strings.dart';
 
@@ -22,16 +24,18 @@ class WidgetLoadMore extends StatelessWidget {
         Container(
           padding: EdgeInsets.symmetric(horizontal: lateralPadding),
           child: MouseRegion(
-            cursor: isLoading ? SystemMouseCursors.forbidden : SystemMouseCursors.click,
+            cursor: isLoading
+                ? SystemMouseCursors.forbidden
+                : SystemMouseCursors.click,
             child: GestureDetector(
               onTap: isLoading ? null : () => onTap(),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: TextCustom(
-                  text: isLoading ? Strings.loading : Strings.loadingMore,
-                  textColor: blue,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 16,
+                child: Text(
+                  isLoading ? Strings.loading : Strings.loadingMore,
+                  style: IuppTextStyles.bodyBody1XBold.copyWith(
+                    color: blue,
+                  ),
                 ),
               ),
             ),

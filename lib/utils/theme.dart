@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:poc_example_integration/utils/colors.dart';
 
 final ThemeData theme = ThemeData(

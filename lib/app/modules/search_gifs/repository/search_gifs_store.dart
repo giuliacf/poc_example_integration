@@ -1,8 +1,9 @@
 import 'dart:convert';
 
-import 'package:mobx/mobx.dart';
-import 'package:poc_example_integration/utils/urls.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobx/mobx.dart';
+
+import 'package:poc_example_integration/utils/urls.dart';
 
 part 'search_gifs_store.g.dart';
 

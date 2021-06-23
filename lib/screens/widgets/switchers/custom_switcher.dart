@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:poc_example_integration/screens/widgets/texts/text_custom.dart';
-import 'package:poc_example_integration/utils/colors.dart';
 
+import 'package:iupp_components/iupp_components.dart';
+
+import 'package:poc_example_integration/utils/colors.dart';
 import 'base_switcher.dart';
 
 class CustomSwitcher extends StatelessWidget {
@@ -42,11 +43,11 @@ class CustomSwitcher extends StatelessWidget {
           children: [
             widgetOpened,
             SizedBox(width: 8),
-            TextCustom(
-              text: stringOpened,
-              textColor: white,
-              fontSize: 14,
-              fontWeight: FontWeight.w800,
+            Text(
+              stringOpened,
+              style: IuppTextStyles.textSmallBold.copyWith(
+                color: white,
+              ),
             )
           ],
         ),
@@ -54,11 +55,11 @@ class CustomSwitcher extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextCustom(
-              text: stringClosed,
-              textColor: white,
-              fontSize: 14,
-              fontWeight: FontWeight.w800,
+            Text(
+              stringClosed,
+              style: IuppTextStyles.textSmallBold.copyWith(
+                color: white,
+              ),
             ),
             SizedBox(width: 8),
             widgetClosed

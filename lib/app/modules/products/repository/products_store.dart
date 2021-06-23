@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gql/language.dart';
 import 'package:graphql_flutter/graphql_flutter.dart' as GraphQL;
 import 'package:mobx/mobx.dart';
+
+import 'package:poc_example_integration/app/modules/products/models/product_model.dart';
 import 'package:poc_example_integration/app/modules/products/repository/mutations/delete_product_mutation.dart';
 import 'package:poc_example_integration/app/modules/products/repository/mutations/save_products_mutation.dart';
 import 'package:poc_example_integration/app/modules/products/repository/queries/list_products_query.dart';
 import 'package:poc_example_integration/graphql_client.dart';
-import 'package:poc_example_integration/app/modules/products/models/product_model.dart';
-import 'package:gql/language.dart';
 import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
 import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_success.dart';
 import 'package:poc_example_integration/utils/strings.dart';

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:poc_example_integration/iupp_icons.dart';
+
+import 'package:iupp_components/components/atoms/atoms.dart';
+
 import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar.dart';
 import 'package:poc_example_integration/utils/colors.dart';
 
