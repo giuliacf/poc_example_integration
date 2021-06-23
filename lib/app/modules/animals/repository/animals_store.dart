@@ -33,7 +33,8 @@ abstract class _AnimalsStore with Store {
   List<Animal> get animalsFiltered => searchText == null
       ? animals.toList()
       : animals
-          .where((p) => p.name.toLowerCase().contains(searchText!.toLowerCase()))
+          .where(
+              (p) => p.name.toLowerCase().contains(searchText!.toLowerCase()))
           .toList();
 
   @action
@@ -51,7 +52,7 @@ abstract class _AnimalsStore with Store {
     animals = ObservableList<Animal>.of([]);
 
     isLoading = true;
-    await _getGifsFromApi();
+    await _getAnimalsFromApi();
     isLoading = false;
   }
 
@@ -60,11 +61,11 @@ abstract class _AnimalsStore with Store {
     apiPage++;
 
     isLoadingMore = true;
-    await _getGifsFromApi();
+    await _getAnimalsFromApi();
     isLoadingMore = false;
   }
 
-  Future<void> _getGifsFromApi() async {
+  Future<void> _getAnimalsFromApi() async {
     try {
       final response = await http.get(Uri.parse(
         Urls.animalsApiUrl(
@@ -91,7 +92,7 @@ abstract class _AnimalsStore with Store {
       }
     } catch (e) {
       print(e);
-      throw Exception('Unable to get the ${isDogApi ? 'dogs' : 'cats'}');
+      // throw Exception('Unable to get the ${isDogApi ? 'dogs' : 'cats'}');
     }
   }
 }

@@ -34,8 +34,14 @@ abstract class _HomeStore with Store {
   @action
   void changeSelectedIndex(int index) {
     currentIndex = index;
-    searchText = null;
-    searchTextController.clear();
+
+    if (index == 1) {
+      searchText = 'nazare';
+      searchTextController.text = 'nazare';
+    } else {
+      searchText = null;
+      searchTextController.clear();
+    }
   }
 
   @action
@@ -65,6 +71,8 @@ abstract class _HomeStore with Store {
         break;
       case 1:
         _gifsStore.searchGifs('nazare');
+        searchText = 'nazare';
+        searchTextController.text = 'nazare';
         break;
       case 2:
         _animalsStore.setSearchText(null);

@@ -62,8 +62,10 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
           Observer(
             builder: (context) {
               if (store.isLoading) {
-                return Center(
-                  child: CircularProgressIndicator(color: aqua),
+                return Expanded(
+                  child: Center(
+                    child: CircularProgressIndicator(color: aqua),
+                  ),
                 );
               }
 
