@@ -9,7 +9,7 @@ import 'package:poc_example_integration/app/modules/products/models/product_mode
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
 import 'package:poc_example_integration/screens/widgets/dialogs/warning_dialog.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -77,7 +77,7 @@ class ProductCard extends StatelessWidget {
                                 style: IuppTextStyles.textMediumBold,
                               ),
                               Text(
-                                Strings.usePointsAndMoney,
+                                AppLocalizations.of(context)!.usePointsAndMoney,
                                 style: IuppTextStyles.textMediumBold.copyWith(
                                   color: green,
                                 ),
@@ -100,8 +100,9 @@ class ProductCard extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
-                                Strings.winSomePoints(
-                                    numberFormatter.format(product.points)),
+                                AppLocalizations.of(context)!.winSomePoints(
+                                  numberFormatter.format(product.points),
+                                ),
                                 style: IuppTextStyles.textMediumBold.copyWith(
                                   color: green,
                                 ),
@@ -117,13 +118,13 @@ class ProductCard extends StatelessWidget {
             Positioned(
               right: 0,
               child: Tooltip(
-                message: Strings.removeProduct,
+                message: AppLocalizations.of(context)!.removeProduct,
                 child: InkWell(
                   onTap: () {
                     showDialog(
                       context: context,
                       builder: (context) => WarningDialog(
-                        content: Strings.confirmDeleting,
+                        content: AppLocalizations.of(context)!.confirmDeleting,
                         onSave: () async {
                           await _store.deleteProduct(product.id, context);
                           Modular.to.pop();

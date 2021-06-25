@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iupp_components/iupp_components.dart';
 
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WidgetSearchNotFound extends StatelessWidget {
   @override
@@ -36,7 +36,7 @@ class WidgetSearchNotFound extends StatelessWidget {
             SizedBox(width: 18),
             Flexible(
               child: Text(
-                Strings.searchNotFound,
+                AppLocalizations.of(context)!.searchNotFound,
                 textAlign: TextAlign.center,
                 style: IuppTextStyles.textLargeBold.copyWith(
                   color: bluePool,

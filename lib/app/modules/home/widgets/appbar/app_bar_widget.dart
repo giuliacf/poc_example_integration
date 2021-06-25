@@ -9,7 +9,7 @@ import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'package:poc_example_integration/app/modules/home/repository/home_store.dart';
 import 'package:poc_example_integration/screens/widgets/inputs/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final HomeStore homeStore;
@@ -39,10 +39,10 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                 width: 89,
               ),
               SizedBox(width: 100),
-              Expanded(child: _buildSearchBar()),
+              Expanded(child: _buildSearchBar(context)),
               SizedBox(width: 100),
               IconButton(
-                tooltip: Strings.logout,
+                tooltip: AppLocalizations.of(context)!.logout,
                 icon: Icon(
                   IuppIcons.icone_solidos_S_sair,
                   color: aqua,
@@ -57,7 +57,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Widget _buildSearchBar() {
+  Widget _buildSearchBar(BuildContext context) {
     return ResponsiveVisibility(
       visible: false,
       visibleWhen: [Condition.largerThan(name: MOBILE)],
@@ -72,10 +72,10 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             floatingLabelBehavior: FloatingLabelBehavior.never,
             text: homeStore.searchText,
             controller: homeStore.searchTextController,
-            placeholder: Strings.whatAreYouLookingFor,
+            placeholder: AppLocalizations.of(context)!.whatAreYouLookingFor,
             onChanged: homeStore.changeSearch,
             prefixIcon: Tooltip(
-              message: Strings.search,
+              message: AppLocalizations.of(context)!.search,
               child: MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
@@ -91,7 +91,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               opacity: homeStore.showCleanSearch ? 1.0 : 0.0,
               duration: Duration(milliseconds: 500),
               child: Tooltip(
-                message: Strings.clearSearch,
+                message: AppLocalizations.of(context)!.clearSearch,
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(

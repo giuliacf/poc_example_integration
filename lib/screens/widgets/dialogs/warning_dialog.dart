@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iupp_components/iupp_components.dart';
 
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WarningDialog extends StatelessWidget {
   final String content;
@@ -21,7 +21,7 @@ class WarningDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        '${Strings.warning}!',
+        '${AppLocalizations.of(context)!.warning}!',
         style: IuppTextStyles.textSmallBold,
       ),
       content: Text(
@@ -31,7 +31,7 @@ class WarningDialog extends StatelessWidget {
       actions: [
         SizedBox(
           child: IuppElevatedButton(
-            text: Strings.confirm,
+            text: AppLocalizations.of(context)!.confirm,
             isLoading: false,
             textStyle: IuppTextStyles.textSmallBold.copyWith(
               color: aqua,
@@ -44,7 +44,7 @@ class WarningDialog extends StatelessWidget {
         SizedBox(
           width: 100,
           child: IuppTextButton(
-            text: Strings.cancel,
+            text: AppLocalizations.of(context)!.cancel,
             textStyle: IuppTextStyles.textSmallBold,
             onPressed: () {
               onCancel();

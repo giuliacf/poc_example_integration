@@ -11,7 +11,7 @@ import 'package:poc_example_integration/app/modules/products/screens/widgets/pro
 import 'package:poc_example_integration/screens/widgets/switchers/custom_switcher.dart';
 import 'package:poc_example_integration/screens/widgets/widget_search_not_found.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProductsPage extends StatefulWidget {
   @override
@@ -55,13 +55,13 @@ class _ProductsPageState extends State<ProductsPage> {
                 child: CustomSwitcher(
                   openOrClosed: _store.showPoints,
                   onChanged: _store.setShowPoints,
-                  stringOpened: Strings.points,
+                  stringOpened: AppLocalizations.of(context)!.points,
                   widgetOpened: Icon(
                     IuppIcons.icone_solidos_P_programa_de_pontos,
                     color: white,
                     size: 24,
                   ),
-                  stringClosed: Strings.card,
+                  stringClosed: AppLocalizations.of(context)!.card,
                   widgetClosed: Icon(
                     IuppIcons.icone_contorno_C_cartoes_outline,
                     color: white,
@@ -101,7 +101,7 @@ class _ProductsPageState extends State<ProductsPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        tooltip: Strings.addProduct,
+        tooltip: AppLocalizations.of(context)!.addProduct,
         backgroundColor: lead,
         onPressed: () {
           showDialog(

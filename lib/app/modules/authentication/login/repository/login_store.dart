@@ -7,7 +7,7 @@ import 'package:mobx/mobx.dart';
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
 import 'package:poc_example_integration/utils/regex.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'login_store.g.dart';
 
@@ -63,7 +63,8 @@ abstract class _LoginStore with Store {
   }
 
   @action
-  Future<void> login(String email, String password, BuildContext context) async {
+  Future<void> login(
+      String email, String password, BuildContext context) async {
     setLoading(true);
     try {
       await authDatasource.loginWithEmail(
@@ -76,7 +77,7 @@ abstract class _LoginStore with Store {
         ScaffoldMessenger.of(context).showSnackBar(
           CustomErrorSnackBar(
             context,
-            message: Strings.loginProblem,
+            message: AppLocalizations.of(context)!.loginProblem,
           ),
         );
       }

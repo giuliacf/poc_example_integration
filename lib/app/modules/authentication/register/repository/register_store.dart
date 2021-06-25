@@ -7,7 +7,7 @@ import 'package:mobx/mobx.dart';
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
 import 'package:poc_example_integration/utils/regex.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'register_store.g.dart';
 
@@ -56,7 +56,8 @@ abstract class RegisterStoreBase with Store {
   bool get passwordsMatch => password == confirmPassword;
 
   @computed
-  bool get isDisabled => !(isEmailValid && isPasswordValid && passwordsMatch && agreeWithTerms);
+  bool get isDisabled =>
+      !(isEmailValid && isPasswordValid && passwordsMatch && agreeWithTerms);
 
   @action
   Future<void> registerWithUserAndEmail(BuildContext context) async {
@@ -75,7 +76,7 @@ abstract class RegisterStoreBase with Store {
         ScaffoldMessenger.of(context).showSnackBar(
           CustomErrorSnackBar(
             context,
-            message: Strings.accountAlreadyExists,
+            message: AppLocalizations.of(context)!.accountAlreadyExists,
           ),
         );
       }

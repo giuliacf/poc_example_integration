@@ -9,7 +9,7 @@ import 'package:poc_example_integration/app/modules/home/widgets/appbar/app_bar_
 import 'package:poc_example_integration/app/modules/products/screens/products_page.dart';
 import 'package:poc_example_integration/app/modules/search_gifs/screens/search_gifs_page.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage();
@@ -58,9 +58,9 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                     color: lead,
                   ),
                   tabs: [
-                    Tab(text: Strings.products),
-                    Tab(text: Strings.gifs),
-                    Tab(text: Strings.animals)
+                    Tab(text: AppLocalizations.of(context)!.products),
+                    Tab(text: AppLocalizations.of(context)!.gifs),
+                    Tab(text: AppLocalizations.of(context)!.animals)
                   ],
                 ),
               ),

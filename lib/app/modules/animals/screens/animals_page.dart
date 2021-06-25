@@ -10,7 +10,7 @@ import 'package:poc_example_integration/screens/widgets/switchers/custom_switche
 import 'package:poc_example_integration/screens/widgets/widget_load_more.dart';
 import 'package:poc_example_integration/screens/widgets/widget_search_not_found.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AnimalsPage extends StatefulWidget {
   @override
@@ -49,10 +49,10 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
                     store.changeApi(val);
                     store.getApiData();
                   },
-                  stringOpened: Strings.dogs,
+                  stringOpened: AppLocalizations.of(context)!.dogs,
                   widgetOpened:
                       Image.asset('assets/images/dog_toggle.png', width: 24),
-                  stringClosed: Strings.cats,
+                  stringClosed: AppLocalizations.of(context)!.cats,
                   widgetClosed:
                       Image.asset('assets/images/cat_toggle.png', width: 24),
                 );

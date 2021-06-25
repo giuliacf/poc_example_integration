@@ -12,7 +12,7 @@ import 'package:poc_example_integration/app/modules/products/repository/queries/
 import 'package:poc_example_integration/graphql_client.dart';
 import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
 import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_success.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'products_store.g.dart';
 
@@ -49,7 +49,8 @@ abstract class ProductsStoreBase with Store {
   List<Product> get productsFiltered => searchText == null
       ? products.toList()
       : products
-          .where((p) => p.name.toLowerCase().contains(searchText!.toLowerCase()))
+          .where(
+              (p) => p.name.toLowerCase().contains(searchText!.toLowerCase()))
           .toList();
 
   @computed
@@ -155,14 +156,14 @@ abstract class ProductsStoreBase with Store {
       ScaffoldMessenger.of(context).showSnackBar(
         CustomSuccessSnackBar(
           context,
-          message: Strings.removingProductSuccess,
+          message: AppLocalizations.of(context)!.removingProductSuccess,
         ),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         CustomErrorSnackBar(
           context,
-          message: Strings.removingProductError,
+          message: AppLocalizations.of(context)!.removingProductError,
         ),
       );
     }

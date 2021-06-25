@@ -5,7 +5,7 @@ import 'package:mobx/mobx.dart';
 
 import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_success.dart';
 import 'package:poc_example_integration/utils/regex.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'forget_password_store.g.dart';
 
@@ -38,10 +38,9 @@ abstract class _ForgetPasswordStore with Store {
     ScaffoldMessenger.of(context).showSnackBar(
       CustomSuccessSnackBar(
         context,
-        message: Strings.emailSendSuccess,
+        message: AppLocalizations.of(context)!.emailSendSuccess,
       ),
     );
     Modular.to.navigate('/login');
   }
 }
-

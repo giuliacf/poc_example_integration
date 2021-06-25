@@ -5,7 +5,7 @@ import 'package:iupp_components/iupp_components.dart';
 
 import 'package:poc_example_integration/app/modules/animals/models/animal.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AnimalCard extends StatelessWidget {
   final Animal animal;
@@ -45,9 +45,9 @@ class AnimalCard extends StatelessWidget {
             ),
             SizedBox(height: 12),
             Text(
-              Strings.lifeTime +
+              AppLocalizations.of(context)!.lifeTime +
                   animal.lifeTime.replaceAll('years', '') +
-                  Strings.years,
+                  AppLocalizations.of(context)!.years,
               style: IuppTextStyles.textMediumRegular,
               overflow: TextOverflow.ellipsis,
             ),

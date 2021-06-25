@@ -9,7 +9,7 @@ import 'package:poc_example_integration/app/modules/authentication/register/repo
 import 'package:poc_example_integration/screens/screen_with_background.dart';
 import 'package:poc_example_integration/screens/widgets/inputs/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -28,7 +28,9 @@ class _RegisterPageState extends State<RegisterPage> {
     void Function()? onPressed,
   }) {
     return IconButton(
-      tooltip: show ? Strings.hidePassword : Strings.showPassword,
+      tooltip: show
+          ? AppLocalizations.of(context)!.hidePassword
+          : AppLocalizations.of(context)!.showPassword,
       icon: Icon(
         show
             ? IuppIcons.icone_contorno_O_olho_inativo_outline
@@ -56,12 +58,13 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               children: [
                 TextFieldCustom(
-                  text: Strings.email,
+                  text: AppLocalizations.of(context)!.email,
+                  placeholder: AppLocalizations.of(context)!.emailPlaceholder,
                   onChanged: _store.setEmail,
                   onFieldSubmitted: (value) => _onSubmitForm(),
                   errorText: _store.email.isEmpty || _store.isEmailValid
                       ? null
-                      : Strings.invalidEmail,
+                      : AppLocalizations.of(context)!.invalidEmail,
                   suffixIcon: Icon(
                     IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
                     color: greyTwo,
@@ -70,13 +73,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 SizedBox(height: 16),
                 TextFieldCustom(
-                  text: Strings.password,
+                  text: AppLocalizations.of(context)!.password,
                   obscure: !_showPassword,
                   onChanged: _store.setPassword,
                   onFieldSubmitted: (value) => _onSubmitForm(),
                   errorText: _store.password.isEmpty || _store.isPasswordValid
                       ? null
-                      : Strings.validatePassword,
+                      : AppLocalizations.of(context)!.validatePassword,
                   suffixIcon: getIcon(
                     show: _showPassword,
                     onPressed: () {
@@ -88,15 +91,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 SizedBox(height: 16),
                 TextFieldCustom(
-                  text: Strings.confirmPassword,
-                  placeholder: Strings.password,
+                  text: AppLocalizations.of(context)!.confirmPassword,
+                  placeholder: AppLocalizations.of(context)!.confirmPassword,
                   obscure: !_showConfirmPassword,
                   onChanged: _store.setConfirmPassword,
                   onFieldSubmitted: (value) => _onSubmitForm(),
                   errorText:
                       _store.confirmPassword.isEmpty || _store.passwordsMatch
                           ? null
-                          : Strings.equalPasswords,
+                          : AppLocalizations.of(context)!.equalPasswords,
                   suffixIcon: getIcon(
                     show: _showConfirmPassword,
                     onPressed: () {
@@ -113,21 +116,22 @@ class _RegisterPageState extends State<RegisterPage> {
                   value: _store.agreeWithTerms,
                   title: Text.rich(
                     TextSpan(
-                      text: Strings.agreeWithTerms,
+                      text: AppLocalizations.of(context)!.agreeWithTerms,
                       style: IuppTextStyles.bodyBody3Regular,
                       children: [
                         TextSpan(
-                          text: Strings.termsAndConditions,
+                          text:
+                              AppLocalizations.of(context)!.termsAndConditions,
                           style: IuppTextStyles.bodyBody3Regular.copyWith(
                             color: blue,
                           ),
                         ),
                         TextSpan(
-                          text: ' ${Strings.and} ',
+                          text: ' ${AppLocalizations.of(context)!.and} ',
                           style: IuppTextStyles.bodyBody3Regular,
                         ),
                         TextSpan(
-                          text: Strings.privacyPolicy,
+                          text: AppLocalizations.of(context)!.privacyPolicy,
                           style: IuppTextStyles.bodyBody3Regular.copyWith(
                             color: blue,
                           ),
@@ -146,7 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 48,
                   child: IuppElevatedButton(
                     isLoading: _store.isLoading,
-                    text: Strings.register,
+                    text: AppLocalizations.of(context)!.register,
                     onPressed: !_store.isDisabled
                         ? () async {
                             await _store.registerWithUserAndEmail(context);
@@ -159,8 +163,8 @@ class _RegisterPageState extends State<RegisterPage> {
           );
         },
       ),
-      title: Strings.registerTitle,
-      subTitle: Strings.registerSubTitle,
+      title: AppLocalizations.of(context)!.register,
+      subTitle: AppLocalizations.of(context)!.registerSubTitle,
     );
   }
 }

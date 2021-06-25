@@ -8,7 +8,7 @@ import 'package:poc_example_integration/app/modules/authentication/forget_passwo
 import 'package:poc_example_integration/screens/screen_with_background.dart';
 import 'package:poc_example_integration/screens/widgets/inputs/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
   @override
@@ -20,28 +20,28 @@ class _ForgetPasswordPageState
   @override
   Widget build(BuildContext context) {
     return ScreenWithBackground(
-      title: Strings.titleForgetPasswordPage,
-      subTitle: Strings.subTitleForgetPasswordPage,
+      title: AppLocalizations.of(context)!.titleForgetPasswordPage,
+      subTitle: AppLocalizations.of(context)!.subTitleForgetPasswordPage,
       cardContent: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Observer(
             builder: (_) => TextFieldCustom(
-              text: Strings.email,
-              placeholder: Strings.emailPlaceholder,
+              text: AppLocalizations.of(context)!.email,
+              placeholder: AppLocalizations.of(context)!.emailPlaceholder,
               suffixIcon: Icon(
                 IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
                 color: greyTwo,
               ),
               errorText: store.email.isEmpty || store.isEmailValid
                   ? null
-                  : Strings.invalidEmail,
+                  : AppLocalizations.of(context)!.invalidEmail,
               onChanged: store.setEmail,
             ),
           ),
           SizedBox(height: 16),
           Text(
-            Strings.confirmEmail,
+            AppLocalizations.of(context)!.confirmEmail,
             style: IuppTextStyles.textMediumRegular.copyWith(
               color: lead,
             ),
@@ -49,15 +49,15 @@ class _ForgetPasswordPageState
           SizedBox(height: 16),
           Observer(
             builder: (_) => TextFieldCustom(
-              text: Strings.email,
-              placeholder: Strings.emailPlaceholder,
+              text: AppLocalizations.of(context)!.email,
+              placeholder: AppLocalizations.of(context)!.emailPlaceholder,
               suffixIcon: Icon(
                 IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
                 color: greyTwo,
               ),
               errorText: store.confirmEmail.isEmpty || store.isConfirmEmailValid
                   ? null
-                  : Strings.invalidEmail,
+                  : AppLocalizations.of(context)!.invalidEmail,
               onChanged: store.setConfirmEmail,
             ),
           ),
@@ -67,7 +67,7 @@ class _ForgetPasswordPageState
             height: 48,
             child: Observer(
               builder: (_) => IuppElevatedButton(
-                text: Strings.send,
+                text: AppLocalizations.of(context)!.send,
                 onPressed:
                     store.canLogin ? () => store.sendEmail(context) : null,
               ),

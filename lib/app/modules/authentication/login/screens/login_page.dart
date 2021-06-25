@@ -9,7 +9,7 @@ import 'package:poc_example_integration/app/modules/authentication/login/reposit
 import 'package:poc_example_integration/screens/screen_with_background.dart';
 import 'package:poc_example_integration/screens/widgets/inputs/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -30,8 +30,8 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
   @override
   Widget build(BuildContext context) {
     return ScreenWithBackground(
-      title: Strings.titleLoginPage,
-      subTitle: Strings.subTitleLoginPage,
+      title: AppLocalizations.of(context)!.titleLoginPage,
+      subTitle: AppLocalizations.of(context)!.subTitleLoginPage,
       cardContent: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -60,7 +60,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                     ),
                     SizedBox(width: 10),
                     Text(
-                      Strings.loginWithGoogle,
+                      AppLocalizations.of(context)!.loginWithGoogle,
                       style: IuppTextStyles.bodyBody2Regular.copyWith(
                         color: grey,
                       ),
@@ -72,7 +72,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
           ),
           SizedBox(height: 16),
           Text(
-            Strings.loginWithEmail,
+            AppLocalizations.of(context)!.loginWithEmail,
             style: IuppTextStyles.textMediumRegular.copyWith(
               color: lead,
             ),
@@ -85,12 +85,12 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                 Observer(
                   builder: (_) => TextFieldCustom(
                     autofocus: true,
-                    text: Strings.email,
-                    placeholder: Strings.emailPlaceholder,
+                    text: AppLocalizations.of(context)!.email,
+                    placeholder: AppLocalizations.of(context)!.emailPlaceholder,
                     onFieldSubmitted: (value) => _onSubmitForm(),
                     errorText: store.email.isEmpty || store.isEmailValid
                         ? null
-                        : Strings.invalidEmail,
+                        : AppLocalizations.of(context)!.invalidEmail,
                     suffixIcon: Icon(
                       IuppIcons.icone_contorno_E_email_resposta_rapida_outline,
                       color: greyTwo,
@@ -101,8 +101,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                 SizedBox(height: 21),
                 Observer(
                   builder: (_) => TextFieldCustom(
-                    text: Strings.password,
-                    placeholder: Strings.passwordPlaceholder,
+                    text: AppLocalizations.of(context)!.password,
+                    placeholder:
+                        AppLocalizations.of(context)!.passwordPlaceholder,
                     obscure: !store.showPassword,
                     onFieldSubmitted: (value) => _onSubmitForm(),
                     suffixIcon: InkWell(
@@ -122,7 +123,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
                     child: Text(
-                      Strings.forgotPassword,
+                      AppLocalizations.of(context)!.forgotPassword,
                       style: IuppTextStyles.bodyBody3XBold.copyWith(
                         color: blue,
                       ),
@@ -137,7 +138,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                   child: Observer(
                     builder: (_) => IuppElevatedButton(
                       isLoading: store.loading,
-                      text: Strings.buttonLogin,
+                      text: AppLocalizations.of(context)!.buttonLogin,
                       onPressed: store.canLogin
                           ? () {
                               store.login(
@@ -164,7 +165,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              Strings.labelDontHaveAccount,
+              AppLocalizations.of(context)!.labelDontHaveAccount,
               style: IuppTextStyles.textMediumBold.copyWith(
                 color: white,
               ),
@@ -174,7 +175,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
               child: GestureDetector(
                 onTap: () => Modular.to.navigate('/register'),
                 child: Text(
-                  Strings.labelRegisterNow,
+                  AppLocalizations.of(context)!.labelRegisterNow,
                   style: IuppTextStyles.textMediumBold.copyWith(
                     color: aqua,
                   ),

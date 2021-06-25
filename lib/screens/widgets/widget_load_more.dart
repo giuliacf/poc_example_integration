@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iupp_components/iupp_components.dart';
 
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:poc_example_integration/utils/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WidgetLoadMore extends StatelessWidget {
   final Function onTap;
@@ -32,7 +32,9 @@ class WidgetLoadMore extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  isLoading ? Strings.loading : Strings.loadingMore,
+                  isLoading
+                      ? AppLocalizations.of(context)!.loading
+                      : AppLocalizations.of(context)!.loadingMore,
                   style: IuppTextStyles.bodyBody1XBold.copyWith(
                     color: blue,
                   ),
