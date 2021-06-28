@@ -57,7 +57,7 @@ class AuthDatasource {
       try {
         final credentials = await auth.signInWithPopup(authProvider);
         await _setUser(credentials);
-      } catch (e) {
+      } on Exception catch (e) {
         print(e);
       }
     }

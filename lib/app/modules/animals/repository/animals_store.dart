@@ -1,6 +1,11 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
+import 'package:iupp_components/iupp_components.dart';
 import 'package:mobx/mobx.dart';
 
 import 'package:poc_example_integration/app/modules/animals/models/animal.dart';
@@ -38,21 +43,31 @@ abstract class _AnimalsStore with Store {
           .toList();
 
   @action
-  setSearchText(String? value) => searchText = value;
+  dynamic setSearchText(String? value) => searchText = value;
 
   @action
-  void changeApi(bool val) {
+  void changeApi({required bool val}) {
     animals.clear();
     isDogApi = val;
   }
 
   @action
-  Future<void> getApiData() async {
+  Future<void> getApiData(BuildContext context) async {
     apiPage = 0;
     animals = ObservableList<Animal>.of([]);
 
     isLoading = true;
-    await _getAnimalsFromApi();
+    try {
+      await _getAnimalsFromApi();
+    } on Exception catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        IuppErrorSnackBar(
+          context,
+          message: AppLocalizations.of(context)!.loginProblem,
+        ),
+      );
+    }
     isLoading = false;
   }
 
@@ -68,7 +83,7 @@ abstract class _AnimalsStore with Store {
   Future<void> _getAnimalsFromApi() async {
     try {
       final response = await http.get(Uri.parse(
-        Urls.animalsApiUrl(
+        getAnimalsApiUrl(
           typeAnimal: isDogApi ? 'dog' : 'cat',
           page: apiPage,
         ),
@@ -90,9 +105,9 @@ abstract class _AnimalsStore with Store {
       } else {
         throw Exception();
       }
-    } catch (e) {
+    } on Exception catch (e) {
       print(e);
-      // throw Exception('Unable to get the ${isDogApi ? 'dogs' : 'cats'}');
+      throw Exception('Unable to get the ${isDogApi ? 'dogs' : 'cats'}');
     }
   }
 }

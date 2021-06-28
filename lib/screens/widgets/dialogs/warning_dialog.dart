@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iupp_components/iupp_components.dart';
 
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WarningDialog extends StatelessWidget {
   final String content;
-  final Function onSave;
-  final Function onCancel;
+  final Function()? onSave;
+  final Function()? onCancel;
 
   const WarningDialog({
     Key? key,
@@ -36,9 +36,7 @@ class WarningDialog extends StatelessWidget {
             textStyle: IuppTextStyles.textSmallBold.copyWith(
               color: aqua,
             ),
-            onPressed: () {
-              onSave();
-            },
+            onPressed: onSave,
           ),
         ),
         SizedBox(
@@ -46,9 +44,7 @@ class WarningDialog extends StatelessWidget {
           child: IuppTextButton(
             text: AppLocalizations.of(context)!.cancel,
             textStyle: IuppTextStyles.textSmallBold,
-            onPressed: () {
-              onCancel();
-            },
+            onPressed: onCancel,
           ),
         ),
       ],

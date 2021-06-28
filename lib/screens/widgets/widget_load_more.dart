@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iupp_components/iupp_components.dart';
 
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WidgetLoadMore extends StatelessWidget {
-  final Function onTap;
+  final Function()? onTap;
   final double lateralPadding;
   final bool isLoading;
 
@@ -28,7 +28,7 @@ class WidgetLoadMore extends StatelessWidget {
                 ? SystemMouseCursors.forbidden
                 : SystemMouseCursors.click,
             child: GestureDetector(
-              onTap: isLoading ? null : () => onTap(),
+              onTap: isLoading ? null : onTap,
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Text(

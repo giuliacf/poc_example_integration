@@ -56,7 +56,8 @@ class _BaseSwitcher extends State<BaseSwitcher> {
     super.initState();
     fixOffset = widget.open
         ? widget.width! -
-            (widget.offset ?? 2.0 / 36.0 * ((widget.height ?? widget.width! * 0.608))) *
+            (widget.offset ??
+                    2.0 / 36.0 * ((widget.height ?? widget.width! * 0.608))) *
                 2.0 -
             (widget.height ?? widget.width! * 0.608) * (32.52 / 36.0)
         : 0;
@@ -67,7 +68,8 @@ class _BaseSwitcher extends State<BaseSwitcher> {
     super.didUpdateWidget(oldWidget);
     fixOffset = widget.open
         ? widget.width! -
-            (widget.offset ?? 2.0 / 36.0 * ((widget.height ?? widget.width! * 0.608))) *
+            (widget.offset ??
+                    2.0 / 36.0 * ((widget.height ?? widget.width! * 0.608))) *
                 2.0 -
             (widget.height ?? widget.width! * 0.608) * (32.52 / 36.0)
         : 0;
@@ -150,7 +152,8 @@ class _BaseSwitcher extends State<BaseSwitcher> {
     return GestureDetector(
       onTap: widget.enable! ? _handleOnTap : null,
       onHorizontalDragEnd: widget.enable! ? _handleOnHorizontalDragEnd : null,
-      onHorizontalDragUpdate: widget.enable! ? _handleOnHorizontalDragUpdate : null,
+      onHorizontalDragUpdate:
+          widget.enable! ? _handleOnHorizontalDragUpdate : null,
       onHorizontalDragCancel: widget.enable! ? _handleDragCancel : null,
       onHorizontalDragStart: widget.enable! ? _handleDragStart : null,
       child: Container(
@@ -168,7 +171,8 @@ class _BaseSwitcher extends State<BaseSwitcher> {
       double height = widget.height ?? widget.width! * 0.608;
       double circleSize = (height * (32.52 / 36.0));
       if (widget.open) {
-        fixOffset = widget.width! - widget.offset! - circleSize - widget.offset!;
+        fixOffset =
+            widget.width! - widget.offset! - circleSize - widget.offset!;
       } else {
         fixOffset = 0;
       }

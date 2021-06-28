@@ -69,6 +69,7 @@ flutter:
 
 scripts:
   mobx: flutter pub run build_runner watch
+  sort: flutter pub run import_sorter:main
 
 import_sorter:
   emojis: false

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gql/language.dart';
-import 'package:graphql_flutter/graphql_flutter.dart' as GraphQL;
+import 'package:graphql_flutter/graphql_flutter.dart' as graphql;
+import 'package:iupp_components/iupp_components.dart';
 import 'package:mobx/mobx.dart';
 
 import 'package:poc_example_integration/app/modules/products/models/product_model.dart';
@@ -10,16 +12,14 @@ import 'package:poc_example_integration/app/modules/products/repository/mutation
 import 'package:poc_example_integration/app/modules/products/repository/mutations/save_products_mutation.dart';
 import 'package:poc_example_integration/app/modules/products/repository/queries/list_products_query.dart';
 import 'package:poc_example_integration/graphql_client.dart';
-import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
-import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_success.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'products_store.g.dart';
 
 class ProductsStore = ProductsStoreBase with _$ProductsStore;
 
 abstract class ProductsStoreBase with Store {
-  GraphQLConfiguration _configuration = Modular.get<GraphQLConfiguration>();
+  final GraphQLConfiguration _configuration =
+      Modular.get<GraphQLConfiguration>();
 
   @observable
   bool saveLoading = false;
@@ -58,38 +58,38 @@ abstract class ProductsStoreBase with Store {
       productName.isEmpty || productDescription.isEmpty || productPrice == null;
 
   @action
-  setProductName(String value) => productName = value;
+  dynamic setProductName(String value) => productName = value;
 
   @action
-  setProductDescription(String value) => productDescription = value;
+  dynamic setProductDescription(String value) => productDescription = value;
 
   @action
-  setProductPrice(double? value) => productPrice = value;
+  dynamic setProductPrice(double? value) => productPrice = value;
 
   @action
-  setSaveLoading(bool loading) => saveLoading = loading;
+  dynamic setSaveLoading({required bool value}) => saveLoading = value;
 
   @action
-  setQueryLoading(bool loading) => queryLoading = loading;
+  dynamic setQueryLoading({required bool value}) => queryLoading = value;
 
   @action
-  setShowPoints(bool value) => showPoints = value;
+  dynamic setShowPoints({required bool value}) => showPoints = value;
 
   @action
-  setSearchText(String? value) => searchText = value;
+  dynamic setSearchText(String? value) => searchText = value;
 
   @action
   Future<void> listProducts() async {
-    setQueryLoading(true);
+    setQueryLoading(value: true);
 
     try {
-      final document = GraphQL.gql(listProductsQuery);
-      final GraphQL.QueryOptions _options = GraphQL.QueryOptions(
+      final document = graphql.gql(listProductsQuery);
+      final graphql.QueryOptions _options = graphql.QueryOptions(
         document: document,
         pollInterval: Duration(minutes: 5),
-        fetchPolicy: GraphQL.FetchPolicy.networkOnly,
+        fetchPolicy: graphql.FetchPolicy.networkOnly,
       );
-      final GraphQL.QueryResult response =
+      final graphql.QueryResult response =
           await _configuration.graphClientQuery().query(_options);
 
       final json = response.data;
@@ -106,21 +106,22 @@ abstract class ProductsStoreBase with Store {
 
         products = ObservableList<Product>.of(prods);
       }
-    } catch (e) {
-      throw e;
+    } on Exception catch (e) {
+      print(e);
+      rethrow;
     } finally {
-      setQueryLoading(false);
+      setQueryLoading(value: false);
     }
   }
 
   @action
   Future<void> addProduct() async {
-    setSaveLoading(true);
+    setSaveLoading(value: true);
 
     try {
       final document = parseString(saveProductsMutation);
 
-      final GraphQL.MutationOptions _options = GraphQL.MutationOptions(
+      final graphql.MutationOptions _options = graphql.MutationOptions(
         document: document,
         variables: <String, String>{
           'name': productName,
@@ -131,10 +132,11 @@ abstract class ProductsStoreBase with Store {
 
       await _configuration.graphClientMutation().mutate(_options);
       listProducts();
-    } catch (e) {
-      throw e;
+    } on Exception catch (e) {
+      print(e);
+      rethrow;
     } finally {
-      setSaveLoading(false);
+      setSaveLoading(value: false);
     }
   }
 
@@ -143,7 +145,7 @@ abstract class ProductsStoreBase with Store {
     try {
       final document = parseString(deleteProductsMutation);
 
-      final GraphQL.MutationOptions _options = GraphQL.MutationOptions(
+      final graphql.MutationOptions _options = graphql.MutationOptions(
         document: document,
         variables: <String, String>{
           'id': id,
@@ -154,14 +156,15 @@ abstract class ProductsStoreBase with Store {
       listProducts();
 
       ScaffoldMessenger.of(context).showSnackBar(
-        CustomSuccessSnackBar(
+        IuppSuccessSnackBar(
           context,
           message: AppLocalizations.of(context)!.removingProductSuccess,
         ),
       );
-    } catch (e) {
+    } on Exception catch (e) {
+      print(e);
       ScaffoldMessenger.of(context).showSnackBar(
-        CustomErrorSnackBar(
+        IuppErrorSnackBar(
           context,
           message: AppLocalizations.of(context)!.removingProductError,
         ),

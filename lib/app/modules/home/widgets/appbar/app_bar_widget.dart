@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:iupp_components/components/atoms/atoms.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -9,7 +10,6 @@ import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
 import 'package:poc_example_integration/app/modules/home/repository/home_store.dart';
 import 'package:poc_example_integration/screens/widgets/inputs/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final HomeStore homeStore;
@@ -79,7 +79,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               child: MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
-                  onTap: () => homeStore.search(),
+                  onTap: homeStore.search,
                   child: Icon(
                     IuppIcons.icone_contorno_B_busca_outline,
                     color: bluePool,
@@ -95,9 +95,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
-                    onTap: () {
-                      homeStore.clearSearch();
-                    },
+                    onTap: homeStore.clearSearch,
                     child: Icon(
                       IuppIcons.icone_contorno_F_fechar,
                       color: bluePool,
@@ -114,6 +112,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize {
-    return new Size.fromHeight(100);
+    return Size.fromHeight(100);
   }
 }

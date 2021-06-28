@@ -206,33 +206,33 @@ mixin _$ProductsStore on ProductsStoreBase, Store {
   }
 
   @override
-  dynamic setSaveLoading(bool loading) {
+  dynamic setSaveLoading({required bool value}) {
     final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
         name: 'ProductsStoreBase.setSaveLoading');
     try {
-      return super.setSaveLoading(loading);
+      return super.setSaveLoading(value: value);
     } finally {
       _$ProductsStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic setQueryLoading(bool loading) {
+  dynamic setQueryLoading({required bool value}) {
     final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
         name: 'ProductsStoreBase.setQueryLoading');
     try {
-      return super.setQueryLoading(loading);
+      return super.setQueryLoading(value: value);
     } finally {
       _$ProductsStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic setShowPoints(bool value) {
+  dynamic setShowPoints({required bool value}) {
     final _$actionInfo = _$ProductsStoreBaseActionController.startAction(
         name: 'ProductsStoreBase.setShowPoints');
     try {
-      return super.setShowPoints(value);
+      return super.setShowPoints(value: value);
     } finally {
       _$ProductsStoreBaseActionController.endAction(_$actionInfo);
     }

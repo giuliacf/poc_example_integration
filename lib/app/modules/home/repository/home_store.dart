@@ -26,10 +26,10 @@ abstract class _HomeStore with Store {
   int currentIndex = 0;
 
   @computed
-  bool get showCleanSearch => searchText != null && searchText!.length > 0;
+  bool get showCleanSearch => searchText != null && searchText!.isNotEmpty;
 
   @action
-  void changeSearch(String? value) => searchText = value;
+  dynamic changeSearch(String? value) => searchText = value;
 
   @action
   void changeSelectedIndex(int index) {

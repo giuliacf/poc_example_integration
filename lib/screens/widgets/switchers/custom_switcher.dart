@@ -7,7 +7,7 @@ import 'base_switcher.dart';
 
 class CustomSwitcher extends StatelessWidget {
   final bool openOrClosed;
-  final Function onChanged;
+  final Function(bool) onChanged;
   final Widget widgetOpened;
   final Widget widgetClosed;
   final String stringOpened;
@@ -30,7 +30,7 @@ class CustomSwitcher extends StatelessWidget {
       ),
       child: BaseSwitcher(
         open: openOrClosed,
-        onChanged: (val) => onChanged(val),
+        onChanged: onChanged,
         width: 127,
         height: 30,
         childOffset: 15,

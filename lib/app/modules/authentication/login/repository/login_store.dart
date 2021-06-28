@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:iupp_components/iupp_components.dart';
 import 'package:mobx/mobx.dart';
 
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
-import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
 import 'package:poc_example_integration/utils/regex.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'login_store.g.dart';
 
@@ -38,34 +38,34 @@ abstract class _LoginStore with Store {
   void changeShowPassword() => showPassword = !showPassword;
 
   @action
-  void setEmail(String value) => email = value;
+  dynamic setEmail(String value) => email = value;
 
   @action
-  void setPassword(String value) => password = value;
+  dynamic setPassword(String value) => password = value;
 
   @action
-  void setLoading(bool value) => loading = value;
+  dynamic setLoading({required bool value}) => loading = value;
 
   @computed
   bool get canLogin => isEmailValid && password.isNotEmpty;
 
   @action
   Future<void> registerWithGoogle(BuildContext context) async {
-    setLoading(true);
+    setLoading(value: true);
     try {
       await authDatasource.signInWithGoogle(context: context);
       Modular.to.navigate('/home');
-    } catch (e) {
+    } on Exception catch (e) {
       print(e);
     } finally {
-      setLoading(false);
+      setLoading(value: false);
     }
   }
 
   @action
   Future<void> login(
       String email, String password, BuildContext context) async {
-    setLoading(true);
+    setLoading(value: true);
     try {
       await authDatasource.loginWithEmail(
         email: email,
@@ -75,16 +75,16 @@ abstract class _LoginStore with Store {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(
-          CustomErrorSnackBar(
+          IuppErrorSnackBar(
             context,
             message: AppLocalizations.of(context)!.loginProblem,
           ),
         );
       }
-    } catch (e) {
+    } on Exception catch (e) {
       print(e);
     } finally {
-      setLoading(false);
+      setLoading(value: false);
     }
   }
 }

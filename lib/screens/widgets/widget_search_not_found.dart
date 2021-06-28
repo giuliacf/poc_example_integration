@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iupp_components/iupp_components.dart';
 
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WidgetSearchNotFound extends StatelessWidget {
   @override

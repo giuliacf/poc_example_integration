@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:iupp_components/iupp_components.dart';
 import 'package:mobx/mobx.dart';
 
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
-import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_error.dart';
 import 'package:poc_example_integration/utils/regex.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'register_store.g.dart';
 
@@ -32,19 +32,19 @@ abstract class RegisterStoreBase with Store {
   bool isLoading = false;
 
   @action
-  void setEmail(String value) => email = value;
+  dynamic setEmail(String value) => email = value;
 
   @action
-  void setPassword(String value) => password = value;
+  dynamic setPassword(String value) => password = value;
 
   @action
-  void setConfirmPassword(String value) => confirmPassword = value;
+  dynamic setConfirmPassword(String value) => confirmPassword = value;
 
   @action
-  void setAgreeWithTerms(bool agree) => agreeWithTerms = agree;
+  dynamic setAgreeWithTerms({required bool agree}) => agreeWithTerms = agree;
 
   @action
-  void setLoading(bool loading) => isLoading = loading;
+  dynamic setLoading({required bool loading}) => isLoading = loading;
 
   @computed
   bool get isEmailValid => RegExp(emailRegex).hasMatch(email);
@@ -61,7 +61,7 @@ abstract class RegisterStoreBase with Store {
 
   @action
   Future<void> registerWithUserAndEmail(BuildContext context) async {
-    setLoading(true);
+    setLoading(loading: true);
 
     try {
       await authDatasource.registerWithEmail(
@@ -74,16 +74,16 @@ abstract class RegisterStoreBase with Store {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         ScaffoldMessenger.of(context).showSnackBar(
-          CustomErrorSnackBar(
+          IuppErrorSnackBar(
             context,
             message: AppLocalizations.of(context)!.accountAlreadyExists,
           ),
         );
       }
-    } catch (e) {
+    } on Exception catch (e) {
       print(e);
     } finally {
-      setLoading(false);
+      setLoading(loading: false);
     }
   }
 }

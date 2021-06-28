@@ -73,5 +73,6 @@
   "typeProduct": "product",
   "typeGif": "type of gif",
   "clearSearch": "clear search",
-  "search": "search"
+  "search": "search",
+  "fetchError": "Error trying to reach the API :("
 }

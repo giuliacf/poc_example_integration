@@ -5,14 +5,14 @@ import 'package:poc_example_integration/utils/urls.dart';
 class GraphQLConfiguration {
   GraphQLClient graphClientMutation() {
     return GraphQLClient(
-      link: Urls.graphqlMutationUrl,
+      link: getGraphqlMutationUrl,
       cache: GraphQLCache(store: HiveStore()),
     );
   }
 
   GraphQLClient graphClientQuery() {
     return GraphQLClient(
-      link: Urls.graphqlQueryUrl,
+      link: getGraphqlQueryUrl,
       cache: GraphQLCache(store: HiveStore()),
     );
   }

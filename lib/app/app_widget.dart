@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import 'package:iupp_components/iupp_components.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 final numberFormatter = NumberFormat.currency(symbol: "", decimalDigits: 0);
 final currencyFormatter = NumberFormat.currency(symbol: "", decimalDigits: 2);

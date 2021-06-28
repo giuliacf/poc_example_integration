@@ -126,7 +126,7 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
       ActionController(name: 'RegisterStoreBase');
 
   @override
-  void setEmail(String value) {
+  dynamic setEmail(String value) {
     final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
         name: 'RegisterStoreBase.setEmail');
     try {
@@ -137,7 +137,7 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
   }
 
   @override
-  void setPassword(String value) {
+  dynamic setPassword(String value) {
     final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
         name: 'RegisterStoreBase.setPassword');
     try {
@@ -148,7 +148,7 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
   }
 
   @override
-  void setConfirmPassword(String value) {
+  dynamic setConfirmPassword(String value) {
     final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
         name: 'RegisterStoreBase.setConfirmPassword');
     try {
@@ -159,22 +159,22 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
   }
 
   @override
-  void setAgreeWithTerms(bool agree) {
+  dynamic setAgreeWithTerms({required bool agree}) {
     final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
         name: 'RegisterStoreBase.setAgreeWithTerms');
     try {
-      return super.setAgreeWithTerms(agree);
+      return super.setAgreeWithTerms(agree: agree);
     } finally {
       _$RegisterStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void setLoading(bool loading) {
+  dynamic setLoading({required bool loading}) {
     final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
         name: 'RegisterStoreBase.setLoading');
     try {
-      return super.setLoading(loading);
+      return super.setLoading(loading: loading);
     } finally {
       _$RegisterStoreBaseActionController.endAction(_$actionInfo);
     }

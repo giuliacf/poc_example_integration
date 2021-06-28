@@ -128,7 +128,7 @@ mixin _$LoginStore on _LoginStore, Store {
   }
 
   @override
-  void setEmail(String value) {
+  dynamic setEmail(String value) {
     final _$actionInfo =
         _$_LoginStoreActionController.startAction(name: '_LoginStore.setEmail');
     try {
@@ -139,7 +139,7 @@ mixin _$LoginStore on _LoginStore, Store {
   }
 
   @override
-  void setPassword(String value) {
+  dynamic setPassword(String value) {
     final _$actionInfo = _$_LoginStoreActionController.startAction(
         name: '_LoginStore.setPassword');
     try {
@@ -150,11 +150,11 @@ mixin _$LoginStore on _LoginStore, Store {
   }
 
   @override
-  void setLoading(bool value) {
+  dynamic setLoading({required bool value}) {
     final _$actionInfo = _$_LoginStoreActionController.startAction(
         name: '_LoginStore.setLoading');
     try {
-      return super.setLoading(value);
+      return super.setLoading(value: value);
     } finally {
       _$_LoginStoreActionController.endAction(_$actionInfo);
     }

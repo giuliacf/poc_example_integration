@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:iupp_components/iupp_components.dart';
 import 'package:mobx/mobx.dart';
 
-import 'package:poc_example_integration/screens/widgets/snackbar/custom_snackbar_success.dart';
 import 'package:poc_example_integration/utils/regex.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'forget_password_store.g.dart';
 
@@ -19,10 +19,10 @@ abstract class _ForgetPasswordStore with Store {
   String confirmEmail = '';
 
   @action
-  void setEmail(String value) => email = value;
+  dynamic setEmail(String value) => email = value;
 
   @action
-  void setConfirmEmail(String value) => confirmEmail = value;
+  dynamic setConfirmEmail(String value) => confirmEmail = value;
 
   @computed
   bool get canLogin => email.isNotEmpty && confirmEmail.isNotEmpty;
@@ -36,7 +36,7 @@ abstract class _ForgetPasswordStore with Store {
   @action
   void sendEmail(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
-      CustomSuccessSnackBar(
+      IuppSuccessSnackBar(
         context,
         message: AppLocalizations.of(context)!.emailSendSuccess,
       ),

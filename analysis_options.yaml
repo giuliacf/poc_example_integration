@@ -1,2 +1,7 @@
-# include: package:effective_dart/analysis_options.yaml
+include: package:effective_dart/analysis_options.yaml
 
+linter:
+  rules:
+    prefer_relative_imports: false
+    public_member_api_docs: false
+    omit_local_variable_types: false

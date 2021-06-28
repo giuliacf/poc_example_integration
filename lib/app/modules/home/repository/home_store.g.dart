@@ -67,7 +67,7 @@ mixin _$HomeStore on _HomeStore, Store {
   final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
 
   @override
-  void changeSearch(String? value) {
+  dynamic changeSearch(String? value) {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.changeSearch');
     try {

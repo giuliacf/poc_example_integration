@@ -110,8 +110,8 @@ mixin _$AnimalsStore on _AnimalsStore, Store {
   final _$getApiDataAsyncAction = AsyncAction('_AnimalsStore.getApiData');
 
   @override
-  Future<void> getApiData() {
-    return _$getApiDataAsyncAction.run(() => super.getApiData());
+  Future<void> getApiData(BuildContext context) {
+    return _$getApiDataAsyncAction.run(() => super.getApiData(context));
   }
 
   final _$loadMoreAnimalsAsyncAction =
@@ -137,11 +137,11 @@ mixin _$AnimalsStore on _AnimalsStore, Store {
   }
 
   @override
-  void changeApi(bool val) {
+  void changeApi({required bool val}) {
     final _$actionInfo = _$_AnimalsStoreActionController.startAction(
         name: '_AnimalsStore.changeApi');
     try {
-      return super.changeApi(val);
+      return super.changeApi(val: val);
     } finally {
       _$_AnimalsStoreActionController.endAction(_$actionInfo);
     }

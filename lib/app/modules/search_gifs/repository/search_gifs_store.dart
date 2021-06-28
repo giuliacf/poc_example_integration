@@ -23,7 +23,7 @@ abstract class _SearchGifsStore with Store {
   String? searchText;
 
   @action
-  setSearchText(String? value) => searchText = value;
+  dynamic setSearchText(String? value) => searchText = value;
 
   @action
   Future<void> searchGifs(String text) async {
@@ -31,13 +31,13 @@ abstract class _SearchGifsStore with Store {
     gifs = ObservableList<String>.of([]);
 
     isLoading = true;
-    await _getGifsFromApi(Urls.tenorApiUrl(text));
+    await _getGifsFromApi(getTenorApiUrl(text));
     isLoading = false;
   }
 
   @action
   Future<void> loadMoreGifs() async {
-    final url = Urls.tenorApiUrl(
+    final url = getTenorApiUrl(
       searchText ?? '',
       position: gifs.length + 1,
     );
@@ -61,7 +61,7 @@ abstract class _SearchGifsStore with Store {
       } else {
         throw Exception();
       }
-    } catch (e) {
+    } on Exception catch (e) {
       print(e);
       throw Exception(e);
     }

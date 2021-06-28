@@ -36,7 +36,7 @@ class _SearchGifsPageState
               child: CircularProgressIndicator(color: aqua),
             );
           }
-          if (store.gifs.length > 0) {
+          if (store.gifs.isNotEmpty) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

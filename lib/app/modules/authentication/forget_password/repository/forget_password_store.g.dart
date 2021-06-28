@@ -65,7 +65,7 @@ mixin _$ForgetPasswordStore on _ForgetPasswordStore, Store {
       ActionController(name: '_ForgetPasswordStore');
 
   @override
-  void setEmail(String value) {
+  dynamic setEmail(String value) {
     final _$actionInfo = _$_ForgetPasswordStoreActionController.startAction(
         name: '_ForgetPasswordStore.setEmail');
     try {
@@ -76,7 +76,7 @@ mixin _$ForgetPasswordStore on _ForgetPasswordStore, Store {
   }
 
   @override
-  void setConfirmEmail(String value) {
+  dynamic setConfirmEmail(String value) {
     final _$actionInfo = _$_ForgetPasswordStoreActionController.startAction(
         name: '_ForgetPasswordStore.setConfirmEmail');
     try {

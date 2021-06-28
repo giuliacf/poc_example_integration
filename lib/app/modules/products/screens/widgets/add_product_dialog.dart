@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iupp_components/iupp_components.dart';
@@ -11,7 +12,6 @@ import 'package:poc_example_integration/app/modules/products/repository/products
 import 'package:poc_example_integration/screens/widgets/dialogs/warning_dialog.dart';
 import 'package:poc_example_integration/screens/widgets/inputs/text_field_custom.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddProductDialog extends StatelessWidget {
   final ProductsStore _store = Modular.get<ProductsStore>();

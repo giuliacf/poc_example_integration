@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iupp_components/components/atoms/atoms.dart';
 import 'package:iupp_components/iupp_components.dart';
@@ -9,7 +10,6 @@ import 'package:poc_example_integration/app/modules/products/models/product_mode
 import 'package:poc_example_integration/app/modules/products/repository/products_store.dart';
 import 'package:poc_example_integration/screens/widgets/dialogs/warning_dialog.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -95,7 +95,7 @@ class ProductCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'R\$ ${currencyFormatter.format(product.price)}',
+                                '''R\$ ${currencyFormatter.format(product.price)}''',
                                 style: IuppTextStyles.textMediumBold,
                                 overflow: TextOverflow.ellipsis,
                               ),

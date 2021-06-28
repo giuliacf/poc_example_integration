@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iupp_components/components/atoms/atoms.dart';
@@ -11,7 +12,6 @@ import 'package:poc_example_integration/app/modules/products/screens/widgets/pro
 import 'package:poc_example_integration/screens/widgets/switchers/custom_switcher.dart';
 import 'package:poc_example_integration/screens/widgets/widget_search_not_found.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProductsPage extends StatefulWidget {
   @override
@@ -54,7 +54,7 @@ class _ProductsPageState extends State<ProductsPage> {
                 ),
                 child: CustomSwitcher(
                   openOrClosed: _store.showPoints,
-                  onChanged: _store.setShowPoints,
+                  onChanged: (val) => _store.setShowPoints(value: val),
                   stringOpened: AppLocalizations.of(context)!.points,
                   widgetOpened: Icon(
                     IuppIcons.icone_solidos_P_programa_de_pontos,
@@ -69,7 +69,7 @@ class _ProductsPageState extends State<ProductsPage> {
                   ),
                 ),
               ),
-              _store.productsFiltered.length > 0
+              _store.productsFiltered.isNotEmpty
                   ? Expanded(
                       child: Scrollbar(
                         isAlwaysShown: true,

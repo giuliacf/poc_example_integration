@@ -16,7 +16,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   AuthDatasource authDatasource = Modular.get<AuthDatasource>();
 
-  initState() {
+  void initState() {
     super.initState();
     redirect();
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:poc_example_integration/app/core/data/auth_datasource.dart';
@@ -9,7 +10,6 @@ import 'package:poc_example_integration/app/modules/home/widgets/appbar/app_bar_
 import 'package:poc_example_integration/app/modules/products/screens/products_page.dart';
 import 'package:poc_example_integration/app/modules/search_gifs/screens/search_gifs_page.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -10,7 +11,6 @@ import 'package:poc_example_integration/screens/widgets/switchers/custom_switche
 import 'package:poc_example_integration/screens/widgets/widget_load_more.dart';
 import 'package:poc_example_integration/screens/widgets/widget_search_not_found.dart';
 import 'package:poc_example_integration/utils/colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AnimalsPage extends StatefulWidget {
   @override
@@ -21,7 +21,7 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
   @override
   void initState() {
     super.initState();
-    store.getApiData();
+    store.getApiData(context);
   }
 
   @override
@@ -46,8 +46,8 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
                 return CustomSwitcher(
                   openOrClosed: store.isDogApi,
                   onChanged: (val) async {
-                    store.changeApi(val);
-                    store.getApiData();
+                    store.changeApi(val: val);
+                    store.getApiData(context);
                   },
                   stringOpened: AppLocalizations.of(context)!.dogs,
                   widgetOpened:
@@ -69,7 +69,7 @@ class _AnimalsPageState extends ModularState<AnimalsPage, AnimalsStore> {
                 );
               }
 
-              if (store.animalsFiltered.length > 0) {
+              if (store.animalsFiltered.isNotEmpty) {
                 return Expanded(
                   child: ListView(
                     children: [
